@@ -76,6 +76,9 @@ function InitServiceRequestGrid(data) {
                         source: {
                             type: "string",
                         },
+                        _listOfServices: {
+                            type: "string",
+                        },
                         createdOn: {
                             type: "string",
                         },
@@ -121,6 +124,11 @@ function InitServiceRequestGrid(data) {
                 title: "Source",
                 field: "source",
                 filterable: { multi: true }
+            },
+            {
+                title: "Services",
+                field: "_listOfServices",
+                filterable: true
             },
             {
                 title: "Date",

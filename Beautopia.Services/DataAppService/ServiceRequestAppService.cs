@@ -110,6 +110,12 @@ namespace Beautopia.Services.DataAppService
                     obj.SType = Convert.ToString(reader["SType"]);
                     obj.CreatedOn = Convert.ToString(reader["CreatedOn"]);
                     var services = GetSubCategoryByServiceID(obj.ID);
+
+                    foreach (var item in services) {
+
+                        obj._listOfServices += (obj._listOfServices == null || obj._listOfServices=="" ? item.SubCategoryNameAr : "," + item.SubCategoryNameAr);
+                    }
+
                     obj.SubCategoryByServiceID = services;
                     Lisobj.Add(obj);
                 }
