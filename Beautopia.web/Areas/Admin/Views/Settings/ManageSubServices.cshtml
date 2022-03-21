@@ -1,0 +1,89 @@
+﻿<div class="panel panel-primary">
+	<div class="panel-heading">Service Category</div>
+
+
+	<div id="tabs" style="margin-top: 10px;">
+
+
+		<div class="container-fluid" id="IssueCard">
+
+
+			<form id="manageSubService" method="post" novalidate>
+
+				<div class="row row-xs-space mt-1">
+					<div class="col-sm-4">
+						<Label>
+							Sub Category Name En
+						</Label>
+						<input type="text" name="SubCategoryNameEn" id="SubCategoryNameEn" class="form-control inputClass" autocomplete="off" placeholder="Sub Category Name En" />
+
+
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<Label>
+							Sub Category Name Ar
+						</Label>
+						<input type="hidden" name="ID" id="ID" value="0" />
+						<input type="text" name="SubCategoryNameAr" id="SubCategoryNameAr" class="form-control inputClass" autocomplete="off" placeholder="Sub Category Name Ar" />
+
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0">
+
+						<Label>
+							Price
+						</Label>
+						<input type="number" name="ServicePrice" id="ServicePrice" class="form-control inputClass" autocomplete="off" placeholder="Price" />
+
+					</div>
+
+				
+				</div>
+
+				<div class="row row-xs-space mt-1" style="margin-top:11px">
+
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<Label>
+							Service Category
+						</Label>
+
+						<select name="CategoryID" class="form-control selectClass" id="CategoryID" style="font-weight:bold">
+							<option selected="selected" value="" disabled="disabled">Select Service Category</option>
+
+						</select>
+
+					</div>
+
+					<div class="col-sm-4 mt-1 mt-sm-0" style="text-align:center">
+						<Label>
+							IsActive
+						</Label>
+						<input type="checkbox" name="IsActiveChecked" id="IsActiveChecked" class="form-control chkClass" />
+
+					</div>
+					<div class="text-right mt-2">
+						<button type="submit" class="btn btn-success" style=" margin-right: 13px;">Save</button>
+					</div>
+				</div>
+
+				
+			</form>
+
+		</div>
+
+
+		<div id="CardHolderList">
+			<div class="row">
+				<div class="col-xs-18 col-md-12 ServiceSubCatereceivedGridDiv" style="margin-top: 22px;">
+					<div id="ServiceSubCatereceivedGrid"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+@section scripts {
+	<script src="~/admin-custom/js/manage-sub-service.js"></script>
+}

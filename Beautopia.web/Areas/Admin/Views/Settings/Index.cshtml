@@ -1,0 +1,43 @@
+﻿
+
+
+<div class="row">
+	<h3>Generate Campegn URL</h3>
+	<div class="col-md-6">
+		<Label>
+			Campeign Source
+		</Label>
+		<select name="Source" class="form-control" id="Source" style="font-weight:bold">
+			<option selected="selected" value="-1" disabled="disabled">Select Campeign Source</option>
+
+		</select>
+	</div>
+
+	<div class="col-md-6">
+		<Label>
+			 Service Category
+		</Label>
+		<select name="Service" class="form-control" id="serviceRequestID" style="font-weight:bold">
+			<option selected="selected" value="-1" disabled="disabled">Select Service Category</option>
+
+		</select>
+	</div>
+
+	<div class="col-md-12" id="serviceSubCategoryDiv">
+
+
+	</div>
+
+
+	<div class="col-md-12" style="margin-top: 53px">
+		<Label>
+			Generated URL
+		</Label>
+		<input class="form-control" placeholder="URL" readonly id="generatedURL" value="https://Butopia-Clinic.com">
+	</div>
+</div>
+
+
+	@section scripts {
+		<script src="~/admin-custom/js/settings-controller.js"></script>
+	}

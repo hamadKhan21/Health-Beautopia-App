@@ -1,0 +1,34 @@
+﻿using Beautopia.Model;
+using Beautopia.Model.Area;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Beautopia.Services.IDataService
+{
+	public interface IServiceRequest
+	{
+
+		int InsertServiceRequest(RequestService param);
+
+		List<RequestService> GetRequestService(string Mobile);
+		List<SubCategoryByServiceID> GetSubCategoryByServiceID(int RequestServiceID);
+
+		void InsertRequestServiceAndSubCategoryMapping(RequestServiceAndSubCategoryMapping param);
+		List<ServiceCategory> GetServiceCategory();
+		List<ServiceSubCategory> GetServiceSubCategory(int CategoryID);
+		UserLogin UserLogin(string UserName, string Password);
+
+		List<Source> GetSources();
+
+		void InsertUpdateServiceCategory(ServiceCategory param,string CreatedBy);
+
+		List<ServiceCategory> GetAllServiceCategory();
+
+
+
+		void InsertUpdateServiceSubCategory(ServiceSubCategory param, string CreatedBy);
+
+		List<ServiceSubCategory> GetAllServiceSubCategory();
+	}
+}
