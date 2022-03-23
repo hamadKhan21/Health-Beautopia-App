@@ -170,7 +170,7 @@ function GetServiceSubCategory(CategoryID) {
 				
 				for (var i = 0; i < cdrData.length; i++) {
 
-					AppendServiceCheckboxes(cdrData[i].subCategoryNameAr, cdrData[i].id, cdrData[i].servicePrice)
+					AppendServiceCheckboxes(cdrData[i].subCategoryNameAr, cdrData[i].id, cdrData[i].servicePrice, cdrData[i].subServiceImageName)
 
 					//$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].categoryNameAr + "</option>");
 
@@ -190,7 +190,7 @@ function GetServiceSubCategory(CategoryID) {
 }
 //https://Butopia-Clinic.com/requestservice?SourceID=2&CategoryID=2&SubCategoryID=5_8_9
 
-function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price) {
+function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price, subServiceImageName) {
 	//debugger;
 	var CheckValue = "";
 	var SubCategoryIDQuery = getUrlVars()["SubCategoryID"];
@@ -208,28 +208,54 @@ function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price
 	}
 
 	if (CheckValue != null && CheckValue!="") {
-		$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-			+ '<div class="custom-checkbox">'
+		//$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
+		//	+ '<div class="custom-checkbox">'
 
-			+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
-			+ SubCategoryService + ' ' + price + 'ريال'
-			+ '</span>'
-			+ '<input type="checkbox" checked class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
+		//	+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
+		//	+ SubCategoryService + ' ' + price + 'ريال'
+		//	+ '</span>'
+		//	+ '<input type="checkbox" checked class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
 
-			+ '</div></div>'
+		//	+ '</div></div>'
+		//);
+
+		$("#serviceSubCategoryDiv").append('<div class="col-md-6 col-lg-2">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
+			+ '<div class="service-card">'
+			+ '<div class="service-card-photo">'
+			+ '<a href="#"><img src="/admin-custom/Images/SubServices/' + subServiceImageName+'" class="img-fluid" alt=""></a>'
+			+ '</div><h5 class="service-card-name">'
+			+ '<input type="checkbox" checked class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" />'
+			+ '<div class="service-requested-h-decor"></div>'
+			+'<p class="services-desc-cl">'
+			+ SubCategoryService + ' ' + price + ' ' + 'ريال '
+			+ '</p></div></div>'
 		);
+
+
 	}
 	else {
 
-		$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-			+ '<div class="custom-checkbox">'
+		//$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
+		//	+ '<div class="custom-checkbox">'
 
-			+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
-			+ SubCategoryService + ' ' + price + 'ريال'
-			+ '</span>'
-			+ '<input type="checkbox" class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
+		//	+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
+		//	+ SubCategoryService + ' ' + price + 'ريال'
+		//	+ '</span>'
+		//	+ '<input type="checkbox" class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
 
-			+ '</div></div>'
+		//	+ '</div></div>'
+		//);
+
+		$("#serviceSubCategoryDiv").append('<div class="col-md-6 col-lg-2">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
+			+ '<div class="service-card">'
+			+ '<div class="service-card-photo">'
+			+ '<a href="#"><img src="/admin-custom/Images/SubServices/' + subServiceImageName + '" class="img-fluid" alt=""></a>'
+			+ '</div><h5 class="service-card-name">'
+			+ '<input type="checkbox" class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
+			+ '<div class="service-requested-h-decor"></div>'
+			+ '<p class="services-desc-cl">'
+			+ SubCategoryService + ' ' + price +' '+ 'ريال '
+			+ '</p></div></div>'
 		);
 	}
 

@@ -372,6 +372,7 @@ namespace Beautopia.Services.DataAppService
                     obj.SubCategoryNameAr = Convert.ToString(reader["SubCategoryNameAr"]);
                     obj.ServicePrice = Convert.ToString(reader["ServicePrice"]);
                     obj.CategoryID = Convert.ToInt32(reader["CategoryID"]);
+                    obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
 
 
                     Lisobj.Add(obj);
@@ -635,6 +636,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@CategoryID", SqlDbType.Int).Value = param.CategoryID;
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = CreatedBy;
+                dbCommand.Parameters.Add("@SubServiceImageName", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageName;
 
                 dbCommand.ExecuteNonQuery();
                 //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
@@ -697,6 +699,7 @@ namespace Beautopia.Services.DataAppService
                     obj.ServicePrice = Convert.ToString(reader["ServicePrice"]);
                     obj.CategoryID = Convert.ToInt32(reader["CategoryID"]);
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+                    obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
 
 
                     Lisobj.Add(obj);

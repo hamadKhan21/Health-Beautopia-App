@@ -25,7 +25,11 @@ $document.ready(function () {
                  CategoryID: {
                     required: true,
 
-                }
+                },
+               // SubServiceImage: {
+                   // required: true,
+
+                //}
                 
 
 			},
@@ -52,7 +56,12 @@ $document.ready(function () {
                     required: "Please Select Service",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
-                }
+                },
+                //SubServiceImage: {
+                   // required: "Please Select Image",
+                    //minlength: "mobile must be 10 digits",
+                    //maxlength: "mobile must be 10 digits"
+               // }
 			},
 			submitHandler: function submitHandler(form) {
 				
@@ -81,12 +90,29 @@ $document.ready(function () {
 
 });
 
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#subservice-img-tag').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#SubServiceImage").change(function () {
+    readURL(this);
+});
+
+
+
 GetServiceCategoriesLkp();
 GetAllSubServiceCategory()
 
 function GetServiceCategoriesLkp() {
     $("#CategoryID").empty();
-    $("#CategoryID").append("<option value=''>Select Sub Service Category</option>")
+    $("#CategoryID").append("<option value=''>Select Service Category</option>")
 
     ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
     $.ajax({
@@ -279,7 +305,9 @@ $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) 
     $("#SubCategoryNameAr").val(dataItem.subCategoryNameAr);
     $("#ServicePrice").val(dataItem.servicePrice);
     $("#CategoryID").val(dataItem.categoryID);
-
+    $("#SubServiceImageName").val(dataItem.subServiceImageName);
+    //$("#SubServiceImageName").val(dataItem.subServiceImageName);
+   // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
 
         $("#IsActiveChecked").prop('checked', true);
@@ -288,6 +316,16 @@ $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) 
 
         $("#IsActiveChecked").prop('checked', false);
     }
+
+    if (dataItem.subServiceImageName != "" && dataItem.subServiceImageName != null) {
+        $("#subservice-img-tag").attr("src", "/admin-custom/Images/SubServices/" + dataItem.subServiceImageName);
+    }
+    else {
+
+        $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    }
+
+
     //$("#tabs").tabs("select", "Store-Update")
 });
 

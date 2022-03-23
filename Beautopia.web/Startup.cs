@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +21,7 @@ namespace Beautopia.web
 		public Startup(IConfiguration configuration)
 		{
 			Configuration = configuration;
+			//var contentRoot = env.ContentRootPath;
 		}
 
 		public IConfiguration Configuration { get; }
@@ -38,6 +41,11 @@ namespace Beautopia.web
 			});
 
 			//Add Servies here
+			services.AddSingleton<IFileProvider>(
+	new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/admin-custom/Images/SubServices"))
+);
+
+
 			services.AddScoped<IServiceRequest, ServiceRequestAppService>();
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 		}

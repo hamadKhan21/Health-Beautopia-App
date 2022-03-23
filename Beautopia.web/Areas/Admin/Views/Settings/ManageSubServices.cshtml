@@ -27,7 +27,7 @@
 						<input type="text" name="SubCategoryNameAr" id="SubCategoryNameAr" class="form-control inputClass" autocomplete="off" placeholder="Sub Category Name Ar" />
 
 					</div>
-					<div class="col-sm-4 mt-1 mt-sm-0">
+					<div class="col-sm-2 mt-1 mt-sm-0">
 
 						<Label>
 							Price
@@ -35,13 +35,8 @@
 						<input type="number" name="ServicePrice" id="ServicePrice" class="form-control inputClass" autocomplete="off" placeholder="Price" />
 
 					</div>
+					<div class="col-sm-2 mt-1 mt-sm-0">
 
-				
-				</div>
-
-				<div class="row row-xs-space mt-1" style="margin-top:11px">
-
-					<div class="col-sm-4 mt-1 mt-sm-0">
 						<Label>
 							Service Category
 						</Label>
@@ -53,7 +48,28 @@
 
 					</div>
 
-					<div class="col-sm-4 mt-1 mt-sm-0" style="text-align:center">
+				</div>
+
+				<div class="row row-xs-space mt-1" style="margin-top:11px">
+
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<Label>
+							Image
+						</Label>
+
+						<input type="file" name="SubServiceImage" id="SubServiceImage" class="form-control inputClass" />
+						<input type="hidden" name="SubServiceImageName" id="SubServiceImageName" class="form-control inputClass" />
+
+					</div>
+					<div class="col-sm-2 mt-1 mt-sm-0">
+						
+
+						
+						<img src="" id="subservice-img-tag" onerror='this.src = "../admin-custom/Images/no image.png"' style="width: 166px;" />
+
+					</div>
+
+					<div class="col-sm-2 mt-1 mt-sm-0" style="text-align:center">
 						<Label>
 							IsActive
 						</Label>

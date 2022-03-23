@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
+
 
 namespace Beautopia.Model
 {
@@ -13,6 +15,8 @@ namespace Beautopia.Model
 		public int CategoryID { get; set; }
 		public string IsActiveChecked { get; set; }
 		public bool IsActive { get; set; }
+		public IFormFile SubServiceImage { get; set; }
+		public string SubServiceImageName { get; set; }
 		public int SorOrder { get; set; }
 	}
 }

@@ -4,9 +4,9 @@
 	<div class="modal-form">
 		<h3>Submit Your Service Request</h3>
 		<form id="ServiceRequest" method="post" novalidate>
-			
+
 			<div class="successform">
-				<p>Data is successfully saved!</p>
+				<p>Your request is successfully submited, one our agent will contact your shortly!</p>
 			</div>
 			<div class="errorform">
 				<p>Something went wrong, try refreshing and submitting the form again.</p>
@@ -15,13 +15,97 @@
 				<span>
 					<i class="icon-micro"></i>
 				</span>
-				<select name="Service" class="form-control" id="serviceRequestID" style="font-weight:bold">
+				<select name="Service" class="form-control" id="serviceRequestID" style="font-weight: bold; margin-bottom: 30px;">
 					<option selected="selected" value="-1" disabled="disabled">Select Service Category</option>
 
 				</select>
 			</div>
 
-			<div class="row row-xs-space mt-1" id="serviceSubCategoryDiv">
+			@*<div class="container">*@
+		<div class="row col-equalH"  id="serviceSubCategoryDiv">
+			@*<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/index-img-01.png" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">	ملي فيلر 800ريال</p>
+
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/index-img-01.png" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">ج جلسة الترافورمر لشد الوجه والرقبه لسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/index-img-01.png" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">جلسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/index-img-01.png" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">جلسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>
+
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/skin-services.jpg" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl"> جلسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/skin-services.jpg" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">جلسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-2">
+				<div class="service-card">
+					<div class="service-card-photo">
+						<a href="#"><img src="/medlab/images/content/skin-services.jpg" class="img-fluid" alt=""></a>
+					</div>
+					<h5 class="service-card-name"><input type="checkbox" class="form-control" name="servicecheck" id="service1" /></h5>
+					<div class="h-decor"></div>
+					<p class="services-desc-cl">جلسة الترافورمر لشد الوجه والرقبه 999ريال</p>
+
+				</div>
+			</div>*@
+		</div>
+			
+
+
+			@*<div class="row row-xs-space mt-1" id="serviceSubCategoryDiv" style="display:none">*@
 				@*<div class="col-sm-3">
 				<div class="custom-checkbox">
 					<span>
@@ -70,7 +154,7 @@
 				</div>
 			</div>*@
 
-			</div>
+			@*</div>*@
 
 
 			<div class="row row-xs-space mt-1">

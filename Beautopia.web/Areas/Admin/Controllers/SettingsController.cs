@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Beautopia.web.Areas.Admin.Extensions;
 using Beautopia.Model.Area;
+using System.IO;
+using Microsoft.Extensions.Hosting;
 
 namespace Beautopia.web.Areas.Admin.Controllers
 {
@@ -18,12 +20,15 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		private static IServiceRequest _serviceRequest;
 		private static UserLogin login = new UserLogin();
+		private readonly IHostEnvironment _hostEnvironment;
+
 		//private static ServiceRequestAppService serviceRequest=new ServiceRequestAppService();
-		public SettingsController(IServiceRequest serviceRequest)
+		public SettingsController(IServiceRequest serviceRequest, IHostEnvironment hostEnvironment)
 		{
 			 //login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			_serviceRequest = serviceRequest;
-		
+			_hostEnvironment = hostEnvironment;
+
 		}
 		[SessionTimeout]
 		[Route("Admin/GenerateURL")]
@@ -81,15 +86,59 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public JsonResult SaveUpdateSubServices([Bind("ID,SubCategoryNameEn,SubCategoryNameAr,IsActiveChecked,ServicePrice,CategoryID")] ServiceSubCategory obj)
+		public async Task<JsonResult> SaveUpdateSubServices([Bind("ID,SubCategoryNameEn,SubCategoryNameAr,IsActiveChecked,ServicePrice,CategoryID,SubServiceImage,SubServiceImageName")] ServiceSubCategory obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			List<ServiceSubCategory> servicecate = new List<ServiceSubCategory>();
 
 			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
+			try
+			{
+				// Code to upload image if not null
+				if (obj.SubServiceImage != null)
+				{
+					var extention = Path.GetExtension(obj.SubServiceImage.FileName);
+					if (extention == ".jpg" || extention == ".jpeg" || extention == ".png")
+					{
+						// Create a File Info 
+						FileInfo fi = new FileInfo(obj.SubServiceImage.FileName);
 
-			_serviceRequest.InsertUpdateServiceSubCategory(obj, login.UserName);
-			var servicecate = _serviceRequest.GetAllServiceSubCategory();
+						// This code creates a unique file name to prevent duplications 
+						// stored at the file location
+						var newFilename = login.UserName + "_" + String.Format("{0:d}",
+										  (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+						var webPath = _hostEnvironment.ContentRootPath;
+						var path = Path.Combine("", webPath + @"\wwwroot\admin-custom\Images\SubServices\" + newFilename);
 
+						// IMPORTANT: The pathToSave variable will be save on the column in the database
+						//var pathToSave = @"/images/" + newFilename;
+						obj.SubServiceImageName = newFilename;
+						//info.IncomingCreatedBy = login.EmployeeNumber;
+						// This stream the physical file to the allocate wwwroot/ImageFiles folder
+						using (var stream = new FileStream(path, FileMode.Create))
+						{
+							await obj.SubServiceImage.CopyToAsync(stream);
+						}
+						//_dispatchService.InsertUpdateOutdoing(info);
+						//message = "Success";
+					}
+					else
+					{
+						//message = "File is not in correct format, only png,jpeg, pdf or jpg is allowed";
+					}
+					// This save the path to the record
+
+				}
+
+
+
+				_serviceRequest.InsertUpdateServiceSubCategory(obj, login.UserName);
+				 servicecate = _serviceRequest.GetAllServiceSubCategory();
+			}
+
+			catch (Exception ex) { 
+			
+			}
 			//foreach (var item in listOfServices)
 			//{
 			//	RequestServiceAndSubCategoryMapping map = new RequestServiceAndSubCategoryMapping();
