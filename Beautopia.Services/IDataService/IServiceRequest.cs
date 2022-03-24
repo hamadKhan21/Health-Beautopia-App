@@ -30,5 +30,9 @@ namespace Beautopia.Services.IDataService
 		void InsertUpdateServiceSubCategory(ServiceSubCategory param, string CreatedBy);
 
 		List<ServiceSubCategory> GetAllServiceSubCategory();
+
+		List<ActivityType> GetActivityType();
+		List<RS_Activity> GetRS_Activity(int RequestServiceID);
+		void InsertRS_Activity(RS_Activity param);
 	}
 }

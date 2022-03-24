@@ -185,5 +185,8 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 			return Json(data);
 		}
+
+	
+
 	}
 }

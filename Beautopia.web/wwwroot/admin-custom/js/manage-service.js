@@ -208,7 +208,7 @@ function InitGetAllServiceCategory(cdrData) {
 
 
 $(document).on("dblclick", "#ServiceCatereceivedGrid tbody tr", function (e) {
-    debugger;
+   // debugger;
     var element = e.target || e.srcElement;
     var dataItem = $("#ServiceCatereceivedGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);

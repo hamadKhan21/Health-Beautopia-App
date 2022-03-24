@@ -1,4 +1,6 @@
-﻿using Beautopia.Services.IDataService;
+﻿using Beautopia.Model.Area;
+using Beautopia.Services.IDataService;
+using Beautopia.web.Areas.Admin.Extensions;
 using Beautopia.web.Areas.Admin.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -43,6 +45,37 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 
 			return Json(data);
+		}
+		public JsonResult GetActivityType()
+		{
+			var data = _serviceRequest.GetActivityType();
+
+
+			return Json(data);
+		}
+
+		public JsonResult GetRS_Activity(int RequestServiceID)
+		{
+			var data = _serviceRequest.GetRS_Activity(RequestServiceID);
+
+
+			return Json(data);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public JsonResult InsertRS_Activity([Bind("ActivityTypeID,RequestServiceID,Comments")] RS_Activity obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			obj.CreatedBy = login.UserName;
+
+
+			_serviceRequest.InsertRS_Activity(obj);
+			var servicecate = _serviceRequest.GetRS_Activity(obj.RequestServiceID);
+
+
+
+			return Json(servicecate);
 		}
 	}
 }

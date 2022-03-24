@@ -717,5 +717,163 @@ namespace Beautopia.Services.DataAppService
 
             return Lisobj;
         }
+
+        public List<ActivityType> GetActivityType()
+        {
+            List<ActivityType> Lisobj = new List<ActivityType>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetActivityType";
+               // dbCommand.Parameters.Add("@CategoryID", SqlDbType.Int).Value = CategoryID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ActivityType obj = new ActivityType();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ActivityTypeAr = Convert.ToString(reader["ActivityTypeAr"]);
+                    obj.ActivityTypeEn = Convert.ToString(reader["ActivityTypeEn"]);
+                    
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public List<RS_Activity> GetRS_Activity(int RequestServiceID)
+        {
+            List<RS_Activity> Lisobj = new List<RS_Activity>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetRS_Activity";
+                 dbCommand.Parameters.Add("@RequestServiceID", SqlDbType.Int).Value = RequestServiceID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    RS_Activity obj = new RS_Activity();
+
+                    //
+                    //obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ActivityTypeAr = Convert.ToString(reader["ActivityTypeAr"]);
+                    obj.ActivityTypeEn = Convert.ToString(reader["ActivityTypeEn"]);
+                    obj.RequestServiceID = Convert.ToInt32(reader["RequestServiceID"]);
+                    obj.Comments = Convert.ToString(reader["Comments"]);
+                    obj.CreatedBy = Convert.ToString(reader["CreatedBy"]);
+                    obj.CreatedOn = Convert.ToString(reader["CreatedOn"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public void  InsertRS_Activity(RS_Activity param)
+        {
+            int ReturnEmpID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_InsertRS_Activity";
+               // dbCommand.Parameters.Add("@ID ", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@ActivityTypeID", SqlDbType.Int).Value = param.ActivityTypeID;
+                dbCommand.Parameters.Add("@RequestServiceID", SqlDbType.Int).Value = param.RequestServiceID;
+                dbCommand.Parameters.Add("@Comments", SqlDbType.NVarChar, 500).Value = param.Comments;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = param.CreatedBy;
+               
+                dbCommand.ExecuteNonQuery();
+                //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            // return ReturnEmpID;
+            //
+        }
     }
 }
