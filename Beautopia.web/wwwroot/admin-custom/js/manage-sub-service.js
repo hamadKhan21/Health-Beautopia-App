@@ -159,6 +159,7 @@ function ClearFields() {
     //$("#IsActiveChecked").prop('checked', true)
     $(".chkClass").prop('checked', false);
     $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
+    $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
    // $(".selectClass").val();
 }
 
