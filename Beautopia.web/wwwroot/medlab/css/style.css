@@ -15675,11 +15675,13 @@ body:not(.touch) .faq-wrap .nav-link:hover {
         font-size: 14vw; } }
 
 .gallery-smiles .gallery-item {
-  position: relative;
-  float: left;
-  width: calc(50% - 15px);
-  margin-bottom: 30px;
-  overflow: hidden; }
+    box-shadow: 1px 1px 4px 1px #148999;
+    position: relative;
+    float: left;
+    width: calc(50% - 15px);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
   @media (max-width: 767px) {
     .gallery-smiles .gallery-item {
       width: calc(50% - 15px); } }
@@ -18348,8 +18350,10 @@ body:not(.touch) .quickLinks.stuck {
     margin-top: 10px; }
   .doctor-box-style3 .doctor-box-photo:after {
     display: none; }
-  .doctor-box-style3 .doctor-box-photo {
-    overflow: hidden; }
+    .doctor-box-style3 .doctor-box-photo {
+        box-shadow: 1px 1px 4px 1px #148999;
+        overflow: hidden;
+    }
   .doctor-box-style3 .doctor-box-top {
     margin: 0 !important;
     padding: 25px 15px 0;
