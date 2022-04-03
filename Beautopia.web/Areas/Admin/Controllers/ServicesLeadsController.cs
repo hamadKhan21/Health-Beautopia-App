@@ -41,7 +41,9 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		public JsonResult GetRequestServices()
 		{
-			var data = _serviceRequest.GetRequestService("");
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+
+			var data = _serviceRequest.GetRequestServiceIfActivity(login.UserName,login.RoleID);
 
 
 			return Json(data);
