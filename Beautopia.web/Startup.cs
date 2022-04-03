@@ -47,6 +47,7 @@ namespace Beautopia.web
 
 
 			services.AddScoped<IServiceRequest, ServiceRequestAppService>();
+			services.AddScoped<IUsers, UsersAppService>();
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 		}
 
