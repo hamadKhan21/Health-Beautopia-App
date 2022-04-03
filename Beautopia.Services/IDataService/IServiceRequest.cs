@@ -12,6 +12,7 @@ namespace Beautopia.Services.IDataService
 		int InsertServiceRequest(RequestService param);
 
 		List<RequestService> GetRequestService(string Mobile);
+		List<RequestService> GetRequestServiceIfActivity(string CreatedBy,string RoleID);
 		List<SubCategoryByServiceID> GetSubCategoryByServiceID(int RequestServiceID);
 
 		void InsertRequestServiceAndSubCategoryMapping(RequestServiceAndSubCategoryMapping param);
