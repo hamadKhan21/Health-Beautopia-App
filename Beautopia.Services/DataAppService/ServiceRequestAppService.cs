@@ -199,6 +199,75 @@ namespace Beautopia.Services.DataAppService
 
             return Lisobj;
         }
+
+        public List<RequestService> GetRequestServiceIfActivity(string CreatedBy, string RoleID)
+        {
+            List<RequestService> Lisobj = new List<RequestService>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetRequestServiceIfActivity";
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = CreatedBy;
+                dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    RequestService obj = new RequestService();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.RequestServiceID = Convert.ToString(reader["ID"]);
+                    obj.Name = Convert.ToString(reader["Name"]);
+                    obj.Mobile = Convert.ToString(reader["Mobile"]);
+                    obj.Mobile = Convert.ToString(reader["Mobile"]);
+                    obj.Email = Convert.ToString(reader["Email"]);
+                    obj.Service = Convert.ToString(reader["RequestedService"]);
+                    obj.Comments = Convert.ToString(reader["Comments"]);
+                    obj.Source = Convert.ToString(reader["Source"]);
+                    obj.SType = Convert.ToString(reader["SType"]);
+                    obj.CreatedOn = Convert.ToString(reader["CreatedOn"]);
+                    var services = GetSubCategoryByServiceID(obj.ID);
+
+                    foreach (var item in services)
+                    {
+
+                        obj._listOfServices += (obj._listOfServices == null || obj._listOfServices == "" ? item.SubCategoryNameAr : "," + item.SubCategoryNameAr);
+                    }
+
+                    obj.SubCategoryByServiceID = services;
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
         public List<SubCategoryByServiceID> GetSubCategoryByServiceID(int RequestServiceID)
         {
             List<SubCategoryByServiceID> Lisobj = new List<SubCategoryByServiceID>();
