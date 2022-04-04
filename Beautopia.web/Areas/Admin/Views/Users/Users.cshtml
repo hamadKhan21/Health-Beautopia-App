@@ -1,0 +1,94 @@
+﻿<div class="panel panel-primary">
+	<div class="panel-heading">Manager Users</div>
+
+
+	<div id="tabs" style="margin-top: 10px;">
+
+
+		<div class="container-fluid" id="IssueCard">
+
+
+			<form id="managusers" method="post" novalidate>
+
+				<div class="row row-xs-space mt-1">
+					<div class="col-sm-3">
+						<Label>
+							Full Name
+						</Label>
+						<input type="hidden" name="ID" id="ID" value="0" />
+						<input type="text" name="FullName" id="FullName" class="form-control inputClass" autocomplete="off" placeholder="Full Name" />
+
+					</div>
+					<div class="col-sm-3 mt-1 mt-sm-0">
+						<Label>
+							UserName
+						</Label>
+					
+						<input type="text" name="UserName" id="UserName" class="form-control inputClass" autocomplete="off" placeholder="UserName" />
+
+					</div>
+
+					<div class="col-sm-3 mt-1 mt-sm-0">
+						<Label>
+							Password
+						</Label>
+						
+						<input type="password" name="Password" id="Password" class="form-control inputClass" autocomplete="off" placeholder="Password" />
+
+					</div>
+					<div class="col-sm-3 mt-1 mt-sm-0">
+						<Label>
+							EmailID
+						</Label>
+					
+						<input type="text" name="EmailID" id="EmailID" class="form-control inputClass" autocomplete="off" placeholder="EmailID" />
+
+					</div>
+					<div class="col-sm-3 mt-1 mt-sm-0">
+
+						<Label>
+							Role
+						</Label>
+
+						<select name="RoleID" class="form-control selectClass" id="RoleID" style="font-weight:bold">
+							<option selected="selected" value="" disabled="disabled">Select Role</option>
+
+						</select>
+
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0" style=" text-align: center;">
+						<Label>
+							IsActive
+						</Label>
+						<input type="checkbox" name="IsActiveChecked" id="IsActiveChecked" class="form-control chkClass" />
+
+					</div>
+				</div>
+
+
+
+				<div class="text-right mt-2">
+					<button type="submit" class="btn btn-success">Save</button>
+				</div>
+			</form>
+
+		</div>
+
+
+		<div id="CardHolderList">
+			<div class="row">
+				<div class="col-xs-18 col-md-12 ManageUsersdGridDiv" style="margin-top: 22px;">
+					<div id="ManageUsersGrid"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+@section scripts {
+	
+	<script src="~/admin-custom/js/users-controller.js"></script>
+}

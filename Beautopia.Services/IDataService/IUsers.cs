@@ -13,6 +13,10 @@ namespace Beautopia.Services.IDataService
 		int InsertRoleMenu(RoleMenuMapping param);
 		List<UserRole> GetUserRoles();
 		List<RoleMenuMapping> GetRoleMenuMapping(int RoleID);
-		
+
+		List<UserLogin> GetUsers();
+
+		int InsertUpdateUsers(UserLogin param);
+
 	}
 }
