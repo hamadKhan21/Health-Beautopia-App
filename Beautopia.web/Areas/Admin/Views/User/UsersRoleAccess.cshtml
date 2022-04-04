@@ -1,0 +1,130 @@
+﻿
+<div class="modal-body">
+
+	<div class="modal-form">
+		<h3>Submit Your Service Request</h3>
+		<form id="ServiceRequest" method="post" novalidate>
+
+			<div class="successform">
+				<p>Your request is successfully submited, one our agent will contact your shortly!</p>
+			</div>
+			<div class="errorform">
+				<p>Something went wrong, try refreshing and submitting the form again.</p>
+			</div>
+			<div class="selectWrapper input-group mt-1">
+				<span>
+					<i class="icon-micro"></i>
+				</span>
+				<select name="Service" class="form-control" id="serviceRequestID" style="font-weight: bold; margin-bottom: 30px;">
+					<option selected="selected" value="-1" disabled="disabled">Select Service Category</option>
+
+				</select>
+			</div>
+
+			
+
+
+
+			<div class="row row-xs-space mt-1" id="serviceSubCategoryDiv" style="display:none">
+			<div class="col-sm-3">
+					<div class="custom-checkbox">
+						<span>
+							ملي فيلر 800ريال
+						</span>
+						<input type="checkbox" name="servicecheck" id="service1" />
+
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="custom-checkbox">
+						<span>
+							جلسة الترافورمر لشد الوجه والرقبه 999ريال
+						</span>
+						<input type="checkbox" name="servicecheck" id="service1" />
+
+					</div>
+				</div>
+
+				<div class="col-sm-3">
+					<div class="custom-checkbox">
+						<span>
+							بوتكس للوجه 900ريال
+						</span>
+						<input type="checkbox" name="servicecheck" id="service1" />
+
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<div class="custom-checkbox">
+						<span>
+							خيوط تجميلية لشد الوجه او الخدود او تحديد الفك ريال
+						</span>
+						<input type="checkbox" name="servicecheck" id="service1" />
+
+					</div>
+				</div>
+			@*<div class="col-sm-3">
+					<div class="custom-checkbox">
+						<span>
+							تقشير بارد + كريم منزلي 1422ريال
+						</span>
+						<input type="checkbox" name="servicecheck" id="service1" />
+
+					</div>
+				</div>*@
+
+			</div>
+
+
+			<div class="row row-xs-space mt-1">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span>
+							<i class="icon-user"></i>
+						</span>
+						<input type="text" name="Name" class="form-control" autocomplete="off" placeholder="Your Name" />
+						<input type="hidden" name="_listOfServices" id="_listOfServices" value="" />
+					</div>
+				</div>
+				<div class="col-sm-6 mt-1 mt-sm-0">
+					<div class="input-group">
+						<span>
+							<i class="icon-smartphone"></i>
+						</span>
+						<input type="hidden" name="Source" id="Source" value="" />
+						<input type="text" name="Mobile" class="form-control" autocomplete="off" placeholder="Your Mobile*" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row row-xs-space mt-1">
+				<div class="col-sm-6">
+					<div class="input-group">
+						<span>
+							<i class="icon-email2"></i>
+						</span>
+						<input type="text" name="Email" class="form-control" autocomplete="off" placeholder="Your Email" />
+					</div>
+				</div>
+				<div class="col-sm-6 mt-1 mt-sm-0">
+					<textarea name="Comments" class="form-control" placeholder="Your comment"></textarea>
+				</div>
+			</div>
+
+			<div class="text-right mt-2">
+				<button type="submit" class="btn btn-sm btn-hover-fill">Submit now</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section scripts {
+	
+	<script src="~/admin-custom/js/userrole-controller.js"></script>
+}
+
+@*@section Scripts {
+		@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	}*@
+

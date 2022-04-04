@@ -24,7 +24,7 @@ $document.ready(function () {
                 },
                 EmailID: {
                     email: true,
-
+                    required: true,
                 },
                 RoleID: {
                     required: true,
@@ -53,12 +53,12 @@ $document.ready(function () {
                     //maxlength: "mobile must be 10 digits"
                 },
                 EmailID: {
-                    required: "Please enter Password",
+                    required: "Please enter Email",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
                 },
                 RoleID: {
-                    required: "Please enter Password",
+                    required: "Please Select Role",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
                 }
@@ -70,7 +70,7 @@ $document.ready(function () {
 				$(form).ajaxSubmit({
 					type: "POST",
 					data: $(form).serialize(),
-                    url: "/Admin/Users/SaveUpdateUsers",
+                    url: "/Admin/User/SaveUpdateUsers",
                     success: function success(data) {
                         $(".ManageUsersdGridDiv").empty();
                         $(".ManageUsersdGridDiv").append('<div id="ManageUsersGrid"></div>')
@@ -92,9 +92,43 @@ $document.ready(function () {
 
 GetAllUsers()
 
+GetUserRolesLkp();
+
+
+function GetUserRolesLkp() {
+    $("#RoleID").empty();
+    $("#RoleID").append("<option value=''>Select Role</option>")
+
+    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
+    $.ajax({
+        type: "GET",
+        url: "/Admin/User/GetAllRoles",
+        //data: "{mdate:" + "m" + "}",
+        //data: datas,//JSON.stringify(datas),
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            //debugger
+            var cdrData = data
+            var EmpToDisplay = "";
+            if (cdrData.length != 0) {
+                for (var i = 0; i < cdrData.length; i++) {
+
+                    $("#RoleID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].roleNameAr + "</option>");
+
+
+                }
+
+            }
 
 
 
+        }
+    });
+
+
+
+}
 
 
 
@@ -115,7 +149,7 @@ function GetAllUsers() {
 
     $.ajax({
         type: "POST",
-        url: "/Admin/Users/GetAllUsers",
+        url: "/Admin/User/GetAllUsers",
         //data: "{mdate:" + "m" + "}",
         //data: JSON.stringify(datas),
         // dataType: "json",
@@ -132,7 +166,7 @@ function GetAllUsers() {
 
 }
 
-function InitGetAllServiceCategory(cdrData) {
+function InitGetAllUsers(cdrData) {
     $("#ManageUsersGrid").kendoGrid({
         dataSource: {
             data: cdrData,
