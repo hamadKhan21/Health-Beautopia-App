@@ -1,289 +1,289 @@
-﻿
-	var $document = $(document),
-		$window = $(window),
-		forms = {
-			serviceRequest: $('#ServiceRequest')
-		};
-	$document.ready(function () {
-		
-		if (forms.serviceRequest.length) {
-			var $serviceRequest = forms.serviceRequest;
-			$serviceRequest.validate({
-				rules: {
-					Service: {
-						required: true,
-						//minlength: 2
-					},
-					Email: {
-						email: true,
-						
-					},
-					Mobile: {
-						required: true,
-						minlength: 10,
-						maxlength: 10
-					}
+﻿var $document = $(document),
+    $window = $(window),
+    forms = {
+        managusersRole: $('#managusersRole')
+    };
+$document.ready(function () {
 
-				},
-				messages: {
-					Service: {
-						required: "Please select the service"
-						//minlength: "Your name must consist of at least 2 characters"
-					},
-					//Name: {
-					//	required: "Please enter your Name",
-					//	//minlength: "Your message must consist of at least 20 characters"
-					//},
-					Mobile: {
-						required: "Please enter your Mobile #",
-						minlength: "mobile must be 10 digits",
-						maxlength: "mobile must be 10 digits"
-					}
-				},
-				submitHandler: function submitHandler(form) {
-					var selectedChk = GetSelectedServicesCheckboxe();
-					//debugger
-					if (selectedChk.length == 0) {
-						$('.errorform').text("Please select the services you are interested in");
-						$('.errorform').css("display","inline")
-						return false;
-					}
-					//$("", { name: "_listOfServices", value: JSON.stringify(selectedChk) }).appendTo(form);
-					////form.append("listOfServices", JSON.stringify(selectedChk));
-					//form.append("listOfServices", "ASD");
-					//var formData = new FormData(form);
-					//formData.append("listOfServices", SON.stringify(selectedChk));
-					//debugger;
-					$("#_listOfServices").val(JSON.stringify(selectedChk))
-					//var submitData = $(form).serialize() + "&_listOfServices=asdf"; //+ JSON.stringify(selectedChk);
-					//debugger
-					$(form).ajaxSubmit({
-						type: "POST",
-						data: $(form).serialize(),
-						url: "/Home/SaveRequestService",
-						success: function success() {
-							$('.errorform').css("display", "none")
-							$('.successform', $serviceRequest).fadeIn();
-							$serviceRequest.get(0).reset();
 
-							$("#serviceSubCategoryDiv").empty();
-						},
-						error: function error() {
-						//	debugger
-							$('.errorform', $serviceRequest).fadeIn();
-						}
-					});
-				}
-			});
-		}
+    if (forms.managusersRole.length) {
+        var $managusersRole = forms.managusersRole;
+        $managusersRole.validate({
+            rules: {
+                RoleNameEn: {
+                    required: true,
+                    //minlength: 2
+                },
+                RoleNameAr: {
+                    required: true,
+
+                },
+                
+
+
+            },
+            messages: {
+                RoleNameEn: {
+                    required: "Please Enter Role Name En"
+                    //minlength: "Your name must consist of at least 2 characters"
+                },
+                //Name: {
+                //	required: "Please enter your Name",
+                //	//minlength: "Your message must consist of at least 20 characters"
+                //},
+                RoleNameAr: {
+                    required: "Please enter Role Name Ar",
+                    //minlength: "mobile must be 10 digits",
+                    //maxlength: "mobile must be 10 digits"
+                },
+                
+            },
+            submitHandler: function submitHandler(form) {
+
+                //var submitData = $(form).serialize() + "&_listOfServices=asdf"; //+ JSON.stringify(selectedChk);
+                //debugger
+                $(form).ajaxSubmit({
+                    type: "POST",
+                    data: $(form).serialize(),
+                    url: "/Admin/User/SaveUpdateUsersRole",
+                    success: function success(data) {
+                        $(".ManageUsersRoledGridDiv").empty();
+                        $(".ManageUsersRoledGridDiv").append('<div id="ManageUsersRoledGrid"></div>')
+                        ClearFields()
+                        InitGetAllUsersRole(data)
+                    },
+                    error: function error() {
+                        //	debugger
+                        alert($managusersRole)
+                        //$('.errorform', $LoginRequest).fadeIn();
+                    }
+                });
+            }
+        });
+    }
 
 
 });
 
+GetAllUserRoles()
 
-var SourceID = getUrlVars()["SourceID"];
-$('#Source').val(SourceID)
-
-var selectedCheckboxes = [];
-function GetSelectedServicesCheckboxe() {
-	selectedCheckboxes = [];
-	$('.subserviceClass').each(function () {
-
-		var ICHecked = $('#' + $(this).attr('id')).prop('checked');
-		if (ICHecked == true) {
-			selectedCheckboxes.push($(this).attr('id').split("_")[1]);
-		}
-		
-	});
-
-	return selectedCheckboxes;
-}
-
-//Initialization of Lookups
-
-GetServiceCategories();
-
-// Click Events
-
-$("#serviceRequestID").change(function () {
-
-	GetServiceSubCategory($("#serviceRequestID").val())
-})
-
-function GetServiceCategories() {
-	$("#serviceRequestID").empty();
-	$("#serviceRequestID").append("<option value='-1'>Select Service Category</option>")
-
-	////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
-	$.ajax({
-		type: "GET",
-		url: "/Home/GetServiceCategory",
-		//data: "{mdate:" + "m" + "}",
-		//data: datas,//JSON.stringify(datas),
-		//dataType: "json",
-		// contentType: "application/json; charset=utf-8",
-		success: function (data) {
-			//debugger
-			var cdrData = data
-			var EmpToDisplay = "";
-			if (cdrData.length != 0) {
-				for (var i = 0; i < cdrData.length; i++) {
-
-					$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].categoryNameAr + "</option>");
+GetAllMenus();
 
 
-				}
+function GetAllMenus() {
+    $("#menuPopulateDiv").empty();
+  
 
-			}
+    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
+    $.ajax({
+        type: "GET",
+        url: "/Admin/User/GetAllMenus",
+        //data: "{mdate:" + "m" + "}",
+        //data: datas,//JSON.stringify(datas),
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            //debugger
+         
+            if (data.length != 0) {
+                for (var i = 0; i < data.length; i++) {
 
-			var CategoryIDQuery = getUrlVars()["CategoryID"];
-			if (CategoryIDQuery != 0 && CategoryIDQuery != null) {
+                    $("#menuPopulateDiv").append("<Label>" + data[i].menuNameEn + ":</Label>"
+                        + "<div class='row row-xs-space mt-1' id='menuPopulateDiv_" + data[i].menuID+"'></div>"
 
-				$("#serviceRequestID").val(CategoryIDQuery);
-				GetServiceSubCategory(CategoryIDQuery)
-			}
+                    );
 
-		}
-	});
+                    for (var j = 0; j < data[i].subMenus.length;j++) {
+
+                        $("#menuPopulateDiv_" + data[i].menuID).append('<div class="col-sm-3">'
+                            + '<div class="custom-checkbox">'
+                            + '<span>'
+                            + data[i].subMenus[j].menuNameEn
+                            + '</span>'
+                            + '<input type="checkbox"  class="subserviceClass form-control" name="servicecheck" id="service_' + data[i].subMenus[j].menuID + '" />'
+                            +'</div></div>'
+
+                        );
+                    }
+
+
+                }
+
+            }
+
+
+
+        }
+    });
 
 
 
 }
 
 
-function GetServiceSubCategory(CategoryID) {
 
-	$("#serviceSubCategoryDiv").empty();
-	var datas = { 'CategoryID': CategoryID };
-	$.ajax({
-		type: "GET",
-		url: "/Home/GetServiceSubCategory",
-		//data: "{mdate:" + "m" + "}",
-		 data: datas,//JSON.stringify(datas),
-		//dataType: "json",
-		// contentType: "application/json; charset=utf-8",
-		success: function (data) {
-			//debugger
-			var cdrData = data
-			var EmpToDisplay = "";
-			if (cdrData.length != 0) {
-				
-				for (var i = 0; i < cdrData.length; i++) {
-
-					AppendServiceCheckboxes(cdrData[i].subCategoryNameAr, cdrData[i].id, cdrData[i].servicePrice, cdrData[i].subServiceImageName)
-
-					//$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].categoryNameAr + "</option>");
+function ClearFields() {
 
 
-				}
-
-			}
-
-			
-		
-
-		}
-	});
-
-
-
+    $(".inputClass").val("")
+    $("ID").val("0")
+    //$(".filterprop").val("-1")
+    // $("#IsActiveChecked").prop('checked', false);
+    //$("#IsActiveChecked").prop('checked', true)
+    $(".chkClass").prop('checked', false);
 }
-//https://Butopia-Clinic.com/requestservice?SourceID=2&CategoryID=2&SubCategoryID=5_8_9
-
-function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price, subServiceImageName) {
-	//debugger;
-	var CheckValue = "";
-	var SubCategoryIDQuery = getUrlVars()["SubCategoryID"];
-	if (SubCategoryIDQuery != null && SubCategoryIDQuery != "" && SubCategoryIDQuery != undefined) {
-		SubCategoryIDQuery = SubCategoryIDQuery.split("_")
-		if (SubCategoryIDQuery.length > 1) {
-			CheckValue = CheckIfSUbCateExists(SubCategoryIDQuery, SubCategoryServiceID)
-		}
-		else if (SubCategoryIDQuery.length == 1) {
-			if (SubCategoryServiceID == SubCategoryIDQuery[0]) { 
-			CheckValue = SubCategoryIDQuery[0];
-
-			}
-		}
-	}
-
-	if (CheckValue != null && CheckValue!="") {
-		//$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-		//	+ '<div class="custom-checkbox">'
-
-		//	+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
-		//	+ SubCategoryService + ' ' + price + 'ريال'
-		//	+ '</span>'
-		//	+ '<input type="checkbox" checked class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
-
-		//	+ '</div></div>'
-		//);
-
-		$("#serviceSubCategoryDiv").append('<div class="col-md-6 col-lg-2">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-			+ '<div class="service-card">'
-			+ '<div class="service-card-photo">'
-			+ '<a href="#"><img src="/admin-custom/Images/SubServices/' + subServiceImageName+'" class="img-fluid" alt=""></a>'
-			+ '</div><h5 class="service-card-name">'
-			+ '<input type="checkbox" checked class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" />'
-			+ '<div class="service-requested-h-decor"></div>'
-			+'<p class="services-desc-cl">'
-			+ SubCategoryService + ' ' + price + ' ' + 'ريال '
-			+ '</p></div></div>'
-		);
 
 
-	}
-	else {
 
-		//$("#serviceSubCategoryDiv").append('<div class="col-sm-3" style="margin-bottom:10px">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-		//	+ '<div class="custom-checkbox">'
+function GetAllUserRoles() {
 
-		//	+ '<span style="font-weight: bold;color: #31326e;font-size: 15px;">'
-		//	+ SubCategoryService + ' ' + price + 'ريال'
-		//	+ '</span>'
-		//	+ '<input type="checkbox" class="subserviceClass" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
+    $.ajax({
+        type: "POST",
+        url: "/Admin/User/GetUserRoles",
+        //data: "{mdate:" + "m" + "}",
+        //data: JSON.stringify(datas),
+        // dataType: "json",
+        //contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            // debugger
+            // var cdrData = data;
+            InitGetAllUsersRole(data)
 
-		//	+ '</div></div>'
-		//);
 
-		$("#serviceSubCategoryDiv").append('<div class="col-md-6 col-lg-2">'//;border: 1px solid;box-shadow: 1px 1px 1px #514eff;border-radius: 4px
-			+ '<div class="service-card">'
-			+ '<div class="service-card-photo">'
-			+ '<a href="#"><img src="/admin-custom/Images/SubServices/' + subServiceImageName + '" class="img-fluid" alt=""></a>'
-			+ '</div><h5 class="service-card-name">'
-			+ '<input type="checkbox" class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
-			+ '<div class="service-requested-h-decor"></div>'
-			+ '<p class="services-desc-cl">'
-			+ SubCategoryService + ' ' + price +' '+ 'ريال '
-			+ '</p></div></div>'
-		);
-	}
+        }
+    });
 
 
 }
 
+function InitGetAllUsersRole(cdrData) {
+    $("#ManageUsersRoledGrid").kendoGrid({
+        dataSource: {
+            data: cdrData,
+            pageSize: 200,//cdrData.length,
 
-function CheckIfSUbCateExists(SubCateList,SubCatID) {
-	var returnValue = "";
-	$.each(SubCateList, function (index, value) {
-		console.log(value);
-		if (value == SubCatID) {
+            schema: {
+                model: {
+                    fields: {
+                        roleNameEn: {
+                            type: "string"
+                        },
+                        roleNameAr: {
+                            type: "string"
+                        },
+                       
+                        isActive: {
+                            type: "string"
+                        },
 
-			returnValue= value
-		}
-		
-		
-	});
-	return returnValue;
+
+                    }
+                }
+            }
+        },
+
+        columns: [
+            {
+                title: "Role Name En",
+                field: "roleNameEn",
+                filterable: true
+
+            },
+
+            {
+                title: "Role Name Ar",
+                field: "roleNameAr",
+                filterable: true
+
+            },
+           
+
+            {
+                title: "Active",
+                field: "isActive",
+                filterable: { multi: true }
+
+            },
+
+
+            //{ command: { text: "Return", click: showDetails }, title: " ", width: "100px" }
+
+
+
+
+        ],
+        pageable: {
+            buttonCount: 10,
+            pageSizes: true,
+            pageSizes: ['All', 100, 200, 500, 1000, 1500, 2000, 5000, 10000]
+        },
+        //   toolbar: kendo.template($('#toolbar-template').html()),
+        resizable: true,
+        selectable: "multiple",
+        persistSelection: true,
+        //sortable: true,
+        filterable: true,
+
+        //selectable: "multiple",
+        //page: onPaging,
+        //dataBinding: Onstart,
+        // dataBound: ChangeColor,
+        // filter: onFiltering,
+        //change: onChange,
+
+        //serverPaging: true,
+
+        messages: {
+            noRecords: "No records available."
+        },
+        toolbar: ["excel"],
+        excel: {
+            fileName: "Users Role.xlsx",
+            proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
+            filterable: true
+        },
+
+
+    });
+    $("#ManageUsersRoledGrid").data("kendoGrid").dataSource.read();
+    // $("#overlay").css('display', 'none');
+    // $("#printGrid").css('display','inline')
+
+
+
 }
 
-function getUrlVars() {
-	var vars = [], hash;
-	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-	for (var i = 0; i < hashes.length; i++) {
-		hash = hashes[i].split('=');
-		vars.push(hash[0]);
-		vars[hash[0]] = hash[1];
-	}
-	return vars;
-}
+
+$(document).on("dblclick", "#ManageUsersRoledGrid tbody tr", function (e) {
+    // debugger;
+    var element = e.target || e.srcElement;
+    var dataItem = $("#ManageUsersRoledGrid").data("kendoGrid").dataItem($(element).closest("tr"));
+    $("#ID").val(dataItem.id);
+    $("#RoleNameAr").val(dataItem.roleNameAr);
+    $("#RoleNameEn").val(dataItem.roleNameEn);
+ 
+    //$("#RoleID").val(dataItem.RoleID);
+
+    if (dataItem.isActive == "true") {
+
+        $("#IsActiveChecked").prop('checked', true);
+    }
+    else {
+
+        $("#IsActiveChecked").prop('checked', false);
+    }
+    //$("#tabs").tabs("select", "Store-Update")
+});
+
+
+
+
+
+
+
+
+
+
+
+
+

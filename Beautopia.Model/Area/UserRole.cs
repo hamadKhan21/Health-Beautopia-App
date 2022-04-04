@@ -15,7 +15,9 @@ namespace Beautopia.Model.Area
 		public string	RoleNameEn { get; set; }
 		public string RoleNameAr { get; set; }
 		public bool IsActive { get; set; }
+		public int MunueID { get; set; }
 		public string CreatedBy { get; set; }
+		public string IsActiveChecked { get; set; }
 		public List<RoleMenuMapping> RoleMenuMappings { get; set; }
 	}
 

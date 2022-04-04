@@ -33,6 +33,10 @@ namespace Beautopia.Model.Area
 
 	public class UserMenu
 	{
+		public UserMenu() {
+
+			SubMenus = new List<UserMenu>();
+		}
 		public int MenuID { get; set; }
 		public int SubMenuId { get; set; }
 		public int RoleID { get; set; }
@@ -43,6 +47,7 @@ namespace Beautopia.Model.Area
 		public string MenuUrl { get; set; }
 		public string customIcon { get; set; }
 		public int Orders { get; set; }
+		public List<UserMenu> SubMenus { get; set; }
 
 	}
 }

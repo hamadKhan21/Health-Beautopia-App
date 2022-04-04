@@ -1,5 +1,71 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿<div class="panel panel-primary">
+	<div class="panel-heading">Manager Users</div>
+
+
+	<div id="tabs" style="margin-top: 10px;">
+
+
+		<div class="container-fluid" id="IssueCard">
+
+
+			<form id="managusersRole" method="post" novalidate>
+
+				<div class="row row-xs-space mt-1">
+					<div class="col-sm-3">
+						<Label>
+							Role Name En
+						</Label>
+						<input type="hidden" name="ID" id="ID" value="0" />
+						<input type="text" name="RoleNameEn" id="RoleNameEn" class="form-control inputClass" autocomplete="off" placeholder="Role Name En" />
+
+					</div>
+					<div class="col-sm-3 mt-1 mt-sm-0">
+						<Label>
+							Role Name Ar
+						</Label>
+
+						<input type="text" name="RoleNameAr" id="RoleNameAr" class="form-control inputClass" autocomplete="off" placeholder="Role Name Ar" />
+
+					</div>
+
+
+					<div class="col-sm-4 mt-1 mt-sm-0" style=" text-align: center;">
+						<Label>
+							IsActive
+						</Label>
+						<input type="checkbox" name="IsActiveChecked" id="IsActiveChecked" class="form-control chkClass" />
+
+					</div>
+				</div>
+
+				<div class="row row-xs-space mt-1" id="menuPopulateDiv" style="padding-left: 13px;">
+					
+
+				</div>
+
+					<div class="text-right mt-2">
+						<button type="submit" class="btn btn-success">Save</button>
+					</div>
+			</form>
+
+		</div>
+
+
+		<div id="CardHolderList">
+			<div class="row">
+				<div class="col-xs-18 col-md-12 ManageUsersRoledGridDiv" style="margin-top: 22px;">
+					<div id="ManageUsersRoledGrid"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+@section scripts {
+
+	@*<script src="~/admin-custom/js/users-controller.js"></script>*@
+	<script src="~/admin-custom/js/userrole-controller.js"></script>
 }

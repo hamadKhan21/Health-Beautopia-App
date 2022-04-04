@@ -334,5 +334,123 @@ namespace Beautopia.Services.DataAppService
             return ReturnID;
             //
         }
+
+        public List<UserMenu> GetAllMenus()
+        {
+            List<UserMenu> Lisobj = new List<UserMenu>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetAllMenus";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    UserMenu obj = new UserMenu();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.MenuID = Convert.ToInt32(reader["MenuID"]);
+                    obj.SubMenuId = Convert.ToInt32(reader["SubMenuId"]);
+                    obj.MenuNameAr = Convert.ToString(reader["MenuNameAr"]);
+                    obj.MenuNameEn = Convert.ToString(reader["MenuNameEn"]);
+                    obj.SubMenus = GetSubMenusByMenuID(obj.MenuID);
+
+
+                    if (obj.SubMenus.Count > 0) { 
+                    Lisobj.Add(obj);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public List<UserMenu> GetSubMenusByMenuID(int MenuID)
+        {
+            List<UserMenu> Lisobj = new List<UserMenu>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetSubMenusByMenuID";
+                  dbCommand.Parameters.Add("@MenuID", SqlDbType.Int).Value = MenuID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    UserMenu obj = new UserMenu();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.MenuID = Convert.ToInt32(reader["MenuID"]);
+                    obj.SubMenuId = Convert.ToInt32(reader["SubMenuId"]);
+                    obj.MenuNameAr = Convert.ToString(reader["MenuNameAr"]);
+                    obj.MenuNameEn = Convert.ToString(reader["MenuNameEn"]);
+
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
     }
 }

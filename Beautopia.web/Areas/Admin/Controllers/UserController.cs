@@ -40,14 +40,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 			_users.InsertUpdateUsers(obj);
 			var servicecate = _users.GetUsers();
 
-			//foreach (var item in listOfServices)
-			//{
-			//	RequestServiceAndSubCategoryMapping map = new RequestServiceAndSubCategoryMapping();
-			//	map.RequestServiceID = returnServoceID;
-			//	map.ServiceSubCategoryID = Convert.ToInt32(item);
-
-			//	_serviceRequest.InsertRequestServiceAndSubCategoryMapping(map);
-			//}
+	
 
 			return Json(servicecate);
 		}
@@ -72,7 +65,37 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		{
 			return View();
 		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public JsonResult SaveUpdateUsersRole([Bind("ID,RoleNameEn,RoleNameAr,IsActiveChecked")] UserRole obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			obj.CreatedBy = login.UserName;
+			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
 
+			_users.InsertUpdateUserRole(obj);
+			var servicecate = _users.GetUserRoles();
+
+
+
+			return Json(servicecate);
+		}
+
+		public JsonResult GetUserRoles()
+		{
+			var data = _users.GetUserRoles();
+
+
+			return Json(data);
+		}
+
+		public JsonResult GetAllMenus()
+		{
+			var data = _users.GetAllMenus();
+
+
+			return Json(data);
+		}
 
 		[Route("Admin/ManageUsersRoleAccess")]
 		public IActionResult UsersRoleAccess()
