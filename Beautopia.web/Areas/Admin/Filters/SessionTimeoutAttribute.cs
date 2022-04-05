@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Beautopia.web.Areas.Admin.Filters
 {
-    public class JSONAuthAttribute : ActionFilterAttribute
+    public class SessionTimeoutAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -47,7 +47,17 @@ namespace Beautopia.web.Areas.Admin.Filters
                 // GoToLoginPage(filterContext);
                 return;
             }
-            
+            else {
+
+                var Menus = SessionValues.Menus.Where(a => a.MenuUrl == url).FirstOrDefault();
+                if (Menus == null && url!= "/Dashboard") {
+                    filterContext.Result = new RedirectResult("~/Admin");
+                    // GoToLoginPage(filterContext);
+                    return;
+                }
+
+            }
+           
 
             base.OnActionExecuting(filterContext);
         }

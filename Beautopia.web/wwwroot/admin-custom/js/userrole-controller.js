@@ -39,9 +39,12 @@ $document.ready(function () {
                 
             },
             submitHandler: function submitHandler(form) {
+               // debugger;
+                var selectedChk = GetSelectedMenusCheckboxe();
+                if (selectedChk.length> 0) {
+                    $("#_listOfMenus").val(JSON.stringify(selectedChk))
+                }
 
-                //var submitData = $(form).serialize() + "&_listOfServices=asdf"; //+ JSON.stringify(selectedChk);
-                //debugger
                 $(form).ajaxSubmit({
                     type: "POST",
                     data: $(form).serialize(),
@@ -64,6 +67,23 @@ $document.ready(function () {
 
 
 });
+
+
+var selectedCheckboxes = [];
+function GetSelectedMenusCheckboxe() {
+    selectedCheckboxes = [];
+    $('.subserviceClass').each(function () {
+
+        var ICHecked = $('#' + $(this).attr('id')).prop('checked');
+        if (ICHecked == true) {
+            selectedCheckboxes.push($(this).attr('id').split("_")[1]);
+        }
+
+    });
+
+    return selectedCheckboxes;
+}
+
 
 GetAllUserRoles()
 
@@ -96,11 +116,11 @@ function GetAllMenus() {
                     for (var j = 0; j < data[i].subMenus.length;j++) {
 
                         $("#menuPopulateDiv_" + data[i].menuID).append('<div class="col-sm-3">'
-                            + '<div class="custom-checkbox">'
+                            + '<div class="custom-checkbox" style="text-align: center;">'
                             + '<span>'
                             + data[i].subMenus[j].menuNameEn
                             + '</span>'
-                            + '<input type="checkbox"  class="subserviceClass form-control" name="servicecheck" id="service_' + data[i].subMenus[j].menuID + '" />'
+                            + '<input type="checkbox"   class="subserviceClass form-control" name="servicecheck" id="service_' + data[i].subMenus[j].menuID + '" />'
                             +'</div></div>'
 
                         );
@@ -124,13 +144,14 @@ function GetAllMenus() {
 
 function ClearFields() {
 
-
+    
     $(".inputClass").val("")
     $("ID").val("0")
     //$(".filterprop").val("-1")
     // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
     $(".chkClass").prop('checked', false);
+    $(".subserviceClass").prop('checked', false);
 }
 
 
@@ -255,7 +276,7 @@ function InitGetAllUsersRole(cdrData) {
 
 
 $(document).on("dblclick", "#ManageUsersRoledGrid tbody tr", function (e) {
-    // debugger;
+     debugger;
     var element = e.target || e.srcElement;
     var dataItem = $("#ManageUsersRoledGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
@@ -272,6 +293,16 @@ $(document).on("dblclick", "#ManageUsersRoledGrid tbody tr", function (e) {
 
         $("#IsActiveChecked").prop('checked', false);
     }
+
+    $(".subserviceClass").prop('checked', false);
+    if (dataItem.roleMenuMappings.length != 0) {
+        for (var i = 0; i < dataItem.roleMenuMappings.length; i++) {
+
+            $("#service_" + dataItem.roleMenuMappings[i].menuID).prop('checked', true);
+
+        }
+    }
+
     //$("#tabs").tabs("select", "Store-Update")
 });
 
