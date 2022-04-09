@@ -3,6 +3,7 @@ using Beautopia.Services.IDataService;
 using Beautopia.web.Areas.Admin.Extensions;
 using Beautopia.web.Areas.Admin.Filters;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,13 +68,38 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public JsonResult SaveUpdateUsersRole([Bind("ID,RoleNameEn,RoleNameAr,IsActiveChecked")] UserRole obj)
+		public JsonResult SaveUpdateUsersRole([Bind("ID,RoleNameEn,RoleNameAr,IsActiveChecked,_listOfMenus")] UserRole obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			obj.CreatedBy = login.UserName;
 			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
 
-			_users.InsertUpdateUserRole(obj);
+			var listOfServices = new List<string>();
+
+			listOfServices = (obj._listOfMenus == null ? listOfServices : JsonConvert.DeserializeObject<List<string>>(obj._listOfMenus));
+
+
+			int UserRoleID=_users.InsertUpdateUserRole(obj);
+
+
+			foreach (var item in listOfServices)
+			{
+				var allMenus=_users.GetAllMenus();
+				RoleMenuMapping map = new RoleMenuMapping();
+				map.RoleID= UserRoleID;
+				map.MenuID = Convert.ToInt32(item);
+				_users.InsertRoleMenu(map);
+				foreach (var checkParent in allMenus) {
+					var getpMenu = checkParent.SubMenus.Where(a => a.MenuID == map.MenuID).SingleOrDefault();
+					if (getpMenu != null) { 
+					map.MenuID = getpMenu.SubMenuId;
+					_users.InsertRoleMenu(map);
+					}
+				}
+				//_serviceRequest.InsertRequestServiceAndSubCategoryMapping(map);
+			}
+
+
 			var servicecate = _users.GetUserRoles();
 
 
