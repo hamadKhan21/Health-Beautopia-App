@@ -1,67 +1,55 @@
 ﻿var $document = $(document),
 	$window = $(window),
 	forms = {
-        managusers: $('#managusers')
+        manageslider: $('#manageslider')
 	};
 $document.ready(function () {
    
 
-    if (forms.managusers.length) {
-        var $managusers = forms.managusers;
-        $managusers.validate({
+    if (forms.manageslider.length) {
+        var $manageslider = forms.manageslider;
+        $manageslider.validate({
 			rules: {
-                FullName: {
+                title1: {
 					required: true,
 					//minlength: 2
 				},
-                UserName: {
+                title2: {
 					required: true,
 
                 },
-                Password: {
+                title3: {
                     required: true,
 
                 },
-                EmailID: {
-                    email: true,
-                    required: true,
-                },
-                RoleID: {
-                    required: true,
+                
+               // SubServiceImage: {
+                   // required: true,
 
-                }
+                //}
                 
 
 			},
 			messages: {
-                FullName: {
-                    required: "Please Enter FullName"
+                title1: {
+                    required: "Please Enter Title1"
 					//minlength: "Your name must consist of at least 2 characters"
 				},
 				//Name: {
 				//	required: "Please enter your Name",
 				//	//minlength: "Your message must consist of at least 20 characters"
 				//},
-                UserName: {
-                    required: "Please enter UserName",
+                title2: {
+                    required: "Please enter title2",
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
                 },
-                Password: {
-                    required: "Please enter Password",
+                title3: {
+                    required: "Please enter title3",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
                 },
-                EmailID: {
-                    required: "Please enter Email",
-                    //minlength: "mobile must be 10 digits",
-                    //maxlength: "mobile must be 10 digits"
-                },
-                RoleID: {
-                    required: "Please Select Role",
-                    //minlength: "mobile must be 10 digits",
-                    //maxlength: "mobile must be 10 digits"
-                }
+              
 			},
 			submitHandler: function submitHandler(form) {
 				
@@ -70,16 +58,16 @@ $document.ready(function () {
 				$(form).ajaxSubmit({
 					type: "POST",
 					data: $(form).serialize(),
-                    url: "/Admin/User/SaveUpdateUsers",
+                    url: "/Admin/AppInfo/SaveUpdateSlider",
                     success: function success(data) {
-                        $(".ManageUsersdGridDiv").empty();
-                        $(".ManageUsersdGridDiv").append('<div id="ManageUsersGrid"></div>')
+                        $(".sliderGridDiv").empty();
+                        $(".sliderGridDiv").append('<div id="sliderGrid"></div>')
                         ClearFields()
-                        InitGetAllUsers(data)
+                        InitSliderGrid(data)
 					},
 					error: function error() {
 						//	debugger
-                        alert($managusers)
+                        alert($manageslider)
 						//$('.errorform', $LoginRequest).fadeIn();
 					}
 				});
@@ -90,66 +78,53 @@ $document.ready(function () {
 
 });
 
-GetAllUsers()
 
-GetUserRolesLkp();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-
-function GetUserRolesLkp() {
-    $("#RoleID").empty();
-    $("#RoleID").append("<option value=''>Select Role</option>")
-
-    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
-    $.ajax({
-        type: "GET",
-        url: "/Admin/User/GetAllRoles",
-        //data: "{mdate:" + "m" + "}",
-        //data: datas,//JSON.stringify(datas),
-        //dataType: "json",
-        // contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            //debugger
-            var cdrData = data
-            var EmpToDisplay = "";
-            if (cdrData.length != 0) {
-                for (var i = 0; i < cdrData.length; i++) {
-
-                    $("#RoleID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].roleNameAr + "</option>");
-
-
-                }
-
-            }
-
-
-
+        reader.onload = function (e) {
+            $('#subservice-img-tag').attr('src', e.target.result);
         }
-    });
-
-
-
+        reader.readAsDataURL(input.files[0]);
+    }
 }
+$("#SliderImageFile").change(function () {
+    readURL(this);
+});
+
+
+
+
+GetAllSliders()
+
+
+
+
 
 
 
 function ClearFields() {
 
-
+    //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
     $("#ID").val("0")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
     $(".chkClass").prop('checked', false);
+  //  $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
+    $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+   // $(".selectClass").val();
 }
 
 
 
-function GetAllUsers() {
+function GetAllSliders() {
 
     $.ajax({
         type: "POST",
-        url: "/Admin/User/GetAllUsers",
+        url: "/Admin/AppInfo/GetAllSliders",
         //data: "{mdate:" + "m" + "}",
         //data: JSON.stringify(datas),
         // dataType: "json",
@@ -157,7 +132,7 @@ function GetAllUsers() {
         success: function (data) {
            // debugger
            // var cdrData = data;
-            InitGetAllUsers(data)
+            InitSliderGrid(data)
 
 
         }
@@ -166,8 +141,8 @@ function GetAllUsers() {
 
 }
 
-function InitGetAllUsers(cdrData) {
-    $("#ManageUsersGrid").kendoGrid({
+function InitSliderGrid(cdrData) {
+    $("#sliderGrid").kendoGrid({
         dataSource: {
             data: cdrData,
             pageSize: 200,//cdrData.length,
@@ -175,15 +150,16 @@ function InitGetAllUsers(cdrData) {
             schema: {
                 model: {
                     fields: {
-                        FullName: {
+                        title1: {
                             type: "string"
                         },
-                        UserName: {
+                        title2: {
                             type: "string"
                         },
-                        EmailID: {
+                        title3: {
                             type: "string"
                         },
+                       
                         isActive: {
                             type: "string"
                         },
@@ -196,8 +172,8 @@ function InitGetAllUsers(cdrData) {
 
         columns: [
             {
-                title: "Full Name",
-                field: "fullName",
+                title: "Title1",
+                field: "title1",
                 //filterable: {
                 //    operators: {
                 //        string: {
@@ -209,18 +185,17 @@ function InitGetAllUsers(cdrData) {
             },
 
             {
-                title: "User Name",
-                field: "userName",
+                title: "Title2",
+                field: "title2",
                 filterable: true
 
             },
             {
-                title: "Email",
-                field: "emailID",
+                title: "Title3",
+                field: "title3",
                 filterable: true
 
             },
-
             {
                 title: "Active",
                 field: "isActive",
@@ -261,14 +236,14 @@ function InitGetAllUsers(cdrData) {
         },
         toolbar: ["excel"],
         excel: {
-            fileName: "Service Category.xlsx",
+            fileName: "Sliders.xlsx",
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
             filterable: true
         },
 
 
     });
-    $("#ManageUsersGrid").data("kendoGrid").dataSource.read();
+    $("#sliderGrid").data("kendoGrid").dataSource.read();
    // $("#overlay").css('display', 'none');
     // $("#printGrid").css('display','inline')
   
@@ -277,18 +252,18 @@ function InitGetAllUsers(cdrData) {
 }
 
 
-$(document).on("dblclick", "#ManageUsersGrid tbody tr", function (e) {
-   // debugger;
+$(document).on("dblclick", "#sliderGrid tbody tr", function (e) {
+   //debugger;
     var element = e.target || e.srcElement;
-    var dataItem = $("#ManageUsersGrid").data("kendoGrid").dataItem($(element).closest("tr"));
+    var dataItem = $("#sliderGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
-    $("#FullName").val(dataItem.fullName);
-    $("#UserName").val(dataItem.userName);
-    $("#Password").val(dataItem.password);
-    $("#EmailID").val(dataItem.emailID);
-    $("#RoleID").val(dataItem.roleID);
-    //$("#RoleID").val(dataItem.RoleID);
-
+    $("#title1").val(dataItem.title1);
+    $("#title2").val(dataItem.title2);
+    $("#title3").val(dataItem.title3);
+ 
+    $("#SliderImage").val(dataItem.siderImage);
+    //$("#SubServiceImageName").val(dataItem.subServiceImageName);
+   // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
 
         $("#IsActiveChecked").prop('checked', true);
@@ -297,6 +272,16 @@ $(document).on("dblclick", "#ManageUsersGrid tbody tr", function (e) {
 
         $("#IsActiveChecked").prop('checked', false);
     }
+
+    if (dataItem.sliderImage != "" && dataItem.sliderImage != null) {
+        $("#subservice-img-tag").attr("src", "/medlab/images/content/slider/" + dataItem.sliderImage);
+    }
+    else {
+
+        $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    }
+
+
     //$("#tabs").tabs("select", "Store-Update")
 });
 

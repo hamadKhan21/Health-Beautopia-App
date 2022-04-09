@@ -153,7 +153,7 @@ function ClearFields() {
 
     $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
-    $("ID").val("0")
+    $("#ID").val("0")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)

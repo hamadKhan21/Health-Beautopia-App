@@ -1,4 +1,5 @@
 ﻿using Beautopia.Model;
+using Beautopia.Model.Area;
 using Beautopia.Services.DataAppService;
 using Beautopia.Services.IDataService;
 using Beautopia.web.Models;
@@ -17,16 +18,24 @@ namespace Beautopia.web.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private static IServiceRequest _serviceRequest;
+		private static IUsers _users;
 		//private static ServiceRequestAppService serviceRequest=new ServiceRequestAppService();
-		public HomeController(ILogger<HomeController> logger, IServiceRequest serviceRequest)
+		public HomeController(ILogger<HomeController> logger, IServiceRequest serviceRequest, IUsers users)
 		{
 			_serviceRequest = serviceRequest;
 			_logger = logger;
+			_users = users;
 		}
 
 		public IActionResult Index()
 		{
-			return View();
+			HomeViewModel hmModel = new HomeViewModel();
+
+			hmModel.Sliders=_users.GetSliders().Where(a => a.IsActive == true).ToList();
+			hmModel.Offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
+			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
+
+			return View(hmModel);
 		}
 		[Route("Privacy")]
 		public IActionResult Privacy()
@@ -56,7 +65,13 @@ namespace Beautopia.web.Controllers
 		[Route("OURSPECIALISTS")]
 		public IActionResult OURSPECIALISTS()
 		{
-			return View();
+			HomeViewModel hmModel = new HomeViewModel();
+
+			//hmModel.Sliders = _users.GetSliders().Where(a => a.IsActive == true).ToList();
+			//hmModel.Offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
+			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
+
+			return View(hmModel);
 		}
 		[Route("TESTIMONIALS")]
 		public IActionResult TESTIMONIALS()

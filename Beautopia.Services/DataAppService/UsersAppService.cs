@@ -452,5 +452,352 @@ namespace Beautopia.Services.DataAppService
 
             return Lisobj;
         }
+
+
+
+
+
+        public List<Slider> GetSliders()
+        {
+            List<Slider> Lisobj = new List<Slider>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetSliders";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    Slider obj = new Slider();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.SliderImage = Convert.ToString(reader["SliderImage"]);
+                    obj.title1 = Convert.ToString(reader["title1"]);
+                    obj.title2 = Convert.ToString(reader["title2"]);
+                    obj.title3 = Convert.ToString(reader["title3"]);
+                  
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public int InsertUpdateSliders(Slider param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateSliders";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@SliderImage", SqlDbType.NVarChar, 400000).Value = param.SliderImage;
+                dbCommand.Parameters.Add("@title1", SqlDbType.NVarChar, 250).Value = param.title1;
+                dbCommand.Parameters.Add("@title2", SqlDbType.NVarChar, 250).Value = param.title2;
+                dbCommand.Parameters.Add("@title3", SqlDbType.NVarChar, 250).Value = param.title3;
+               
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
+
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                // ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
+
+
+        public List<Offer> GetOffers()
+        {
+            List<Offer> Lisobj = new List<Offer>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetAllOffers";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    Offer obj = new Offer();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.OfferImage = Convert.ToString(reader["OfferImage"]);
+                    obj.Title = Convert.ToString(reader["Title"]);
+                   
+
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public int InsertUpdateOffer(Offer param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateOffers";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@OfferImage", SqlDbType.NVarChar, 400000).Value = param.OfferImage;
+                dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
+             
+
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
+
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                // ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
+
+
+
+        public List<Doctor> GetDoctor()
+        {
+            List<Doctor> Lisobj = new List<Doctor>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetDoctors";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    Doctor obj = new Doctor();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.DoctorImage = Convert.ToString(reader["DoctorImage"]);
+                    obj.DoctorName = Convert.ToString(reader["DoctorName"]);
+                    obj.Designation = Convert.ToString(reader["Designation"]);
+                    obj.Description = Convert.ToString(reader["Description"]);
+
+
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public int InsertUpdateDoctor(Doctor param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateDoctor";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@DoctorImage", SqlDbType.NVarChar, 400000).Value = param.DoctorImage;
+                dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
+                dbCommand.Parameters.Add("@Designation", SqlDbType.NVarChar, 250).Value = param.Designation;
+                dbCommand.Parameters.Add("@DoctorName", SqlDbType.NVarChar, 250).Value = param.DoctorName;
+                
+
+
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
+
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                // ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
     }
 }

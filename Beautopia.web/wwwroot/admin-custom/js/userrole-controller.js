@@ -126,7 +126,7 @@ function ClearFields() {
 
 
     $(".inputClass").val("")
-    $("ID").val("0")
+    $("#ID").val("0")
     //$(".filterprop").val("-1")
     // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)

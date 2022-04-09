@@ -1,32 +1,29 @@
 ﻿var $document = $(document),
 	$window = $(window),
 	forms = {
-        managusers: $('#managusers')
+        managedoctor: $('#managedoctor')
 	};
 $document.ready(function () {
    
 
-    if (forms.managusers.length) {
-        var $managusers = forms.managusers;
-        $managusers.validate({
+    if (forms.managedoctor.length) {
+        var $managedoctor = forms.managedoctor;
+        $managedoctor.validate({
 			rules: {
-                FullName: {
+                DoctorName: {
 					required: true,
 					//minlength: 2
 				},
-                UserName: {
+                Designation: {
 					required: true,
 
                 },
-                Password: {
-                    required: true,
+                //Description: {
+                //    required: true,
 
-                },
-                EmailID: {
-                    email: true,
-                    required: true,
-                },
-                RoleID: {
+                //},
+                
+                DoctorImageFile: {
                     required: true,
 
                 }
@@ -34,34 +31,25 @@ $document.ready(function () {
 
 			},
 			messages: {
-                FullName: {
-                    required: "Please Enter FullName"
+                DoctorName: {
+                    required: "Please Enter Doctor Name"
 					//minlength: "Your name must consist of at least 2 characters"
 				},
 				//Name: {
 				//	required: "Please enter your Name",
 				//	//minlength: "Your message must consist of at least 20 characters"
 				//},
-                UserName: {
-                    required: "Please enter UserName",
+                Designation: {
+                    required: "Please enter Designation",
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
                 },
-                Password: {
-                    required: "Please enter Password",
+                DoctorImageFile: {
+                    required: "Please Select Image",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
                 },
-                EmailID: {
-                    required: "Please enter Email",
-                    //minlength: "mobile must be 10 digits",
-                    //maxlength: "mobile must be 10 digits"
-                },
-                RoleID: {
-                    required: "Please Select Role",
-                    //minlength: "mobile must be 10 digits",
-                    //maxlength: "mobile must be 10 digits"
-                }
+              
 			},
 			submitHandler: function submitHandler(form) {
 				
@@ -70,16 +58,16 @@ $document.ready(function () {
 				$(form).ajaxSubmit({
 					type: "POST",
 					data: $(form).serialize(),
-                    url: "/Admin/User/SaveUpdateUsers",
+                    url: "/Admin/AppInfo/SaveUpdateDoctor",
                     success: function success(data) {
-                        $(".ManageUsersdGridDiv").empty();
-                        $(".ManageUsersdGridDiv").append('<div id="ManageUsersGrid"></div>')
+                        $(".doctorGridDiv").empty();
+                        $(".doctorGridDiv").append('<div id="doctorGrid"></div>')
                         ClearFields()
-                        InitGetAllUsers(data)
+                        InitDoctorGrid(data)
 					},
 					error: function error() {
 						//	debugger
-                        alert($managusers)
+                        alert($managedoctor)
 						//$('.errorform', $LoginRequest).fadeIn();
 					}
 				});
@@ -90,66 +78,53 @@ $document.ready(function () {
 
 });
 
-GetAllUsers()
 
-GetUserRolesLkp();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-
-function GetUserRolesLkp() {
-    $("#RoleID").empty();
-    $("#RoleID").append("<option value=''>Select Role</option>")
-
-    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
-    $.ajax({
-        type: "GET",
-        url: "/Admin/User/GetAllRoles",
-        //data: "{mdate:" + "m" + "}",
-        //data: datas,//JSON.stringify(datas),
-        //dataType: "json",
-        // contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            //debugger
-            var cdrData = data
-            var EmpToDisplay = "";
-            if (cdrData.length != 0) {
-                for (var i = 0; i < cdrData.length; i++) {
-
-                    $("#RoleID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].roleNameAr + "</option>");
-
-
-                }
-
-            }
-
-
-
+        reader.onload = function (e) {
+            $('#subservice-img-tag').attr('src', e.target.result);
         }
-    });
-
-
-
+        reader.readAsDataURL(input.files[0]);
+    }
 }
+$("#DoctorImageFile").change(function () {
+    readURL(this);
+});
+
+
+
+
+GetAllDoctors()
+
+
+
+
 
 
 
 function ClearFields() {
 
-
+    //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
     $("#ID").val("0")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
     $(".chkClass").prop('checked', false);
+  //  $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
+    $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+   // $(".selectClass").val();
 }
 
 
 
-function GetAllUsers() {
+function GetAllDoctors() {
 
     $.ajax({
         type: "POST",
-        url: "/Admin/User/GetAllUsers",
+        url: "/Admin/AppInfo/GetAllDoctors",
         //data: "{mdate:" + "m" + "}",
         //data: JSON.stringify(datas),
         // dataType: "json",
@@ -157,7 +132,7 @@ function GetAllUsers() {
         success: function (data) {
            // debugger
            // var cdrData = data;
-            InitGetAllUsers(data)
+            InitDoctorGrid(data)
 
 
         }
@@ -166,8 +141,8 @@ function GetAllUsers() {
 
 }
 
-function InitGetAllUsers(cdrData) {
-    $("#ManageUsersGrid").kendoGrid({
+function InitDoctorGrid(cdrData) {
+    $("#doctorGrid").kendoGrid({
         dataSource: {
             data: cdrData,
             pageSize: 200,//cdrData.length,
@@ -175,15 +150,14 @@ function InitGetAllUsers(cdrData) {
             schema: {
                 model: {
                     fields: {
-                        FullName: {
+                        doctorName: {
                             type: "string"
                         },
-                        UserName: {
+                        designation: {
                             type: "string"
                         },
-                        EmailID: {
-                            type: "string"
-                        },
+                       
+                       
                         isActive: {
                             type: "string"
                         },
@@ -196,8 +170,8 @@ function InitGetAllUsers(cdrData) {
 
         columns: [
             {
-                title: "Full Name",
-                field: "fullName",
+                title: "Doctor Name",
+                field: "doctorName",
                 //filterable: {
                 //    operators: {
                 //        string: {
@@ -209,18 +183,12 @@ function InitGetAllUsers(cdrData) {
             },
 
             {
-                title: "User Name",
-                field: "userName",
+                title: "Designation",
+                field: "designation",
                 filterable: true
 
             },
-            {
-                title: "Email",
-                field: "emailID",
-                filterable: true
-
-            },
-
+            
             {
                 title: "Active",
                 field: "isActive",
@@ -261,14 +229,14 @@ function InitGetAllUsers(cdrData) {
         },
         toolbar: ["excel"],
         excel: {
-            fileName: "Service Category.xlsx",
+            fileName: "doctorGrid.xlsx",
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
             filterable: true
         },
 
 
     });
-    $("#ManageUsersGrid").data("kendoGrid").dataSource.read();
+    $("#doctorGrid").data("kendoGrid").dataSource.read();
    // $("#overlay").css('display', 'none');
     // $("#printGrid").css('display','inline')
   
@@ -277,18 +245,18 @@ function InitGetAllUsers(cdrData) {
 }
 
 
-$(document).on("dblclick", "#ManageUsersGrid tbody tr", function (e) {
-   // debugger;
+$(document).on("dblclick", "#doctorGrid tbody tr", function (e) {
+   //debugger;
     var element = e.target || e.srcElement;
-    var dataItem = $("#ManageUsersGrid").data("kendoGrid").dataItem($(element).closest("tr"));
+    var dataItem = $("#doctorGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
-    $("#FullName").val(dataItem.fullName);
-    $("#UserName").val(dataItem.userName);
-    $("#Password").val(dataItem.password);
-    $("#EmailID").val(dataItem.emailID);
-    $("#RoleID").val(dataItem.roleID);
-    //$("#RoleID").val(dataItem.RoleID);
-
+    $("#DoctorName").val(dataItem.doctorName);
+    $("#Designation").val(dataItem.designation);
+    $("#Description").val(dataItem.description);
+ 
+    $("#DoctorImage").val(dataItem.doctorImage);
+    //$("#SubServiceImageName").val(dataItem.subServiceImageName);
+   // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
 
         $("#IsActiveChecked").prop('checked', true);
@@ -297,6 +265,16 @@ $(document).on("dblclick", "#ManageUsersGrid tbody tr", function (e) {
 
         $("#IsActiveChecked").prop('checked', false);
     }
+
+    if (dataItem.doctorImage != "" && dataItem.doctorImage != null) {
+        $("#subservice-img-tag").attr("src", "/medlab/images/content/doctors/" + dataItem.doctorImage);
+    }
+    else {
+
+        $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    }
+
+
     //$("#tabs").tabs("select", "Store-Update")
 });
 

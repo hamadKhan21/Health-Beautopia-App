@@ -1,4 +1,6 @@
-﻿<!--section slider-->
+﻿@model Beautopia.Model.Area.HomeViewModel 
+
+<!--section slider-->
 <div class="section mt-0">
 	<div class="quickLinks-wrap js-quickLinks-wrap-d d-none d-lg-flex">
 		<div class="quickLinks js-quickLinks">
@@ -256,63 +258,34 @@
 			</div>
 		</div>
 		<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
+			
+			@foreach (var item in Model.Sliders) { 
 			<div class="slide">
-				<div class="img--holder" data-bg="/medlab/images/content/slider/slide-01.png"></div>
+				<div class="img--holder" data-bg="/medlab/images/content/slider/@item.SliderImage"></div>
 				<div class="slide-content center">
 					<div class="vert-wrap container">
 						<div class="vert">
 							<div class="container">
 								<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
-									Leading the Way<br>
-									<b>in Cosmetic Surgery</b>
+									@item.title1<br>
+									<b>@item.title2</b>
 								</div>
-								<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">Advanced medicine. Compassionate care</div>
+								<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@item.title3</div>
 								<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Explore our services</span><i class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="slide">
-				<div class="img--holder" data-bg="/medlab/images/content/slider/slide-02.png"></div>
-				<div class="slide-content center">
-					<div class="vert-wrap container">
-						<div class="vert">
-							<div class="container">
-								<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
-									We Provide
-									<br><b>Full Medical Care!</b>
-								</div>
-								<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">Highest standards of customer service</div>
-								<div class="slide-btn"><a href="#" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Know more</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="slide">
-				<div class="img--holder" data-bg="/medlab/images/content/slider/slide-03.png"></div>
-				<div class="slide-content center">
-					<div class="vert-wrap container">
-						<div class="vert">
-							<div class="container">
-								<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
-									We Provide
-									<br><b>Full Medical Care!</b>
-								</div>
-								<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">Highest standards of customer service</div>
-								<div class="slide-btn"><a href="#" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Know more</span><i class="icon-right-arrow"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			}
+		
+			
 		</div>
 	</div>
 </div>
 <!--//section slider-->
 <!--section Offers-->
-<div class="section bg-norepeat bg-md-none section-top-padding" style="		background-image: url(/medlab/images/bg-top-left2.png)">
+<div class="section bg-norepeat bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left2.png)">
 	<div class="container">
 		<div class="title-wrap text-center">
 			<div class="h-sub theme-color">Best Offers</div>
@@ -331,10 +304,13 @@
 				<button type="submit"><i class="icon-search"></i></button>
 			</form>*@
 		<div class="row specialist-carousel js-specialist-carousel">
+			
+			
+			@foreach (var item in Model.Offers) { 
 			<div class="col-sm-6 col-md-4 category1">
 				<div class="doctor-box doctor-box-style3 text-center">
 					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 1.png" class="img-fluid" alt=""></a>
+						<a href="#"><img src="~/medlab/images/content/Offers/@item.OfferImage" class="img-fluid" alt=""></a>
 						@*<div class="doctor-box-links">
 								<a href="#"><i class="icon-facebook-logo"></i></a>
 								<a href="#"><i class="icon-google-logo"></i></a>
@@ -344,99 +320,9 @@
 
 				</div>
 			</div>
-			<div class="col-sm-6 col-md-4 category2">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers//3Artboard 2.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
+			}
 
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category2">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 3.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 4.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 5.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 6.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 7.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/3Artboard 8.png" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
-
-				</div>
-			</div>
+	
 		</div>
 	</div>
 </div>
@@ -598,10 +484,12 @@
 				<button type="submit"><i class="icon-search"></i></button>
 			</form>*@
 		<div class="row specialist-carousel js-specialist-carousel">
+			@foreach (var item in Model.Doctors) { 
+
 			<div class="col-sm-6 col-md-4 category1">
 				<div class="doctor-box doctor-box-style3 text-center">
 					<div class="doctor-box-photo">
-						<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/3Artboard 1.png" class="img-fluid" alt=""></a>
+						<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
 						<div class="doctor-box-links">
 							<a href="#"><i class="icon-facebook-logo"></i></a>
 							<a href="#"><i class="icon-google-logo"></i></a>
@@ -609,59 +497,14 @@
 						</div>
 					</div>
 					<div class="doctor-box-top">
-						<h5 class="doctor-box-name"><a href="#">Dr. Ameed Khalid Abdul Hameed</a></h5>
-						<div class="doctor-box-position">Estheticians</div>
+						<h5 class="doctor-box-name"><a href="#">@item.DoctorName</a></h5>
+						<div class="doctor-box-position">@item.Designation</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 col-md-4 category2">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/3Artboard 4.png" class="img-fluid" alt=""></a>
-						<div class="doctor-box-links">
-							<a href="#"><i class="icon-facebook-logo"></i></a>
-							<a href="#"><i class="icon-google-logo"></i></a>
-							<a href="#"><i class="icon-instagram"></i></a>
-						</div>
-					</div>
-					<div class="doctor-box-top">
-						<h5 class="doctor-box-name"><a href="#">Dr. Miada Abdul Latif</a></h5>
-						<div class="doctor-box-position">Tissue Bank Director</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category2">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/3Artboard 6.png" class="img-fluid" alt=""></a>
-						<div class="doctor-box-links">
-							<a href="#"><i class="icon-facebook-logo"></i></a>
-							<a href="#"><i class="icon-google-logo"></i></a>
-							<a href="#"><i class="icon-instagram"></i></a>
-						</div>
-					</div>
-					<div class="doctor-box-top">
-						<h5 class="doctor-box-name"><a href="#">Dr. Nirmeen Salah</a></h5>
-						<div class="doctor-box-position">Embryologist</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="doctor-page.html"><img src="~/medlab/images/content/doctors/3Artboard 7.png" class="img-fluid" alt=""></a>
-						<div class="doctor-box-links">
-							<a href="#"><i class="icon-facebook-logo"></i></a>
-							<a href="#"><i class="icon-google-logo"></i></a>
-							<a href="#"><i class="icon-instagram"></i></a>
-						</div>
-					</div>
-					<div class="doctor-box-top">
-						<h5 class="doctor-box-name"><a href="#">Dr. Maha Al Hakeem</a></h5>
-						<div class="doctor-box-position">Psychiatrist</div>
-					</div>
-				</div>
-			</div>
+			}
+
+	
 
 
 		</div>

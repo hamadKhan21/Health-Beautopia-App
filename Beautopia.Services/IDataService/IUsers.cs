@@ -23,5 +23,23 @@ namespace Beautopia.Services.IDataService
 
 		List<UserMenu> GetSubMenusByMenuID(int MenuID);
 
+
+		//Slider
+		List<Slider> GetSliders();
+
+		int InsertUpdateSliders(Slider param);
+
+
+		//Offers
+		List<Offer> GetOffers();
+
+		int InsertUpdateOffer(Offer param);
+
+
+		//Doctor
+		List<Doctor> GetDoctor();
+
+		int InsertUpdateDoctor(Doctor param);
+
 	}
 }

@@ -1,0 +1,19 @@
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Beautopia.Model.Area
+{
+	public class Offer
+	{
+		public int ID { get; set; }
+		public string OfferImage { get; set; }
+		public IFormFile OfferImageFile { get; set; }
+		
+		public string Title { get; set; }
+		public string CreatedBy { get; set; }
+		public string IsActiveChecked { get; set; }
+		public bool IsActive { get; set; }
+	}
+}
