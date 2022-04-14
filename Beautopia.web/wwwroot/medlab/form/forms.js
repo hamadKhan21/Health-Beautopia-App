@@ -82,7 +82,7 @@
 							$(form).ajaxSubmit({
 								type: "POST",
 								data: $(form).serialize(),
-								url: "form/process-contact.php",
+								url: "/Home/SaveContactForm",
 								success: function success() {
 									$('.successform', $contactform).fadeIn();
 									$contactform.get(0).reset();
@@ -130,7 +130,7 @@
 							$(form).ajaxSubmit({
 								type: "POST",
 								data: $(form).serialize(),
-								url: "form/process-question.php",
+								url: "/Home/SaveBookingorm",
 								success: function success() {
 									$('.successform', $questionForm).fadeIn();
 									$questionForm.get(0).reset();

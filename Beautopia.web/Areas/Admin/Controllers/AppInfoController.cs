@@ -254,5 +254,82 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 			return Json(data);
 		}
+
+
+		[Route("Admin/ManageSmileGillary")]
+		public IActionResult ManageSmileGillary()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<JsonResult> SaveUpdateSmileGillary([Bind("ID,Title,SmileImage,SmileImageFile,IsActiveChecked")] SmileGillary obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			List<SmileGillary> Offers = new List<SmileGillary>();
+			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
+			obj.CreatedBy = login.UserName;
+			try
+			{
+				// Code to upload image if not null
+				if (obj.SmileImageFile != null)
+				{
+					var extention = Path.GetExtension(obj.SmileImageFile.FileName);
+					if (extention == ".jpg" || extention == ".jpeg" || extention == ".png")
+					{
+						// Create a File Info 
+						FileInfo fi = new FileInfo(obj.SmileImageFile.FileName);
+
+						// This code creates a unique file name to prevent duplications 
+						// stored at the file location
+						var newFilename = "SmileGillary" + "_" + String.Format("{0:d}",
+										  (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+						var webPath = _hostEnvironment.ContentRootPath;
+						var path = Path.Combine("", webPath + @"\wwwroot\medlab\images\content\gallery\" + newFilename);
+
+						// IMPORTANT: The pathToSave variable will be save on the column in the database
+						//var pathToSave = @"/images/" + newFilename;
+						obj.SmileImage = newFilename;
+						//info.IncomingCreatedBy = login.EmployeeNumber;
+						// This stream the physical file to the allocate wwwroot/ImageFiles folder
+						using (var stream = new FileStream(path, FileMode.Create))
+						{
+							await obj.SmileImageFile.CopyToAsync(stream);
+						}
+						//_dispatchService.InsertUpdateOutdoing(info);
+						//message = "Success";
+					}
+					else
+					{
+						//message = "File is not in correct format, only png,jpeg, pdf or jpg is allowed";
+					}
+					// This save the path to the record
+
+				}
+
+
+
+				_users.InsertUpdateSmileGillary(obj);
+				Offers = _users.GetSmileGillary();
+			}
+
+			catch (Exception ex)
+			{
+
+			}
+
+
+
+			return Json(Offers);
+		}
+
+		public JsonResult GetSmileGillary()
+		{
+			var data = _users.GetSmileGillary();
+
+
+			return Json(data);
+		}
 	}
 }

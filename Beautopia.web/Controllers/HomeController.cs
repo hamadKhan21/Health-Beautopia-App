@@ -34,6 +34,7 @@ namespace Beautopia.web.Controllers
 			hmModel.Sliders=_users.GetSliders().Where(a => a.IsActive == true).ToList();
 			hmModel.Offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
 			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
+			hmModel.ServiceSubCategorys = _serviceRequest.GetAllServiceSubCategory().Where(a => a.IsActive == true).ToList();
 
 			return View(hmModel);
 		}
@@ -60,7 +61,8 @@ namespace Beautopia.web.Controllers
 		[Route("GALLERY")]
 		public IActionResult GALLERY()
 		{
-			return View();
+			var gallary=_users.GetSmileGillary();
+			return View(gallary);
 		}
 		[Route("OURSPECIALISTS")]
 		public IActionResult OURSPECIALISTS()
@@ -168,6 +170,23 @@ namespace Beautopia.web.Controllers
 			return Json(bookingForm);
 		}
 
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public JsonResult SaveContactForm([Bind("name,message,email,phone")] ContactForm contactForm)
+		{
+			RequestService requestService = new RequestService();
+			requestService.Name = contactForm.name;
+			requestService.Mobile = contactForm.phone;
+			requestService.Email = contactForm.email;
+			requestService.Comments = contactForm.message;
+			requestService.Service = "";
+
+			_serviceRequest.InsertServiceRequest(requestService);
+
+
+			return Json(contactForm);
+		}
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{

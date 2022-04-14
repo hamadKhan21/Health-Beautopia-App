@@ -118,28 +118,28 @@
 										<li class="nav-item">
 											<a asp-controller="Home" asp-action="SERVICES" class="nav-link dropdown-toggle">Equipments</a>
 											@*<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="services.html">All Services</a></li>
-													<li><a class="dropdown-item" href="service-page.html">Service Page</a></li>
-													<li><a class="dropdown-item" href="prices.html">Prices</a></li>
-													<li><a class="dropdown-item" href="shop-listing.html">Online Shop</a></li>
-												</ul>*@
+				<li><a class="dropdown-item" href="services.html">All Services</a></li>
+				<li><a class="dropdown-item" href="service-page.html">Service Page</a></li>
+				<li><a class="dropdown-item" href="prices.html">Prices</a></li>
+				<li><a class="dropdown-item" href="shop-listing.html">Online Shop</a></li>
+			</ul>*@
 										</li>
 										<li class="nav-item">
 											<a asp-controller="Home" asp-action="GALLERY" class="nav-link dropdown-toggle">Gallery</a>
 											@*<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="gallery.html">Creative Gallery</a></li>
-													<li><a class="dropdown-item" href="gallery-simple.html">Simple Gallery</a></li>
-												</ul>*@
+				<li><a class="dropdown-item" href="gallery.html">Creative Gallery</a></li>
+				<li><a class="dropdown-item" href="gallery-simple.html">Simple Gallery</a></li>
+			</ul>*@
 										</li>
 										<li class="nav-item">
 											<a asp-controller="Home" asp-action="OURSPECIALISTS" class="nav-link dropdown-toggle">Our Specialists</a>
 											@*<ul class="dropdown-menu">
-													<li><a class="dropdown-item" href="our-specialist.html">All Specialists</a></li>
-													<li><a class="dropdown-item" href="doctor-page.html">Doctor Page</a></li>
-													<li><a class="dropdown-item" href="schedule.html">Schedule Table</a></li>
-												</ul>*@
+				<li><a class="dropdown-item" href="our-specialist.html">All Specialists</a></li>
+				<li><a class="dropdown-item" href="doctor-page.html">Doctor Page</a></li>
+				<li><a class="dropdown-item" href="schedule.html">Schedule Table</a></li>
+			</ul>*@
 										</li>
-										<li class="nav-item">
+										<li class="nav-item" style="display:none">
 											<a class="nav-link" asp-controller="Home" asp-action="TESTIMONIALS">Testimonials</a>
 										</li>
 										<li class="nav-item dropdown" style="display:none">
@@ -152,6 +152,9 @@
 										</li>
 										<li class="nav-item">
 											<a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contacts</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" asp-controller="Home" asp-action="requestservice">Schedule a Visit</a>
 										</li>
 									</ul>
 								</div>
@@ -319,118 +322,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal modal-form fade" id="modalBookingForm">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<button aria-label='Close' class='close' data-dismiss='modal'>
-					<i class="icon-error"></i>
-				</button>
-				<div class="modal-body">
-					<div class="modal-form">
-						<h3>Book an Appointment</h3>
-						<form class="mt-15" id="bookingForm" method="post" novalidate>
-							<div class="successform">
-								<p>Your message was sent successfully!</p>
-							</div>
-							<div class="errorform">
-								<p>Something went wrong, try refreshing and submitting the form again.</p>
-							</div>
-							<div class="input-group">
-								<span>
-									<i class="icon-user"></i>
-								</span>
-								<input type="text" name="bookingname" class="form-control" autocomplete="off" placeholder="Your Name*" />
-							</div>
-							<div class="row row-xs-space mt-1">
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span>
-											<i class="icon-email2"></i>
-										</span>
-										<input type="text" name="bookingemail" class="form-control" autocomplete="off" placeholder="Your Email*" />
-									</div>
-								</div>
-								<div class="col-sm-6 mt-1 mt-sm-0">
-									<div class="input-group">
-										<span>
-											<i class="icon-smartphone"></i>
-										</span>
-										<input type="text" name="bookingphone" class="form-control" autocomplete="off" placeholder="Your Phone" />
-									</div>
-								</div>
-							</div>
-							<div class="row row-xs-space mt-1" style="display:none">
-								<div class="col-sm-6">
-									<div class="input-group">
-										<span>
-											<i class="icon-birthday"></i>
-										</span>
-										<input type="text" name="bookingage" class="form-control" autocomplete="off" placeholder="Your age" />
-									</div>
-								</div>
-							</div>
-							<div class="selectWrapper input-group mt-1">
-								<span>
-									<i class="icon-micro"></i>
-								</span>
-								<select name="bookingservice" class="form-control">
-									<option selected="selected" disabled="disabled">Select Service</option>
-									<option value="ملي فيلر 800ريال"> ملي فيلر 800ريال</option>
-									<option value="جلسة الترافورمر لشد الوجه والرقبه 999ريال">جلسة الترافورمر لشد الوجه والرقبه 999ريال</option>
-									<option value="بوتكس للوجه 900ريال">بوتكس للوجه 900ريال</option>
-									<option value="جلستين فركشنال 822ريال">جلستين فركشنال 822ريال</option>
-									<option value="تقشير بارد + كريم منزلي 1422ريال">تقشير بارد + كريم منزلي 1422ريال</option>
-									<option value="خيوط تجميلية لشد الوجه او الخدود او تحديد الفك 1022ريال">خيوط تجميلية لشد الوجه او الخدود او تحديد الفك 1022ريال</option>
-									<option value="جلسة تنظيف بشرة عميق 222ريال">جلسة تنظيف بشرة عميق 222ريال</option>
-									<option value="منطقتين ليزر + منطقه مجانا صغيره للسيدات 222ريال">منطقتين ليزر + منطقه مجانا صغيره للسيدات 222ريال</option>
-									<option value="جلسه ليزر جسم كامل+تشقير حواجب للسيدات 350ريال">جلسه ليزر جسم كامل+تشقير حواجب للسيدات 350ريال</option>
-									<option value="٥جلسات جسم كامل +هديه جلسه تشقير حواجب للسيدات  1000ريال">
-										٥جلسات جسم كامل +هديه جلسه تشقير حواجب للسيدات  1000ريال
-									</option>
-									<option value="٣جلسات ليزر جسم كامل +هديه تشقير حواجب للسيدات 599ريال">
-										٣جلسات ليزر جسم كامل +هديه تشقير حواجب للسيدات 599ريال
-									</option>
-									<option value="ليزر مني بدي ( ابط- بكيني-نص ساق-نص يد) للسيدات 250ريال">ليزر مني بدي ( ابط- بكيني-نص ساق-نص يد) للسيدات 250ريال</option>
-									<option value="جلسه ليزر لثلاث مناطق(ابط-بكيني-تحديد دقن) للرجال 522ريال">جلسه ليزر لثلاث مناطق(ابط-بكيني-تحديد دقن) للرجال 522ريال</option>
-									<option value="المنطقه الحساسه ( بكيني ) للرجال 222ريال">المنطقه الحساسه ( بكيني ) للرجال 222ريال</option>
-									<option value="٣جلسات ليزر جسم كامل للرجال 1392ريال">٣جلسات ليزر جسم كامل للرجال 1392ريال</option>
-									<option value="جلسه ليزرجسم كامل للرجال  699ريال">جلسه ليزرجسم كامل للرجال  699ريال</option>
-									<option value="جلسة ليزر تحديد ذقن 142ريال">جلسة ليزر تحديد ذقن 142ريال</option>
-									<option value="جلسة ليزر منطقة البوكسر للرجال 350ريال">جلسة ليزر منطقة البوكسر للرجال 350ريال</option>
-									<option value="صدر او بطن او افخاد للرجال 400ريال">صدر او بطن او افخاد للرجال 400ريال</option>
-									<option value="تبييض الاسنان + تنظيف مجانا 499ريال">تبييض الاسنان + تنظيف مجانا 499ريال</option>
-									<option value="تبييض الاسنان المنزلي + تنظيف مجانا 499ريال">تبييض الاسنان المنزلي + تنظيف مجانا 499ريال</option>
-									<option value="تنظيف اسنان 99ريال">تنظيف اسنان 99ريال</option>
-									<option value="هوليوود سمايل 12 سن 7000ريال">هوليوود سمايل 12 سن 7000ريال</option>
-									<option value="تعطير الفم للتخلص من الرائحة الكريهه 999ريال">تعطير الفم للتخلص من الرائحة الكريهه 999ريال</option>
-								</select>
-							</div>
-							<div class="input-group flex-nowrap mt-1" style="display:none">
-								<span>
-									<i class="icon-calendar2"></i>
-								</span>
-								<div class="datepicker-wrap">
-									<input name="bookingdate" type="text" class="form-control datetimepicker" placeholder="Date" readonly>
-								</div>
-							</div>
-							<div class="input-group flex-nowrap mt-1" style="display:none">
-								<span>
-									<i class="icon-clock"></i>
-								</span>
-								<div class="datepicker-wrap">
-									<input name="bookingtime" type="text" class="form-control timepicker" placeholder="Time">
-								</div>
-							</div>
-							<textarea name="bookingmessage" class="form-control" placeholder="Your comment"></textarea>
-							<div class="text-right mt-2">
-								<button type="submit" class="btn btn-sm btn-hover-fill">Book now</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!-- Vendors -->
 	<script src="~/medlab/vendor/jquery/jquery-3.2.1.min.js"></script>
 

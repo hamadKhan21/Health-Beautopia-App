@@ -1,5 +1,4 @@
-﻿@model Beautopia.Model.Area.HomeViewModel 
-
+﻿@model Beautopia.Model.Area.HomeViewModel
 <!--section slider-->
 <div class="section mt-0">
 	<div class="quickLinks-wrap js-quickLinks-wrap-d d-none d-lg-flex">
@@ -98,34 +97,11 @@
 									</span>
 									<select name="requestservice" class="form-control">
 										<option selected="selected" disabled="disabled">Select Service</option>
-										<option value="ملي فيلر 800ريال"> ملي فيلر 800ريال</option>
-										<option value="جلسة الترافورمر لشد الوجه والرقبه 999ريال">جلسة الترافورمر لشد الوجه والرقبه 999ريال</option>
-										<option value="بوتكس للوجه 900ريال">بوتكس للوجه 900ريال</option>
-										<option value="جلستين فركشنال 822ريال">جلستين فركشنال 822ريال</option>
-										<option value="تقشير بارد + كريم منزلي 1422ريال">تقشير بارد + كريم منزلي 1422ريال</option>
-										<option value="خيوط تجميلية لشد الوجه او الخدود او تحديد الفك 1022ريال">خيوط تجميلية لشد الوجه او الخدود او تحديد الفك 1022ريال</option>
-										<option value="جلسة تنظيف بشرة عميق 222ريال">جلسة تنظيف بشرة عميق 222ريال</option>
-										<option value="منطقتين ليزر + منطقه مجانا صغيره للسيدات 222ريال">منطقتين ليزر + منطقه مجانا صغيره للسيدات 222ريال</option>
-										<option value="جلسه ليزر جسم كامل+تشقير حواجب للسيدات 350ريال">جلسه ليزر جسم كامل+تشقير حواجب للسيدات 350ريال</option>
-										<option value="٥جلسات جسم كامل +هديه جلسه تشقير حواجب للسيدات  1000ريال">
-											٥جلسات جسم كامل +هديه جلسه تشقير حواجب للسيدات  1000ريال
-										</option>
-										<option value="٣جلسات ليزر جسم كامل +هديه تشقير حواجب للسيدات 599ريال">
-											٣جلسات ليزر جسم كامل +هديه تشقير حواجب للسيدات 599ريال
-										</option>
-										<option value="ليزر مني بدي ( ابط- بكيني-نص ساق-نص يد) للسيدات 250ريال">ليزر مني بدي ( ابط- بكيني-نص ساق-نص يد) للسيدات 250ريال</option>
-										<option value="جلسه ليزر لثلاث مناطق(ابط-بكيني-تحديد دقن) للرجال 522ريال">جلسه ليزر لثلاث مناطق(ابط-بكيني-تحديد دقن) للرجال 522ريال</option>
-										<option value="المنطقه الحساسه ( بكيني ) للرجال 222ريال">المنطقه الحساسه ( بكيني ) للرجال 222ريال</option>
-										<option value="٣جلسات ليزر جسم كامل للرجال 1392ريال">٣جلسات ليزر جسم كامل للرجال 1392ريال</option>
-										<option value="جلسه ليزرجسم كامل للرجال  699ريال">جلسه ليزرجسم كامل للرجال  699ريال</option>
-										<option value="جلسة ليزر تحديد ذقن 142ريال">جلسة ليزر تحديد ذقن 142ريال</option>
-										<option value="جلسة ليزر منطقة البوكسر للرجال 350ريال">جلسة ليزر منطقة البوكسر للرجال 350ريال</option>
-										<option value="صدر او بطن او افخاد للرجال 400ريال">صدر او بطن او افخاد للرجال 400ريال</option>
-										<option value="تبييض الاسنان + تنظيف مجانا 499ريال">تبييض الاسنان + تنظيف مجانا 499ريال</option>
-										<option value="تبييض الاسنان المنزلي + تنظيف مجانا 499ريال">تبييض الاسنان المنزلي + تنظيف مجانا 499ريال</option>
-										<option value="تنظيف اسنان 99ريال">تنظيف اسنان 99ريال</option>
-										<option value="هوليوود سمايل 12 سن 7000ريال">هوليوود سمايل 12 سن 7000ريال</option>
-										<option value="تعطير الفم للتخلص من الرائحة الكريهه 999ريال">تعطير الفم للتخلص من الرائحة الكريهه 999ريال</option>
+										@foreach (var item in Model.ServiceSubCategorys)
+										{
+											<option value="@item.ID">@item.SubCategoryNameAr @item.ServicePrice ريال</option>
+										}
+
 									</select>
 								</div>
 								<div class="row row-sm-space mt-1" style="display:none">
@@ -258,28 +234,29 @@
 			</div>
 		</div>
 		<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
-			
-			@foreach (var item in Model.Sliders) { 
-			<div class="slide">
-				<div class="img--holder" data-bg="/medlab/images/content/slider/@item.SliderImage"></div>
-				<div class="slide-content center">
-					<div class="vert-wrap container">
-						<div class="vert">
-							<div class="container">
-								<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
-									@item.title1<br>
-									<b>@item.title2</b>
+
+			@foreach (var item in Model.Sliders)
+			{
+				<div class="slide">
+					<div class="img--holder" data-bg="/medlab/images/content/slider/@item.SliderImage"></div>
+					<div class="slide-content center">
+						<div class="vert-wrap container">
+							<div class="vert">
+								<div class="container">
+									<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
+										@item.title1<br>
+										<b>@item.title2</b>
+									</div>
+									<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@item.title3</div>
+									<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Explore our services</span><i class="icon-right-arrow"></i></a></div>
 								</div>
-								<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@item.title3</div>
-								<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Explore our services</span><i class="icon-right-arrow"></i></a></div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			}
-		
-			
+
+
 		</div>
 	</div>
 </div>
@@ -304,25 +281,26 @@
 				<button type="submit"><i class="icon-search"></i></button>
 			</form>*@
 		<div class="row specialist-carousel js-specialist-carousel">
-			
-			
-			@foreach (var item in Model.Offers) { 
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="~/medlab/images/content/Offers/@item.OfferImage" class="img-fluid" alt=""></a>
-						@*<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>*@
-					</div>
 
+
+			@foreach (var item in Model.Offers)
+			{
+				<div class="col-sm-6 col-md-4 category1">
+					<div class="doctor-box doctor-box-style3 text-center">
+						<div class="doctor-box-photo">
+							<a href="#"><img src="~/medlab/images/content/Offers/@item.OfferImage" class="img-fluid" alt=""></a>
+							@*<div class="doctor-box-links">
+									<a href="#"><i class="icon-facebook-logo"></i></a>
+									<a href="#"><i class="icon-google-logo"></i></a>
+									<a href="#"><i class="icon-instagram"></i></a>
+								</div>*@
+						</div>
+
+					</div>
 				</div>
-			</div>
 			}
 
-	
+
 		</div>
 	</div>
 </div>
@@ -484,27 +462,28 @@
 				<button type="submit"><i class="icon-search"></i></button>
 			</form>*@
 		<div class="row specialist-carousel js-specialist-carousel">
-			@foreach (var item in Model.Doctors) { 
+			@foreach (var item in Model.Doctors)
+			{
 
-			<div class="col-sm-6 col-md-4 category1">
-				<div class="doctor-box doctor-box-style3 text-center">
-					<div class="doctor-box-photo">
-						<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
-						<div class="doctor-box-links">
-							<a href="#"><i class="icon-facebook-logo"></i></a>
-							<a href="#"><i class="icon-google-logo"></i></a>
-							<a href="#"><i class="icon-instagram"></i></a>
+				<div class="col-sm-6 col-md-4 category1">
+					<div class="doctor-box doctor-box-style3 text-center">
+						<div class="doctor-box-photo">
+							<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
+							<div class="doctor-box-links">
+								<a href="#"><i class="icon-facebook-logo"></i></a>
+								<a href="#"><i class="icon-google-logo"></i></a>
+								<a href="#"><i class="icon-instagram"></i></a>
+							</div>
+						</div>
+						<div class="doctor-box-top">
+							<h5 class="doctor-box-name"><a href="#">@item.DoctorName</a></h5>
+							<div class="doctor-box-position">@item.Designation</div>
 						</div>
 					</div>
-					<div class="doctor-box-top">
-						<h5 class="doctor-box-name"><a href="#">@item.DoctorName</a></h5>
-						<div class="doctor-box-position">@item.Designation</div>
-					</div>
 				</div>
-			</div>
 			}
 
-	
+
 
 
 		</div>
@@ -576,7 +555,7 @@
 			</div>
 			<div class="image-shift-right">
 				<img src="~/medlab/images/content/beautopia-patient-info.png" alt="" class="w-md-100">
-				<div class="over-image-card pos-right">
+				<div class="over-image-card pos-right" style="display:none">
 					<div class="over-image-card-icon"><i class="icon-card"></i></div>
 					<div class="over-image-card-text">
 						<h4>Pay Online</h4>
@@ -969,6 +948,95 @@
 							</div>
 						</form>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal modal-form fade" id="modalBookingForm">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<button aria-label='Close' class='close' data-dismiss='modal'>
+				<i class="icon-error"></i>
+			</button>
+			<div class="modal-body">
+				<div class="modal-form">
+					<h3>Book an Appointment</h3>
+					<form class="mt-15" id="bookingForm" method="post" novalidate>
+						<div class="successform">
+							<p>Your message was sent successfully!</p>
+						</div>
+						<div class="errorform">
+							<p>Something went wrong, try refreshing and submitting the form again.</p>
+						</div>
+						<div class="input-group">
+							<span>
+								<i class="icon-user"></i>
+							</span>
+							<input type="text" name="bookingname" class="form-control" autocomplete="off" placeholder="Your Name*" />
+						</div>
+						<div class="row row-xs-space mt-1">
+							<div class="col-sm-6">
+								<div class="input-group">
+									<span>
+										<i class="icon-email2"></i>
+									</span>
+									<input type="text" name="bookingemail" class="form-control" autocomplete="off" placeholder="Your Email*" />
+								</div>
+							</div>
+							<div class="col-sm-6 mt-1 mt-sm-0">
+								<div class="input-group">
+									<span>
+										<i class="icon-smartphone"></i>
+									</span>
+									<input type="text" name="bookingphone" class="form-control" autocomplete="off" placeholder="Your Phone" />
+								</div>
+							</div>
+						</div>
+						<div class="row row-xs-space mt-1" style="display:none">
+							<div class="col-sm-6">
+								<div class="input-group">
+									<span>
+										<i class="icon-birthday"></i>
+									</span>
+									<input type="text" name="bookingage" class="form-control" autocomplete="off" placeholder="Your age" />
+								</div>
+							</div>
+						</div>
+						<div class="selectWrapper input-group mt-1">
+							<span>
+								<i class="icon-micro"></i>
+							</span>
+							<select name="bookingservice" class="form-control">
+								<option selected="selected" disabled="disabled">Select Service</option>
+								@foreach (var item in Model.ServiceSubCategorys)
+								{
+							<option value="@item.ID">@item.SubCategoryNameAr @item.ServicePrice ريال</option>
+								}
+							</select>
+						</div>
+						<div class="input-group flex-nowrap mt-1" style="display:none">
+							<span>
+								<i class="icon-calendar2"></i>
+							</span>
+							<div class="datepicker-wrap">
+								<input name="bookingdate" type="text" class="form-control datetimepicker" placeholder="Date" readonly>
+							</div>
+						</div>
+						<div class="input-group flex-nowrap mt-1" style="display:none">
+							<span>
+								<i class="icon-clock"></i>
+							</span>
+							<div class="datepicker-wrap">
+								<input name="bookingtime" type="text" class="form-control timepicker" placeholder="Time">
+							</div>
+						</div>
+						<textarea name="bookingmessage" class="form-control" placeholder="Your comment"></textarea>
+						<div class="text-right mt-2">
+							<button type="submit" class="btn btn-sm btn-hover-fill">Book now</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
