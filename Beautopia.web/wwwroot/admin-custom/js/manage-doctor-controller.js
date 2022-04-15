@@ -23,10 +23,10 @@ $document.ready(function () {
 
                 //},
                 
-                DoctorImageFile: {
-                    required: true,
+            //    DoctorImageFile: {
+                  //  required: true,
 
-                }
+              //  }
                 
 
 			},
@@ -44,11 +44,11 @@ $document.ready(function () {
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
                 },
-                DoctorImageFile: {
-                    required: "Please Select Image",
+               // DoctorImageFile: {
+                   // required: "Please Select Image",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
-                },
+               //},
               
 			},
 			submitHandler: function submitHandler(form) {

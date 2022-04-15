@@ -910,5 +910,122 @@ namespace Beautopia.Services.DataAppService
             return ReturnID;
             //
         }
+
+
+
+        public List<Equipment> GetEquipment()
+        {
+            List<Equipment> Lisobj = new List<Equipment>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetEquipment";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    Equipment obj = new Equipment();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.Title = Convert.ToString(reader["Title"]);
+                    obj.Description = Convert.ToString(reader["Description"]);
+                    obj.EquipmentImage = Convert.ToString(reader["EquipmentImage"]);
+                    obj.EquipmentIcon = Convert.ToString(reader["EquipmentIcon"]);
+
+
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
+        public int InsertUpdateEquipment(Equipment param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateEquipment";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 400000).Value = param.Description;
+                dbCommand.Parameters.Add("@EquipmentIcon", SqlDbType.NVarChar, 250).Value = param.EquipmentIcon;
+                dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
+                dbCommand.Parameters.Add("@EquipmentImage", SqlDbType.NVarChar, 400000).Value = param.EquipmentImage;
+
+
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
+
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                // ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
     }
 }

@@ -331,5 +331,84 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 			return Json(data);
 		}
+
+
+
+
+		[Route("Admin/ManageEquipments")]
+		public IActionResult ManageEquipments()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<JsonResult> SaveUpdateEquipments([Bind("ID,Title,Description,EquipmentIcon,EquipmentImage,EquipmentImageFile,IsActiveChecked")] Equipment obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			List<Equipment> Offers = new List<Equipment>();
+			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
+			obj.CreatedBy = login.UserName;
+			try
+			{
+				// Code to upload image if not null
+				if (obj.EquipmentImageFile != null)
+				{
+					var extention = Path.GetExtension(obj.EquipmentImageFile.FileName);
+					if (extention == ".jpg" || extention == ".jpeg" || extention == ".png")
+					{
+						// Create a File Info 
+						FileInfo fi = new FileInfo(obj.EquipmentImageFile.FileName);
+
+						// This code creates a unique file name to prevent duplications 
+						// stored at the file location
+						var newFilename = "Equipment" + "_" + String.Format("{0:d}",
+										  (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+						var webPath = _hostEnvironment.ContentRootPath;
+						var path = Path.Combine("", webPath + @"\wwwroot\medlab\images\content\devices\" + newFilename);
+
+						// IMPORTANT: The pathToSave variable will be save on the column in the database
+						//var pathToSave = @"/images/" + newFilename;
+						obj.EquipmentImage = newFilename;
+						//info.IncomingCreatedBy = login.EmployeeNumber;
+						// This stream the physical file to the allocate wwwroot/ImageFiles folder
+						using (var stream = new FileStream(path, FileMode.Create))
+						{
+							await obj.EquipmentImageFile.CopyToAsync(stream);
+						}
+						//_dispatchService.InsertUpdateOutdoing(info);
+						//message = "Success";
+					}
+					else
+					{
+						//message = "File is not in correct format, only png,jpeg, pdf or jpg is allowed";
+					}
+					// This save the path to the record
+
+				}
+
+
+
+				_users.InsertUpdateEquipment(obj);
+				Offers = _users.GetEquipment();
+			}
+
+			catch (Exception ex)
+			{
+
+			}
+
+
+
+			return Json(Offers);
+		}
+
+		public JsonResult GetEquipments()
+		{
+			var data = _users.GetEquipment();
+
+
+			return Json(data);
+		}
 	}
 }

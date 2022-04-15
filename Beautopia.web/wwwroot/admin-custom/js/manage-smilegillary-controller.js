@@ -14,10 +14,10 @@ $document.ready(function () {
 					required: true,
 					//minlength: 2
 				},
-                SmileImageFile: {
+              //  SmileImageFile: {
                    // required: true,
 
-               }
+              // }
                 
 
 			},
@@ -27,11 +27,11 @@ $document.ready(function () {
 					//minlength: "Your name must consist of at least 2 characters"
 				},
 				
-                SmileImageFile: {
-                    required: "Please select Image",
+             //   SmileImageFile: {
+                 //   required: "Please select Image",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
-                },
+               // },
               
 			},
 			submitHandler: function submitHandler(form) {

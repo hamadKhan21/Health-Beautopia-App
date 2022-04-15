@@ -46,5 +46,11 @@ namespace Beautopia.Services.IDataService
 
 		int InsertUpdateSmileGillary(SmileGillary param);
 
+
+		//Equipment
+		List<Equipment> GetEquipment();
+
+		int InsertUpdateEquipment(Equipment param);
+
 	}
 }
