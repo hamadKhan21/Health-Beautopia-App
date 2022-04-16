@@ -1027,5 +1027,357 @@ namespace Beautopia.Services.DataAppService
             return ReturnID;
             //
         }
+
+
+
+        public AboutUs GetAboutUs()
+        {
+            AboutUs obj = new AboutUs();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetAboutUs";
+                 // dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                   // Equipment obj = new Equipment();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.AboutUSText = Convert.ToString(reader["AboutUSText"]);
+              
+
+                    //obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                   // Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return obj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return obj;
+        }
+
+
+        public int InsertUpdateAboutUs(AboutUs param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateAboutUs";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@AboutUSText", SqlDbType.NVarChar, 400000).Value = param.AboutUSText;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
+
+                dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
+                // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+              
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
+
+
+
+        public SiteInfo GetSiteInfo()
+        {
+            SiteInfo obj = new SiteInfo();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetSiteInfo";
+                // dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = ID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    // Equipment obj = new Equipment();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.Address = Convert.ToString(reader["Address"]);
+                    obj.Contact = Convert.ToString(reader["Contact"]);
+                    obj.CreatedBy = Convert.ToString(reader["CreatedBy"]);
+                    obj.Email= Convert.ToString(reader["Email"]);
+                    obj.Facebook = Convert.ToString(reader["Facebook"]);
+                    obj.GooglePlus = Convert.ToString(reader["GooglePlus"]);
+                    obj.Instagram = Convert.ToString(reader["Instagram"]);
+                    obj.SnapChat = Convert.ToString(reader["SnapChat"]);
+                    obj.TikTok = Convert.ToString(reader["TikTok"]);
+                    obj.Twitter = Convert.ToString(reader["Twitter"]);
+                    obj.LogoImage = Convert.ToString(reader["LogoImage"]);
+                    
+
+
+                    //obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+
+                    // Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return obj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return obj;
+        }
+
+
+        public int InsertUpdateSiteInfo(SiteInfo param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateSIteInfo";
+                dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@Address", SqlDbType.NVarChar, 500).Value = param.Address;
+                dbCommand.Parameters.Add("@Contact", SqlDbType.NVarChar, 500).Value = param.Contact;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = param.CreatedBy;
+                dbCommand.Parameters.Add("@Email", SqlDbType.NVarChar, 500).Value = param.Email;
+                dbCommand.Parameters.Add("@Facebook", SqlDbType.NVarChar, 500).Value = param.Facebook;
+                dbCommand.Parameters.Add("@GooglePlus", SqlDbType.NVarChar, 500).Value = param.GooglePlus;
+                dbCommand.Parameters.Add("@Instagram", SqlDbType.NVarChar, 500).Value = param.Instagram;
+                dbCommand.Parameters.Add("@SnapChat", SqlDbType.NVarChar, 500).Value = param.SnapChat;
+                dbCommand.Parameters.Add("@TikTok", SqlDbType.NVarChar, 500).Value = param.TikTok;
+                dbCommand.Parameters.Add("@Twitter", SqlDbType.NVarChar, 500).Value = param.Twitter;
+                dbCommand.Parameters.Add("@LogoImage", SqlDbType.NVarChar, 40000).Value = param.LogoImage;
+
+                dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
+                // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
+
+        public List<ServicesReport> GetServicesReport()
+        {
+            List<ServicesReport> Lisobj = new List<ServicesReport>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetServicesCount";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServicesReport obj = new ServicesReport();
+
+                    //
+                    // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.Name = Convert.ToString(reader["Name"]);
+                    obj.NameCount = Convert.ToString(reader["NameCount"]);
+                  
+
+
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+        public List<ServicesReport> GetServicesReportBySource()
+        {
+            List<ServicesReport> Lisobj = new List<ServicesReport>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_GetServicesCountBySocialMedia";
+                //  dbCommand.Parameters.Add("@RoleID", SqlDbType.Int).Value = RoleID;
+                // dbCommand.Parameters.Add("@RoleID", SqlDbType.NVarChar, 250).Value = RoleID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServicesReport obj = new ServicesReport();
+
+                    //
+                    obj.Name = Convert.ToString(reader["Name"]);
+                    obj.NameCount = Convert.ToString(reader["NameCount"]);
+
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
     }
 }

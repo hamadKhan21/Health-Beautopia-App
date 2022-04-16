@@ -313,128 +313,177 @@
 			<div class="h-decor"></div>
 		</div>
 		<div class="nav nav-pills-icons js-nav-pills-carousel" role="tablist">
-			<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab"><i class="icon-molecular"></i><span>Deka</span></a>
-			<a class="nav-link" data-toggle="pill" href="#tab-B" role="tab"><i class="icon-dental-chair"></i><span>GentleMax Pro</span></a>
-			<a class="nav-link" data-toggle="pill" href="#tab-C" role="tab"><i class="icon-micro"></i><span>HydraFacial</span></a>
-			<a class="nav-link" data-toggle="pill" href="#tab-D" role="tab"><i class="icon-testtube"></i><span>Scarlet</span></a>
-			<a class="nav-link" data-toggle="pill" href="#tab-E" role="tab"><i class="icon-chromosome"></i><span>Ultraformer</span></a>
+			@{
+				var Counta = 1;
+				var Countaa = 1;
+			}
+			
+			@foreach (var asd in Model.Equipments)
+			{
+				if (Counta == 1)
+				{
+					<a class="nav-link active" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-molecular"></i><span>@asd.Title</span></a>
+				}
+				else
+				{
+
+					<a class="nav-link" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-dental-chair"></i><span>@asd.Title</span></a>
+				}
+
+
+				Counta++;
+			}
+			@*<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab"><i class="icon-molecular"></i><span>Deka</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-B" role="tab"><i class="icon-dental-chair"></i><span>GentleMax Pro</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-C" role="tab"><i class="icon-micro"></i><span>HydraFacial</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-D" role="tab"><i class="icon-testtube"></i><span>Scarlet</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-E" role="tab"><i class="icon-chromosome"></i><span>Ultraformer</span></a>*@
+
+
 			@*<a class="nav-link" data-toggle="pill" href="#tab-F" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-H" role="tab"><i class="icon-molecular"></i><span>Molecular Testing & Oncology</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-I" role="tab"><i class="icon-testtube2"></i><span>Histology</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-J" role="tab"><i class="icon-micro"></i><span>General Diagnostic<br>Tests</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-K" role="tab"><i class="icon-testtube"></i><span>Naturopathic<br>Tests</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-L" role="tab"><i class="icon-chromosome"></i><span>Genetics Tests</span></a>
-				<a class="nav-link" data-toggle="pill" href="#tab-M" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>*@
+		<a class="nav-link" data-toggle="pill" href="#tab-H" role="tab"><i class="icon-molecular"></i><span>Molecular Testing & Oncology</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-I" role="tab"><i class="icon-testtube2"></i><span>Histology</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-J" role="tab"><i class="icon-micro"></i><span>General Diagnostic<br>Tests</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-K" role="tab"><i class="icon-testtube"></i><span>Naturopathic<br>Tests</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-L" role="tab"><i class="icon-chromosome"></i><span>Genetics Tests</span></a>
+		<a class="nav-link" data-toggle="pill" href="#tab-M" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>*@
 		</div>
 		<div id="tab-content" class="tab-content mt-2 mt-sm-4">
-			<div id="tab-A" class="tab-pane fade show active" role="tabpanel">
-				<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-				<div class="row">
-					<div class="col-md-6 h-100 mb-2 mb-md-0">
-						<img src="~/medlab/images/content/devices/Deka.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-6">
-						<div class="pt-xl-1">
-							<h3>Deka</h3>
-							<p>Selected Sources to Optimize Clinical Outcome with No Risk of Dyschromic and Cicatricial Effects. DEKA Marked a Turning Point in the World Market of Body Contouring Solutions</p>
-							<ul class="marker-list-md">
-								<li>Anti-Aging & Wrinkles</li>
-								<li>Pigmented Lesions</li>
-								<li>Hair Removal</li>
-								<li>Skin Tightening</li>
-							</ul>
-							<a style="display:none" href="#" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="tab-B" class="tab-pane fade" role="tabpanel">
-				<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-				<div class="row">
-					<div class="col-md-6 h-100 mb-2 mb-md-0">
-						<img src="~/medlab/images/content/devices/GentleMax Pro.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-6">
-						<div class="pt-xl-1">
-							<h3>GentleMax Pro</h3>
-							<p>GentleMax Pro® is a gold standard premium for Laser Hair Removal. The GentleMax Pro® system is a consolidated, dual-wavelength laser platform that combines a fast and powerful 755 nm Alexandrite laser with a 1064 nm Nd: YAG laser to deliver effective and safe results for all skin types.</p>
-							<ul class="marker-list-md">
-								<li>Permanent removal of unwanted or excess hair in all skin types</li>
-								<li>Removal of benign keratoses and/or sun spots on all parts of the body</li>
-								<li>Treatment of facial redness and broken blood vessels.</li>
-								<li>Skin tightening</li>
-							</ul>
-							<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="tab-C" class="tab-pane fade" role="tabpanel">
-				<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-				<div class="row">
-					<div class="col-md-6 h-100 mb-2 mb-md-0">
-						<img src="~/medlab/images/content/devices/HydraFacial.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-6">
-						<div class="pt-xl-1">
-							<h3>HydraFacial</h3>
-							<p>The HydraFacial is said to help improve overall skin texture, tone, and appearance. This is due to the deep exfoliation that cleans your pores, removing debris and allowing for better penetration of face serums tailored to your skin type.</p>
-							<ul class="marker-list-md">
-								<li>Immediate results</li>
-								<li>
-									Lifelong good skin
-								</li>
-								<li>Suitable for all skin types</li>
-								<li>Gives an overall skincare</li>
-							</ul>
-							<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="tab-D" class="tab-pane fade" role="tabpanel">
-				<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-				<div class="row">
-					<div class="col-md-6 h-100 mb-2 mb-md-0">
-						<img src="~/medlab/images/content/devices/Scarlet.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-6">
-						<div class="pt-xl-1">
-							<h3>Scarlet</h3>
-							<p>
-								Scarlet is a revolutionary treatment that utilizes RF (radiofrequency) and microneedling to rebuild collagen in the skin. This treatment will smooth fine lines, tighten skin, decrease pore size and improve the texture of the skin. It will also drastically improve acne and acne scarring.
-							</p>
-							<ul class="marker-list-md">
-								<li>Tighten the skin in the scalp, face, neck, and body</li>
-								<li>Lift the eyelids and improve skin texture, pores, photoaging, scars, acne, and stretch marks</li>
 
-							</ul>
-							<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+			@foreach (var asd in Model.Equipments)
+			{
+				if (Countaa == 1)
+				{
+					<div id="@asd.EquipmentIcon" class="tab-pane fade show active" role="tabpanel">
+						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+						<div class="row">
+							<div class="col-md-6 h-100 mb-2 mb-md-0">
+								<img src="~/medlab/images/content/devices/@asd.EquipmentImage" alt="" class="img-fluid">
+							</div>
+							<div class="col-md-6">
+								<div class="pt-xl-1">
+									<h3>@asd.Title</h3>
+									@Html.Raw(asd.Description)
+									<a style="display:none" href="#" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+								</div>
+							</div>
 						</div>
+					</div>
+
+				}
+				else
+				{
+
+
+					<div id="@asd.EquipmentIcon" class="tab-pane fade" role="tabpanel">
+						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+						<div class="row">
+							<div class="col-md-6 h-100 mb-2 mb-md-0">
+								<img src="~/medlab/images/content/devices/@asd.EquipmentImage" alt="" class="img-fluid">
+							</div>
+							<div class="col-md-6">
+								<div class="pt-xl-1">
+									<h3>@asd.Title</h3>
+									@Html.Raw(asd.Description)
+									<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				}
+				Countaa++;
+			}
+
+
+			@*<div id="tab-B" class="tab-pane fade" role="tabpanel">
+			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+			<div class="row">
+				<div class="col-md-6 h-100 mb-2 mb-md-0">
+					<img src="~/medlab/images/content/devices/GentleMax Pro.png" alt="" class="img-fluid">
+				</div>
+				<div class="col-md-6">
+					<div class="pt-xl-1">
+						<h3>GentleMax Pro</h3>
+						<p>GentleMax Pro® is a gold standard premium for Laser Hair Removal. The GentleMax Pro® system is a consolidated, dual-wavelength laser platform that combines a fast and powerful 755 nm Alexandrite laser with a 1064 nm Nd: YAG laser to deliver effective and safe results for all skin types.</p>
+						<ul class="marker-list-md">
+							<li>Permanent removal of unwanted or excess hair in all skin types</li>
+							<li>Removal of benign keratoses and/or sun spots on all parts of the body</li>
+							<li>Treatment of facial redness and broken blood vessels.</li>
+							<li>Skin tightening</li>
+						</ul>
+						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
 					</div>
 				</div>
 			</div>
-			<div id="tab-E" class="tab-pane fade" role="tabpanel">
-				<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-				<div class="row">
-					<div class="col-md-6 h-100 mb-2 mb-md-0">
-						<img src="~/medlab/images/content/devices/Ultraformer.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-md-6">
-						<div class="pt-xl-1">
-							<h3>Genetics Tests</h3>
-							<p>Ultraformer III stimulates the production of new, stronger collagen with a more 'youthful' structure. This, in turn, strengthens your skin and reinforces its internal support system, helping to reverse the effects of ageing on your skin. Maximum benefits typically occur between six and nine months after treatment.</p>
-							<ul class="marker-list-md">
-								<li>More effective and, in the long run</li>
-								<li>Cost-effective</li>
-								<li>Visible tissue lifting across the 3-6 months post-treatment without any downtime</li>
-								<li>Reduce adipose (fatty) tissue</li>
-							</ul>
-							<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
-						</div>
+		</div>
+		<div id="tab-C" class="tab-pane fade" role="tabpanel">
+			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+			<div class="row">
+				<div class="col-md-6 h-100 mb-2 mb-md-0">
+					<img src="~/medlab/images/content/devices/HydraFacial.png" alt="" class="img-fluid">
+				</div>
+				<div class="col-md-6">
+					<div class="pt-xl-1">
+						<h3>HydraFacial</h3>
+						<p>The HydraFacial is said to help improve overall skin texture, tone, and appearance. This is due to the deep exfoliation that cleans your pores, removing debris and allowing for better penetration of face serums tailored to your skin type.</p>
+						<ul class="marker-list-md">
+							<li>Immediate results</li>
+							<li>
+								Lifelong good skin
+							</li>
+							<li>Suitable for all skin types</li>
+							<li>Gives an overall skincare</li>
+						</ul>
+						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
 					</div>
 				</div>
 			</div>
+		</div>
+		<div id="tab-D" class="tab-pane fade" role="tabpanel">
+			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+			<div class="row">
+				<div class="col-md-6 h-100 mb-2 mb-md-0">
+					<img src="~/medlab/images/content/devices/Scarlet.png" alt="" class="img-fluid">
+				</div>
+				<div class="col-md-6">
+					<div class="pt-xl-1">
+						<h3>Scarlet</h3>
+						<p>
+							Scarlet is a revolutionary treatment that utilizes RF (radiofrequency) and microneedling to rebuild collagen in the skin. This treatment will smooth fine lines, tighten skin, decrease pore size and improve the texture of the skin. It will also drastically improve acne and acne scarring.
+						</p>
+						<ul class="marker-list-md">
+							<li>Tighten the skin in the scalp, face, neck, and body</li>
+							<li>Lift the eyelids and improve skin texture, pores, photoaging, scars, acne, and stretch marks</li>
+
+						</ul>
+						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="tab-E" class="tab-pane fade" role="tabpanel">
+			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+			<div class="row">
+				<div class="col-md-6 h-100 mb-2 mb-md-0">
+					<img src="~/medlab/images/content/devices/Ultraformer.png" alt="" class="img-fluid">
+				</div>
+				<div class="col-md-6">
+					<div class="pt-xl-1">
+						<h3>Genetics Tests</h3>
+						<p>Ultraformer III stimulates the production of new, stronger collagen with a more 'youthful' structure. This, in turn, strengthens your skin and reinforces its internal support system, helping to reverse the effects of ageing on your skin. Maximum benefits typically occur between six and nine months after treatment.</p>
+						<ul class="marker-list-md">
+							<li>More effective and, in the long run</li>
+							<li>Cost-effective</li>
+							<li>Visible tissue lifting across the 3-6 months post-treatment without any downtime</li>
+							<li>Reduce adipose (fatty) tissue</li>
+						</ul>
+						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>*@
 
 
 

@@ -15,10 +15,12 @@ namespace Beautopia.web.Areas.Admin.Controllers
 	public class ServicesLeadsController : Controller
 	{
 		private static IServiceRequest _serviceRequest;
+		private static IUsers _users;
 
-		public ServicesLeadsController(IServiceRequest serviceRequest) {
+		public ServicesLeadsController(IServiceRequest serviceRequest, IUsers users) {
 
 			_serviceRequest = serviceRequest;
+			_users = users;
 		}
 		[SessionTimeout]
 		[Route("Dashboard")]
@@ -78,6 +80,27 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 
 			return Json(servicecate);
+		}
+
+
+		public JsonResult GetServicesBySource()
+		{
+			//var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+
+			var data = _users.GetServicesReportBySource();
+
+
+			return Json(data);
+		}
+
+		public JsonResult GetTotalServicesCount()
+		{
+			//var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+
+			var data = _users.GetServicesReport();
+
+
+			return Json(data);
 		}
 	}
 }

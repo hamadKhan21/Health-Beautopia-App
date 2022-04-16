@@ -251,6 +251,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\admin-custom\Images\SubServices\" />
+    <Folder Include="wwwroot\medlab\images\content\logo\" />
     <Folder Include="wwwroot\medlab\images\content\Offers\" />
   </ItemGroup>
 

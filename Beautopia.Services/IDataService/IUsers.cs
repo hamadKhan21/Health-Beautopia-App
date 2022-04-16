@@ -52,5 +52,19 @@ namespace Beautopia.Services.IDataService
 
 		int InsertUpdateEquipment(Equipment param);
 
+		//AboutUs
+		AboutUs GetAboutUs();
+
+		int InsertUpdateAboutUs(AboutUs param);
+
+		//SiteInfo
+		SiteInfo GetSiteInfo();
+
+		int InsertUpdateSiteInfo(SiteInfo param);
+
+		//Report
+		List<ServicesReport> GetServicesReport();
+		List<ServicesReport> GetServicesReportBySource();
+
 	}
 }

@@ -36,6 +36,9 @@ namespace Beautopia.web.Controllers
 			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
 			hmModel.ServiceSubCategorys = _serviceRequest.GetAllServiceSubCategory().Where(a => a.IsActive == true).ToList();
 
+			hmModel.Equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
+			//hmModel.SiteInfo = _users.GetSiteInfo();
+
 			return View(hmModel);
 		}
 		[Route("Privacy")]
@@ -46,17 +49,22 @@ namespace Beautopia.web.Controllers
 		[Route("ContactUs")]
 		public IActionResult ContactUs()
 		{
-			return View();
+			var info= _users.GetSiteInfo();
+			return View(info);
 		}
 		[Route("AboutUs")]
 		public IActionResult AboutUs()
+		
 		{
-			return View();
+						var aboutUS = _users.GetAboutUs();
+
+			return View(aboutUS);
 		}
 		[Route("SERVICES")]
 		public IActionResult SERVICES()
 		{
-			return View();
+			var equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
+			return View(equipments);
 		}
 		[Route("GALLERY")]
 		public IActionResult GALLERY()

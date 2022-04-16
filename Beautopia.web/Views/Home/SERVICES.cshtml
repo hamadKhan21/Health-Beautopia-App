@@ -1,4 +1,5 @@
-﻿<!--section-->
+﻿@model IEnumerable<Beautopia.Model.Area.Equipment>
+<!--section-->
 <div class="section mt-0">
 	<div class="breadcrumbs-wrap">
 		<div class="container">
@@ -41,38 +42,16 @@
 				<div class="inner-circles-loader"></div>
 			</div>
 			<div class="gallery-smiles gallery-isotope" id="gallery">
+				@foreach (var item in Model) {
+
 				<div class="gallery-item category2 category7">
 					<div class="twentytwenty-container">
-						<img src="/medlab/images/content/devices/Deka.png" alt="" />
+						<img src="/medlab/images/content/devices/@item.EquipmentImage" alt="" />
 
 					</div>
 				</div>
-				<div class="gallery-item category2 category7">
-					<div class="twentytwenty-container">
 
-						<img src="/medlab/images/content/devices/GentleMax Pro.png" alt="" />
-					</div>
-				</div>
-				<div class="gallery-item category1 category5 category8">
-					<div class="twentytwenty-container">
-						<img src="/medlab/images/content/devices/HydraFacial.png" alt="" />
-
-					</div>
-				</div>
-				<div class="gallery-item category1 category5 category8">
-					<div class="twentytwenty-container">
-
-						<img src="/medlab/images/content/devices/Scarlet.png" alt="" />
-					</div>
-				</div>
-			
-				<div class="gallery-item category2 category4 category3">
-					<div class="twentytwenty-container">
-
-						<img src="/medlab/images/content/devices/Ultraformer.png" alt="" />
-					</div>
-				</div>
-
+				}
 			</div>
 		</div>
 		<div class="clearfix"></div>

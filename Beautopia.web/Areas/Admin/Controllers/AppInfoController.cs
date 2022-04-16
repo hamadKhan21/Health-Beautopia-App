@@ -410,5 +410,127 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 			return Json(data);
 		}
+
+
+
+
+		[Route("Admin/ManageAboutUs")]
+		public IActionResult ManageAboutUs()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		//[ValidateAntiForgeryToken]
+		public JsonResult SaveUpdateAboutUs([Bind("ID,AboutUSText")] AboutUs obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			AboutUs aboutus = new AboutUs();
+			//obj.IsActive = (obj.IsActiveChecked == null ? false : true);
+			int ReturnID = 0;
+			obj.CreatedBy = login.UserName;
+			try
+			{
+
+
+
+
+				ReturnID= _users.InsertUpdateAboutUs(obj);
+				aboutus = _users.GetAboutUs();
+			}
+
+			catch (Exception ex)
+			{
+
+			}
+
+
+
+			return Json(aboutus);
+		}
+
+		public JsonResult GetAboutUs()
+		{
+			var data = _users.GetAboutUs();
+
+
+			return Json(data);
+		}
+
+
+		[Route("Admin/ManageSiteInfo")]
+		public IActionResult ManageSiteInfo()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,Contact,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile")] SiteInfo obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			SiteInfo objec = new SiteInfo();
+			int ReturnID = 0;
+			obj.CreatedBy = login.UserName;
+			try
+			{
+				if (obj.LogoImageFile != null)
+				{
+					var extention = Path.GetExtension(obj.LogoImageFile.FileName);
+					if (extention == ".jpg" || extention == ".jpeg" || extention == ".png" || extention == ".JPG" || extention == ".JPEG" || extention == ".PNG")
+					{
+						// Create a File Info 
+						FileInfo fi = new FileInfo(obj.LogoImageFile.FileName);
+
+						// This code creates a unique file name to prevent duplications 
+						// stored at the file location
+						var newFilename = "logo" + "_" + String.Format("{0:d}",
+										  (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+						var webPath = _hostEnvironment.ContentRootPath;
+						var path = Path.Combine("", webPath + @"\wwwroot\medlab\images\content\logo\" + newFilename);
+
+						// IMPORTANT: The pathToSave variable will be save on the column in the database
+						//var pathToSave = @"/images/" + newFilename;
+						obj.LogoImage = newFilename;
+						//info.IncomingCreatedBy = login.EmployeeNumber;
+						// This stream the physical file to the allocate wwwroot/ImageFiles folder
+						using (var stream = new FileStream(path, FileMode.Create))
+						{
+							await obj.LogoImageFile.CopyToAsync(stream);
+						}
+						//_dispatchService.InsertUpdateOutdoing(info);
+						//message = "Success";
+					}
+					else
+					{
+						//message = "File is not in correct format, only png,jpeg, pdf or jpg is allowed";
+					}
+					// This save the path to the record
+
+				}
+
+
+
+				ReturnID = _users.InsertUpdateSiteInfo(obj);
+				objec = _users.GetSiteInfo();
+			}
+
+			catch (Exception ex)
+			{
+
+			}
+
+
+
+			return Json(objec);
+		}
+
+		public JsonResult GetSiteInfo()
+		{
+			var data = _users.GetSiteInfo();
+
+
+			return Json(data);
+		}
 	}
 }
