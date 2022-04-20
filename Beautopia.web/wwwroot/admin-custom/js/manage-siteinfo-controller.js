@@ -14,7 +14,15 @@ $document.ready(function () {
 					required: true,
 					//minlength: 2
                 },
+                AddressAr: {
+                    required: true,
+                    //minlength: 2
+                },
                 Contact: {
+                    required: true,
+                    //minlength: 2
+                },
+                ContactAr: {
                     required: true,
                     //minlength: 2
                 },
@@ -30,9 +38,17 @@ $document.ready(function () {
                 Address: {
                     required: "Please Enter Address"
 					//minlength: "Your name must consist of at least 2 characters"
-				},
+                },
+                AddressAr: {
+                    required: "Please Enter Address Ar"
+                    //minlength: "Your name must consist of at least 2 characters"
+                },
                 Contact: {
                     required: "Please Enter Contact"
+                    //minlength: "Your name must consist of at least 2 characters"
+                },
+                ContactAr: {
+                    required: "Please Enter Contact Ar"
                     //minlength: "Your name must consist of at least 2 characters"
                 },
                 Email: {
@@ -130,9 +146,11 @@ function BindData(dataItem) {
   
     $("#ID").val(dataItem.id);
     $("#Address").val(dataItem.address);
+    $("#AddressAr").val(dataItem.addressAr);
     
  
     $("#Contact").val(dataItem.contact);
+    $("#ContactAr").val(dataItem.contactAr);
     $("#Email").val(dataItem.email);
     $("#Facebook").val(dataItem.facebook);
     $("#Twitter").val(dataItem.twitter);
@@ -140,6 +158,18 @@ function BindData(dataItem) {
     $("#GooglePlus").val(dataItem.googlePlus);
     $("#SnapChat").val(dataItem.snapChat);
     $("#TikTok").val(dataItem.tikTok);
+    $("#LogoImage").val(dataItem.logoImage);
+
+    if (dataItem.isArabicByDefault == true) {
+
+        $("#IsArabicByDefaultChecked").prop('checked', true);
+    }
+    else {
+
+        $("#IsArabicByDefaultChecked").prop('checked', false);
+    }
+
+
 
     if (dataItem.logoImage != "" && dataItem.logoImage != null) {
         $("#subservice-img-tag").attr("src", "/medlab/images/content/logo/" + dataItem.logoImage);

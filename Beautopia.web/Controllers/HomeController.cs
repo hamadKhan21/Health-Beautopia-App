@@ -52,16 +52,32 @@ namespace Beautopia.web.Controllers
 			var info= _users.GetSiteInfo();
 			return View(info);
 		}
-		[Route("AboutUs")]
-		public IActionResult AboutUs()
+		[Route("BeyondtheBrand")]
+		public IActionResult BeyondtheBrand()
 		
 		{
 						var aboutUS = _users.GetAboutUs();
 
 			return View(aboutUS);
 		}
+		[Route("MessageFromCEO")]
+		public IActionResult MessageFromCEO()
+
+		{
+			var aboutUS = _users.GetAboutUs();
+
+			return View(aboutUS);
+		}
+
 		[Route("SERVICES")]
 		public IActionResult SERVICES()
+		{
+			var equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
+			return View(equipments);
+		}
+
+		[Route("Devices")]
+		public IActionResult Devices()
 		{
 			var equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
 			return View(equipments);

@@ -187,7 +187,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorName,Designation,Description,IsActiveChecked")] Doctor obj)
+		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked")] Doctor obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Doctor> listObj = new List<Doctor>();
@@ -343,7 +343,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateEquipments([Bind("ID,Title,Description,EquipmentIcon,EquipmentImage,EquipmentImageFile,IsActiveChecked")] Equipment obj)
+		public async Task<JsonResult> SaveUpdateEquipments([Bind("ID,Title,TitleAr,Description,DescriptionAr,EquipmentIcon,EquipmentImage,EquipmentImageFile,IsActiveChecked")] Equipment obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Equipment> Offers = new List<Equipment>();
@@ -422,7 +422,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		//[ValidateAntiForgeryToken]
-		public JsonResult SaveUpdateAboutUs([Bind("ID,AboutUSText")] AboutUs obj)
+		public JsonResult SaveUpdateAboutUs([Bind("ID,AboutUSText,AboutUSTextAr,MessageFromCEOEn,MessageFromCEOAr")] AboutUs obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			AboutUs aboutus = new AboutUs();
@@ -466,12 +466,13 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,Contact,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile")] SiteInfo obj)
+		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,AddressAr,Contact,ContactAr,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile,IsArabicByDefault,IsArabicByDefaultChecked")] SiteInfo obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			SiteInfo objec = new SiteInfo();
 			int ReturnID = 0;
 			obj.CreatedBy = login.UserName;
+			obj.IsArabicByDefault = (obj.IsArabicByDefaultChecked == null ? false : true);
 			try
 			{
 				if (obj.LogoImageFile != null)

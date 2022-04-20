@@ -13,10 +13,16 @@ namespace Beautopia.Model.Area
 		public IFormFile DoctorImageFile { get; set; }
 
 		public string DoctorName { get; set; }
+		public string DoctorNameAr { get; set; }
 		public string Designation { get; set; }
+		public string DesignationAr { get; set; }
 		public string Description { get; set; }
+		public string DescriptionAr { get; set; }
 		public string CreatedBy { get; set; }
 		public string IsActiveChecked { get; set; }
+		
 		public bool IsActive { get; set; }
+		public int? DoctorCategory { get; set; }
+
 	}
 }

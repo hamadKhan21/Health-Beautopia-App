@@ -13,7 +13,11 @@ $document.ready(function () {
                 Title: {
 					required: true,
 					//minlength: 2
-				},
+                },
+                TitleAr: {
+                    required: true,
+                    //minlength: 2
+                },
                 EquipmentIcon: {
 					required: true,
 
@@ -29,9 +33,14 @@ $document.ready(function () {
 			},
 			messages: {
                 Title: {
-                    required: "Please Enter Title"
+                    required: "Please Enter Title En"
 					//minlength: "Your name must consist of at least 2 characters"
-				},
+                },
+
+                TitleAr: {
+                    required: "Please Enter Title Ar"
+                    //minlength: "Your name must consist of at least 2 characters"
+                },
 				//Name: {
 				//	required: "Please enter your Name",
 				//	//minlength: "Your message must consist of at least 20 characters"
@@ -48,10 +57,15 @@ $document.ready(function () {
               //  },
               
 			},
-			submitHandler: function submitHandler(form) {
-                var description = tinyMCE.get('DescriptionEditor').getContent();
-                $("#Description").val(description);
-              //  var description = $("#Description").val();
+            submitHandler: function submitHandler(form) {
+               // debugger
+              //  var description = tinyMCE.get('DescriptionEditor').getContent();
+              //  $("#Description").val(description);
+              //  tinyMCE.get('DescriptionEditor').setContent("");
+
+               // var DescriptionArEditorss = tinyMCE.get('DescriptionArEditor').getContent();
+               // $("#DescriptionAr").val(DescriptionArEditorss);
+               // tinyMCE.get('DescriptionArEditor').setContent("");
                // debuggerDescription
 				//var submitData = $(form).serialize() + "&_listOfServices=asdf"; //+ JSON.stringify(selectedChk);
 				//debugger
@@ -105,7 +119,7 @@ GetAllDoctors()
 
 
 function ClearFields() {
-    tinyMCE.activeEditor.setContent("");
+  //  tinyMCE.activeEditor.setContent("");
     //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
     $("#ID").val("0")
@@ -153,6 +167,9 @@ function Initequipment(cdrData) {
                         title: {
                             type: "string"
                         },
+                        titleAr: {
+                            type: "string"
+                        },
                         equipmentIcon: {
                             type: "string"
                         },
@@ -173,15 +190,15 @@ function Initequipment(cdrData) {
 
         columns: [
             {
-                title: "Title",
+                title: "Title En",
                 field: "title",
-                //filterable: {
-                //    operators: {
-                //        string: {
-                //            contains: "Contains"
-                //        }
-                //    }
-                //}
+              
+
+            },
+            {
+                title: "Title Ar",
+                field: "titleAr",
+
 
             },
 
@@ -255,14 +272,22 @@ function Initequipment(cdrData) {
 
 
 $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
-   //debugger;
+  // debugger;
     var element = e.target || e.srcElement;
     var dataItem = $("#equipmentGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
     $("#Title").val(dataItem.title);
+    $("#TitleAr").val(dataItem.titleAr);
     $("#EquipmentIcon").val(dataItem.equipmentIcon);
+    $("textarea#Description").val(dataItem.description);
+    $("textarea#DescriptionAr").val(dataItem.descriptionAr);
+
     //$("#Description").val(dataItem.description);
-    tinyMCE.activeEditor.setContent(dataItem.description);
+   // tinyMCE.activeEditor.setContent(dataItem.description);
+
+    //tinyMCE.get('DescriptionEditor').setContent(dataItem.description);
+   // tinyMCE.get('DescriptionArEditor').setContent(dataItem.descriptionAr);
+
     $("#EquipmentImage").val(dataItem.equipmentImage);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);
    // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
@@ -294,28 +319,28 @@ $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
 
 
 // Initialize your tinyMCE Editor with your preferred options
-tinymce.init({
-    selector: 'textarea',
-    height:150,
-    theme: 'modern',
-    plugins: [
-        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        'searchreplace wordcount visualblocks visualchars code fullscreen',
-        'insertdatetime media nonbreaking save table contextmenu directionality',
-        'emoticons template paste textcolor colorpicker textpattern imagetools'
-    ],
-    toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-    toolbar2: 'print preview media | forecolor backcolor emoticons',
-    image_advtab: true,
-    templates: [
-        { title: 'Test template 1', content: 'Test 1' },
-        { title: 'Test template 2', content: 'Test 2' }
-    ],
-    content_css: [
-        '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-        '//www.tinymce.com/css/codepen.min.css'
-    ]
-});
+//tinymce.init({
+//    selector: 'textarea',
+//    height:150,
+//    theme: 'modern',
+//    plugins: [
+//        'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+//        'searchreplace wordcount visualblocks visualchars code fullscreen',
+//        'insertdatetime media nonbreaking save table contextmenu directionality',
+//        'emoticons template paste textcolor colorpicker textpattern imagetools'
+//    ],
+//    toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+//    toolbar2: 'print preview media | forecolor backcolor emoticons',
+//    image_advtab: true,
+//    templates: [
+//        { title: 'Test template 1', content: 'Test 1' },
+//        { title: 'Test template 2', content: 'Test 2' }
+//    ],
+//    content_css: [
+//        '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+//        '//www.tinymce.com/css/codepen.min.css'
+//    ]
+//});
 
 
 

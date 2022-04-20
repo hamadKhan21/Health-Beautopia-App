@@ -13,7 +13,7 @@ $document.ready(function () {
 
 tinymce.init({
     selector: 'textarea',
-    height: 700,
+    height: 300,
     theme: 'modern',
     plugins: [
         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
@@ -38,14 +38,27 @@ tinymce.init({
 $("#saveit").click(function () {
 
     var description = tinyMCE.get('AboutUSTextEditor').getContent();
+    var descriptionAr = tinyMCE.get('AboutUSTextArEditor').getContent();
    
-    if (description == "") {
+    if (description == "" || descriptionAr == "") {
 
-        alert("Please enter About Us Details")
+        alert("Please enter About Us Beyond the Brand")
+        return false;
+    }
+    var MessageFromCEOEnEditor = tinyMCE.get('MessageFromCEOEnEditor').getContent();
+    var MessageFromCEOArEditor = tinyMCE.get('MessageFromCEOArEditor').getContent();
+
+    if (MessageFromCEOEnEditor == "" || MessageFromCEOArEditor == "") {
+
+        alert("Please enter Message From CEO")
         return false;
     }
 
-    var datas = { 'ID': $("#ID").val(), "AboutUSText": description};
+
+    var datas = {
+        'ID': $("#ID").val(), "AboutUSText": description, "AboutUSTextAr": descriptionAr,
+        "MessageFromCEOEn": MessageFromCEOEnEditor, "MessageFromCEOAr": MessageFromCEOArEditor
+    };
 
     $.ajax({
         type: "POST",
@@ -56,8 +69,11 @@ $("#saveit").click(function () {
         //contentType: "application/json; charset=utf-8",
         success: function (data) {
             $("#ID").val(data.id);
-            tinyMCE.activeEditor.setContent(data.aboutUSText);
-         
+            tinyMCE.get('AboutUSTextEditor').setContent(data.aboutUSText);
+            tinyMCE.get('AboutUSTextArEditor').setContent(data.aboutUSTextAr);
+
+            tinyMCE.get('MessageFromCEOEnEditor').setContent(data.messageFromCEOEn);
+            tinyMCE.get('MessageFromCEOArEditor').setContent(data.messageFromCEOAr);
            
         }
     });
@@ -88,8 +104,15 @@ function GetAboutUS() {
            
             $("#ID").val(data.id);
             setTimeout(function () {
-                tinyMCE.activeEditor.setContent(data.aboutUSText);
+              //  tinyMCE.activeEditor.setContent(data.aboutUSText);
+                tinyMCE.get('AboutUSTextEditor').setContent(data.aboutUSText);
+                tinyMCE.get('AboutUSTextArEditor').setContent(data.aboutUSTextAr);
 
+
+                tinyMCE.get('MessageFromCEOEnEditor').setContent(data.messageFromCEOEn);
+                tinyMCE.get('MessageFromCEOArEditor').setContent(data.messageFromCEOAr);
+                //tinyMCE.activeEditor.set('AboutUSTextEditor').setContent(data.aboutUSText);
+                //tinyMCE.activeEditor.set('AboutUSTextArEditor').setContent(data.aboutUSTextAr);
             },2000);
 
         }

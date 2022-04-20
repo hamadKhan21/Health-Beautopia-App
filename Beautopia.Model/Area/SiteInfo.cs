@@ -9,7 +9,9 @@ namespace Beautopia.Model.Area
 	{
 		public int ID { get; set; }
 		public string Address { get; set; }
+		public string AddressAr { get; set; }
 		public string Contact { get; set; }
+		public string ContactAr { get; set; }
 		public string Email { get; set; }
 		public string Facebook { get; set; }
 		public string Twitter { get; set; }
@@ -21,6 +23,9 @@ namespace Beautopia.Model.Area
 
 		public string LogoImage { get; set; }
 		public IFormFile LogoImageFile { get; set; }
+		
+		public string IsArabicByDefaultChecked { get; set; }
+		public bool IsArabicByDefault { get; set; }
 
 	}
 }

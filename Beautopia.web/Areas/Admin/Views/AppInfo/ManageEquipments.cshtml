@@ -13,13 +13,21 @@
 				<div class="row row-xs-space mt-1">
 					<div class="col-sm-3">
 						<Label>
-							Title
-						</Label>
-						<input type="text" name="Title" id="Title" class="form-control inputClass" autocomplete="off" placeholder="Enter Title" />
+							Title En
+						</Label> 
+						<input type="text" name="Title" id="Title" class="form-control inputClass" autocomplete="off" placeholder="Enter Title En" />
 
 
 					</div>
-					<div class="col-sm-3 mt-1 mt-sm-0">
+					<div class="col-sm-3">
+						<Label>
+							Title Ar
+						</Label>
+						<input type="text" name="TitleAr" id="TitleAr" class="form-control inputClass" autocomplete="off" placeholder="Enter Title Ar" />
+
+
+					</div>
+					<div class="col-sm-2 mt-1 mt-sm-0">
 						<Label>
 							Equipment Icon
 						</Label>
@@ -28,7 +36,7 @@
 
 					</div>
 
-					<div class="col-sm-3 mt-1 mt-sm-0">
+					<div class="col-sm-2 mt-1 mt-sm-0">
 						<Label>
 							Image
 						</Label>
@@ -41,24 +49,35 @@
 
 
 
-						<img src="" id="subservice-img-tag" onerror='this.src = "../admin-custom/Images/no image.png"' style="width: 166px;" />
+						<img src="" id="subservice-img-tag" onerror='this.src = "../admin-custom/Images/no image.png"' style="width:145px;" />
 
 					</div>
-			
+
 
 
 				</div>
 
 				<div class="row row-xs-space mt-1" style="margin-top:11px">
 
-					<div class="col-sm-9 mt-1 mt-sm-0">
+					<div class="col-sm-4 mt-1 mt-sm-0">
 
 						<Label>
-							Description
+							Description En
 						</Label>
-						<textarea name="DescriptionEditor" id="DescriptionEditor" class="form-control inputClass" autocomplete="off" placeholder="Enter Description"></textarea>
-						<input type="hidden" name="Description" id="Description" class="form-control inputClass" />
+						<textarea name="Description" id="Description" class="form-control inputClass" autocomplete="off" placeholder="Enter Description"></textarea>
+						@*<input type="hidden" name="Description" id="Description" class="form-control inputClass" />*@
 						@*<input type="text" name="Description" id="Description" class="form-control inputClass" autocomplete="off" placeholder="Enter Title3" />*@
+
+					</div>
+
+					<div class="col-sm-4 mt-1 mt-sm-0">
+
+						<Label>
+							Description Ar
+						</Label>
+						<textarea name="DescriptionAr" id="DescriptionAr" class="form-control inputClass" autocomplete="off" placeholder="Enter Description Ar"></textarea>
+						@*<input type="hidden" name="DescriptionAr" id="DescriptionAr" class="form-control inputClass" />*@
+					
 
 					</div>
 

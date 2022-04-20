@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+//using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 namespace Beautopia.web
 {
@@ -31,7 +32,7 @@ namespace Beautopia.web
 		{
 			services.AddControllersWithViews();
 			services.AddRazorPages();
-			
+			//services.AddControllersWithViews().AddRazorRuntimeCompilation();
 			services.AddMvc(options => options.EnableEndpointRouting = false);
 			services.AddSession(options =>
 			{

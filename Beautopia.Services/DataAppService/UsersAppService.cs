@@ -721,8 +721,12 @@ namespace Beautopia.Services.DataAppService
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.DoctorImage = Convert.ToString(reader["DoctorImage"]);
                     obj.DoctorName = Convert.ToString(reader["DoctorName"]);
+                    obj.DoctorNameAr = Convert.ToString(reader["DoctorNameAr"]);
                     obj.Designation = Convert.ToString(reader["Designation"]);
+                    obj.DesignationAr = Convert.ToString(reader["DesignationAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
+                    obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
+                    obj.DoctorCategory = Convert.ToInt32(reader["DoctorCategory"]);
 
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -766,10 +770,13 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
                 dbCommand.Parameters.Add("@Designation", SqlDbType.NVarChar, 250).Value = param.Designation;
                 dbCommand.Parameters.Add("@DoctorName", SqlDbType.NVarChar, 250).Value = param.DoctorName;
-                
 
+                dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 4000).Value = param.DescriptionAr;
+                dbCommand.Parameters.Add("@DesignationAr", SqlDbType.NVarChar, 250).Value = param.DesignationAr;
+                dbCommand.Parameters.Add("@DoctorNameAr", SqlDbType.NVarChar, 250).Value = param.DoctorNameAr;
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@DoctorCategory", SqlDbType.Int).Value = param.DoctorCategory;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
 
 
@@ -949,6 +956,8 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.Title = Convert.ToString(reader["Title"]);
+                    obj.TitleAr = Convert.ToString(reader["TitleAr"]);
+                    obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
                     obj.EquipmentImage = Convert.ToString(reader["EquipmentImage"]);
                     obj.EquipmentIcon = Convert.ToString(reader["EquipmentIcon"]);
@@ -992,8 +1001,10 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateEquipment";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 400000).Value = param.Description;
+                dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 400000).Value = param.DescriptionAr;
                 dbCommand.Parameters.Add("@EquipmentIcon", SqlDbType.NVarChar, 250).Value = param.EquipmentIcon;
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
+                dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
                 dbCommand.Parameters.Add("@EquipmentImage", SqlDbType.NVarChar, 400000).Value = param.EquipmentImage;
 
 
@@ -1066,6 +1077,9 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.AboutUSText = Convert.ToString(reader["AboutUSText"]);
+                    obj.AboutUSTextAr = Convert.ToString(reader["AboutUSTextAr"]);
+                    obj.MessageFromCEOAr = Convert.ToString(reader["MessageFromCEOAr"]);
+                    obj.MessageFromCEOEn = Convert.ToString(reader["MessageFromCEOEn"]);
               
 
                     //obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -1106,6 +1120,9 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateAboutUs";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@AboutUSText", SqlDbType.NVarChar, 400000).Value = param.AboutUSText;
+                dbCommand.Parameters.Add("@AboutUSTextAr", SqlDbType.NVarChar, 400000).Value = param.AboutUSTextAr;
+                dbCommand.Parameters.Add("@MessageFromCEOAr", SqlDbType.NVarChar, 400000).Value = param.MessageFromCEOAr;
+                dbCommand.Parameters.Add("@MessageFromCEOEn", SqlDbType.NVarChar, 400000).Value = param.MessageFromCEOEn;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
 
                 dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
@@ -1176,7 +1193,9 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.Address = Convert.ToString(reader["Address"]);
+                    obj.AddressAr = Convert.ToString(reader["AddressAr"]);
                     obj.Contact = Convert.ToString(reader["Contact"]);
+                    obj.ContactAr = Convert.ToString(reader["ContactAr"]);
                     obj.CreatedBy = Convert.ToString(reader["CreatedBy"]);
                     obj.Email= Convert.ToString(reader["Email"]);
                     obj.Facebook = Convert.ToString(reader["Facebook"]);
@@ -1186,6 +1205,7 @@ namespace Beautopia.Services.DataAppService
                     obj.TikTok = Convert.ToString(reader["TikTok"]);
                     obj.Twitter = Convert.ToString(reader["Twitter"]);
                     obj.LogoImage = Convert.ToString(reader["LogoImage"]);
+                    obj.IsArabicByDefault = Convert.ToBoolean(reader["IsArabicByDefault"]);
                     
 
 
@@ -1227,6 +1247,8 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateSIteInfo";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@Address", SqlDbType.NVarChar, 500).Value = param.Address;
+                dbCommand.Parameters.Add("@AddressAr", SqlDbType.NVarChar, 500).Value = param.AddressAr;
+                dbCommand.Parameters.Add("@ContactAr", SqlDbType.NVarChar, 500).Value = param.ContactAr;
                 dbCommand.Parameters.Add("@Contact", SqlDbType.NVarChar, 500).Value = param.Contact;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = param.CreatedBy;
                 dbCommand.Parameters.Add("@Email", SqlDbType.NVarChar, 500).Value = param.Email;
@@ -1237,6 +1259,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@TikTok", SqlDbType.NVarChar, 500).Value = param.TikTok;
                 dbCommand.Parameters.Add("@Twitter", SqlDbType.NVarChar, 500).Value = param.Twitter;
                 dbCommand.Parameters.Add("@LogoImage", SqlDbType.NVarChar, 40000).Value = param.LogoImage;
+                dbCommand.Parameters.Add("@IsArabicByDefault", SqlDbType.Bit).Value = param.IsArabicByDefault;
 
                 dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
                 // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;

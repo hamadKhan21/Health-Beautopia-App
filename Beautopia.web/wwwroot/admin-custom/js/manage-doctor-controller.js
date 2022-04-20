@@ -153,10 +153,15 @@ function InitDoctorGrid(cdrData) {
                         doctorName: {
                             type: "string"
                         },
+                        doctorNameAr: {
+                            type: "string"
+                        },
                         designation: {
                             type: "string"
                         },
-                       
+                        designationAr: {
+                            type: "string"
+                        },
                        
                         isActive: {
                             type: "string"
@@ -172,23 +177,27 @@ function InitDoctorGrid(cdrData) {
             {
                 title: "Doctor Name",
                 field: "doctorName",
-                //filterable: {
-                //    operators: {
-                //        string: {
-                //            contains: "Contains"
-                //        }
-                //    }
-                //}
+                filterable: true
 
             },
+            {
+                title: "Doctor Name Ar",
+                field: "doctorNameAr",
+                filterable: true
 
+            },
             {
                 title: "Designation",
                 field: "designation",
                 filterable: true
 
             },
-            
+            {
+                title: "Designation Ar",
+                field: "designationAr",
+                filterable: true
+
+            },
             {
                 title: "Active",
                 field: "isActive",
@@ -251,8 +260,11 @@ $(document).on("dblclick", "#doctorGrid tbody tr", function (e) {
     var dataItem = $("#doctorGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
     $("#DoctorName").val(dataItem.doctorName);
+    $("#DoctorNameAr").val(dataItem.doctorNameAr);
     $("#Designation").val(dataItem.designation);
+    $("#DesignationAr").val(dataItem.designationAr);
     $("#Description").val(dataItem.description);
+    $("#DescriptionAr").val(dataItem.descriptionAr);
  
     $("#DoctorImage").val(dataItem.doctorImage);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);

@@ -18,10 +18,10 @@ $document.ready(function () {
 					required: true,
 
                 },
-                ServicePrice: {
-                    required: true,
+               // ServicePrice: {
+                 //   required: true,
 
-                },
+              //  },
                  CategoryID: {
                     required: true,
 
@@ -47,11 +47,11 @@ $document.ready(function () {
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
                 },
-                ServicePrice: {
-                    required: "Please enter Price",
+                //ServicePrice: {
+                   // required: "Please enter Price",
                     //minlength: "mobile must be 10 digits",
                     //maxlength: "mobile must be 10 digits"
-                },
+              //  },
                 CategoryID: {
                     required: "Please Select Service",
                     //minlength: "mobile must be 10 digits",
