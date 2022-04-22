@@ -86,7 +86,8 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateSubServices([Bind("ID,SubCategoryNameEn,SubCategoryNameAr,IsActiveChecked,ServicePrice,CategoryID,SubServiceImage,SubServiceImageName")] ServiceSubCategory obj)
+		public async Task<JsonResult> SaveUpdateSubServices([Bind("ID,SubCategoryNameEn,SubCategoryNameAr" +
+			",Description,DescriptionAr,IsActiveChecked,ServicePrice,CategoryID,SubServiceImage,SubServiceImageName")] ServiceSubCategory obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<ServiceSubCategory> servicecate = new List<ServiceSubCategory>();
@@ -186,7 +187,43 @@ namespace Beautopia.web.Areas.Admin.Controllers
 			return Json(data);
 		}
 
-	
+		[SessionTimeout]
+		[Route("Admin/ManageDoctorsCategory")]
+		public IActionResult ManageDoctorsCategory()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public JsonResult SaveUpdateDoctorsCategory([Bind("ID,DoctorsCategoryEn,DoctorsCategoryAr,IsActiveChecked")] DoctorsCategory obj)
+		{
+			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+			obj.CreatedBy = login.UserName;
+			obj.IsActive = (obj.IsActiveChecked == null ? false : true);
+
+			_serviceRequest.InsertUpdateDoctorsCategory(obj);
+			var servicecate = _serviceRequest.GetDoctorsCategory();
+
+			//foreach (var item in listOfServices)
+			//{
+			//	RequestServiceAndSubCategoryMapping map = new RequestServiceAndSubCategoryMapping();
+			//	map.RequestServiceID = returnServoceID;
+			//	map.ServiceSubCategoryID = Convert.ToInt32(item);
+
+			//	_serviceRequest.InsertRequestServiceAndSubCategoryMapping(map);
+			//}
+
+			return Json(servicecate);
+		}
+
+		public JsonResult GetAllDoctorsCategory()
+		{
+			var data = _serviceRequest.GetDoctorsCategory();
+
+
+			return Json(data);
+		}
 
 	}
 }

@@ -1,5 +1,5 @@
 ﻿<div class="panel panel-primary">
-	<div class="panel-heading">Service Category</div>
+	<div class="panel-heading">Manage Doctors</div>
 
 
 	<div id="tabs" style="margin-top: 10px;">
@@ -11,7 +11,19 @@
 			<form id="managedoctor" method="post" novalidate>
 
 				<div class="row row-xs-space mt-1">
-					<div class="col-sm-4">
+					<div class="col-sm-3">
+						<Label>
+							Doctors Category
+						</Label>
+
+						<select name="DoctorsCategoryID" class="form-control selectClass" id="DoctorsCategoryID" style="font-weight:bold">
+							<option selected="selected" value="" disabled="disabled">Select Doctors Category</option>
+
+						</select>
+
+
+					</div>
+					<div class="col-sm-3">
 						<Label>
 							Doctor Name
 						</Label>
@@ -19,7 +31,7 @@
 
 
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-3">
 						<Label>
 							Doctor Name Ar
 						</Label>
@@ -27,7 +39,7 @@
 
 
 					</div>
-					<div class="col-sm-4 mt-1 mt-sm-0">
+					<div class="col-sm-3 mt-1 mt-sm-0">
 						<Label>
 							Designation
 						</Label>
@@ -35,7 +47,7 @@
 						<input type="text" name="Designation" id="Designation" class="form-control inputClass" autocomplete="off" placeholder="Enter Designation" />
 
 					</div>
-					<div class="col-sm-4 mt-1 mt-sm-0">
+					<div class="col-sm-3 mt-1 mt-sm-0">
 						<Label>
 							Designation Ar
 						</Label>

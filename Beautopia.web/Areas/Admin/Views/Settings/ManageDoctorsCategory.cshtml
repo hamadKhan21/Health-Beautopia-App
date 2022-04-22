@@ -1,0 +1,64 @@
+﻿<div class="panel panel-primary">
+	<div class="panel-heading">Doctors Category</div>
+
+
+	<div id="tabs" style="margin-top: 10px;">
+
+
+		<div class="container-fluid" id="IssueCard">
+
+
+			<form id="manageDoctorsCategory" method="post" novalidate>
+
+				<div class="row row-xs-space mt-1">
+					<div class="col-sm-4">
+						<Label>
+							Doctors Category En
+						</Label>
+						<input type="text" name="DoctorsCategoryEn" id="DoctorsCategoryEn" class="form-control inputClass" autocomplete="off" placeholder="Doctors Category En" />
+
+
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<Label>
+							Doctors Category Ar
+						</Label>
+						<input type="hidden" name="ID" id="ID" value="0" />
+						<input type="text" name="DoctorsCategoryAr" id="DoctorsCategoryAr" class="form-control inputClass" autocomplete="off" placeholder="Doctors Category Ar" />
+
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0" style=" text-align: center;">
+						<Label>
+							IsActive
+						</Label>
+						<input type="checkbox" name="IsActiveChecked" id="IsActiveChecked" class="form-control chkClass" />
+
+					</div>
+				</div>
+
+
+
+				<div class="text-right mt-2">
+					<button type="submit" class="btn btn-success">Save</button>
+				</div>
+			</form>
+
+		</div>
+
+
+		<div id="CardHolderList">
+			<div class="row">
+				<div class="col-xs-18 col-md-12 DoctorsCategoryGridDiv" style="margin-top: 22px;">
+					<div id="DoctorsCategoryGrid"></div>
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+@section scripts {
+	<script src="~/admin-custom/js/manage-doctorscategory.js"></script>
+}

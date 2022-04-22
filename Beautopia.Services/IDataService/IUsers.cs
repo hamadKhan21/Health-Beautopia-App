@@ -66,5 +66,8 @@ namespace Beautopia.Services.IDataService
 		List<ServicesReport> GetServicesReport();
 		List<ServicesReport> GetServicesReportBySource();
 
+
+	
+
 	}
 }

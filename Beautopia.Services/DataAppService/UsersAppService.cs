@@ -496,7 +496,11 @@ namespace Beautopia.Services.DataAppService
                     obj.title1 = Convert.ToString(reader["title1"]);
                     obj.title2 = Convert.ToString(reader["title2"]);
                     obj.title3 = Convert.ToString(reader["title3"]);
-                  
+
+                    obj.title1Ar = Convert.ToString(reader["title1Ar"]);
+                    obj.title2Ar = Convert.ToString(reader["title2Ar"]);
+                    obj.title3Ar = Convert.ToString(reader["title3Ar"]);
+
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
 
 
@@ -538,7 +542,11 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@title1", SqlDbType.NVarChar, 250).Value = param.title1;
                 dbCommand.Parameters.Add("@title2", SqlDbType.NVarChar, 250).Value = param.title2;
                 dbCommand.Parameters.Add("@title3", SqlDbType.NVarChar, 250).Value = param.title3;
-               
+
+                dbCommand.Parameters.Add("@title1Ar", SqlDbType.NVarChar, 250).Value = param.title1Ar;
+                dbCommand.Parameters.Add("@title2Ar", SqlDbType.NVarChar, 250).Value = param.title2Ar;
+                dbCommand.Parameters.Add("@title3Ar", SqlDbType.NVarChar, 250).Value = param.title3Ar;
+
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
 
@@ -608,6 +616,9 @@ namespace Beautopia.Services.DataAppService
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.OfferImage = Convert.ToString(reader["OfferImage"]);
                     obj.Title = Convert.ToString(reader["Title"]);
+                    obj.TitleAr = Convert.ToString(reader["TitleAr"]);
+                    obj.Description = Convert.ToString(reader["Description"]);
+                    obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
                    
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -649,6 +660,9 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@OfferImage", SqlDbType.NVarChar, 400000).Value = param.OfferImage;
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
+                dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
+                dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
+                dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 4000).Value = param.DescriptionAr;
              
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
@@ -726,7 +740,9 @@ namespace Beautopia.Services.DataAppService
                     obj.DesignationAr = Convert.ToString(reader["DesignationAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
                     obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
-                    obj.DoctorCategory = Convert.ToInt32(reader["DoctorCategory"]);
+                    obj.DoctorsCategoryID = Convert.ToInt32(reader["DoctorsCategoryID"]);
+                    obj.DoctorsCategoryEn = Convert.ToString(reader["DoctorsCategoryEn"]);
+                    obj.DoctorsCategoryAr = Convert.ToString(reader["DoctorsCategoryAr"]);
 
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -776,7 +792,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@DoctorNameAr", SqlDbType.NVarChar, 250).Value = param.DoctorNameAr;
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
-                dbCommand.Parameters.Add("@DoctorCategory", SqlDbType.Int).Value = param.DoctorCategory;
+                dbCommand.Parameters.Add("@DoctorsCategoryID", SqlDbType.Int).Value = param.DoctorsCategoryID;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
 
 
@@ -1402,5 +1418,7 @@ namespace Beautopia.Services.DataAppService
 
             return Lisobj;
         }
+
+      
     }
 }

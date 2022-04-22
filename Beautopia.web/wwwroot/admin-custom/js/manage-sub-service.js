@@ -307,6 +307,9 @@ $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) 
     $("#ServicePrice").val(dataItem.servicePrice);
     $("#CategoryID").val(dataItem.categoryID);
     $("#SubServiceImageName").val(dataItem.subServiceImageName);
+
+    $("textarea#Description").val(dataItem.description);
+    $("textarea#DescriptionAr").val(dataItem.descriptionAr);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);
    // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {

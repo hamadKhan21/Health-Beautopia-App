@@ -17,6 +17,11 @@ namespace Beautopia.Model
 		public bool IsActive { get; set; }
 		public IFormFile SubServiceImage { get; set; }
 		public string SubServiceImageName { get; set; }
+		public string Description { get; set; }
+		public string DescriptionAr { get; set; }
 		public int SorOrder { get; set; }
+
+		public string CategoryNameEn { get; set; }
+		public string CategoryNameAr { get; set; }
 	}
 }

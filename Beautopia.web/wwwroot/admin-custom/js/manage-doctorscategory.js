@@ -1,55 +1,40 @@
 ﻿var $document = $(document),
 	$window = $(window),
 	forms = {
-        manageslider: $('#manageslider')
+        manageDoctorsCategory: $('#manageDoctorsCategory')
 	};
 $document.ready(function () {
    
 
-    if (forms.manageslider.length) {
-        var $manageslider = forms.manageslider;
-        $manageslider.validate({
+    if (forms.manageDoctorsCategory.length) {
+        var $manageDoctorsCategory = forms.manageDoctorsCategory;
+        $manageDoctorsCategory.validate({
 			rules: {
-                title1: {
+                DoctorsCategoryEn: {
 					required: true,
 					//minlength: 2
 				},
-                title2: {
+                DoctorsCategoryAr: {
 					required: true,
 
-                },
-                title3: {
-                    required: true,
-
-                },
-                
-               // SubServiceImage: {
-                   // required: true,
-
-                //}
+                }
                 
 
 			},
 			messages: {
-                title1: {
-                    required: "Please Enter Title1 En"
+                DoctorsCategoryEn: {
+                    required: "Please Enter Name En"
 					//minlength: "Your name must consist of at least 2 characters"
 				},
 				//Name: {
 				//	required: "Please enter your Name",
 				//	//minlength: "Your message must consist of at least 20 characters"
 				//},
-                title2: {
-                    required: "Please enter title2 En",
+                DoctorsCategoryAr: {
+                    required: "Please enter Name Ar",
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
-                },
-                title3: {
-                    required: "Please enter title3 En",
-                    //minlength: "mobile must be 10 digits",
-                    //maxlength: "mobile must be 10 digits"
-                },
-              
+				}
 			},
 			submitHandler: function submitHandler(form) {
 				
@@ -58,16 +43,16 @@ $document.ready(function () {
 				$(form).ajaxSubmit({
 					type: "POST",
 					data: $(form).serialize(),
-                    url: "/Admin/AppInfo/SaveUpdateSlider",
+                    url: "/Admin/Settings/SaveUpdateDoctorsCategory",
                     success: function success(data) {
-                        $(".sliderGridDiv").empty();
-                        $(".sliderGridDiv").append('<div id="sliderGrid"></div>')
+                        $(".DoctorsCategoryGridDiv").empty();
+                        $(".DoctorsCategoryGridDiv").append('<div id="DoctorsCategoryGrid"></div>')
                         ClearFields()
-                        InitSliderGrid(data)
+                        InitGetDoctorsCategory(data)
 					},
 					error: function error() {
 						//	debugger
-                        alert($manageslider)
+                        alert($manageDoctorsCategory)
 						//$('.errorform', $LoginRequest).fadeIn();
 					}
 				});
@@ -78,25 +63,7 @@ $document.ready(function () {
 
 });
 
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#subservice-img-tag').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#SliderImageFile").change(function () {
-    readURL(this);
-});
-
-
-
-
-GetAllSliders()
+GetAllDoctorsCategory()
 
 
 
@@ -106,25 +73,22 @@ GetAllSliders()
 
 function ClearFields() {
 
-    //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
+
     $(".inputClass").val("")
     $("#ID").val("0")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
     $(".chkClass").prop('checked', false);
-  //  $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
-    $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
-   // $(".selectClass").val();
 }
 
 
 
-function GetAllSliders() {
+function GetAllDoctorsCategory() {
 
     $.ajax({
         type: "POST",
-        url: "/Admin/AppInfo/GetAllSliders",
+        url: "/Admin/Settings/GetAllDoctorsCategory",
         //data: "{mdate:" + "m" + "}",
         //data: JSON.stringify(datas),
         // dataType: "json",
@@ -132,7 +96,7 @@ function GetAllSliders() {
         success: function (data) {
            // debugger
            // var cdrData = data;
-            InitSliderGrid(data)
+            InitGetDoctorsCategory(data)
 
 
         }
@@ -141,8 +105,8 @@ function GetAllSliders() {
 
 }
 
-function InitSliderGrid(cdrData) {
-    $("#sliderGrid").kendoGrid({
+function InitGetDoctorsCategory(cdrData) {
+    $("#DoctorsCategoryGrid").kendoGrid({
         dataSource: {
             data: cdrData,
             pageSize: 200,//cdrData.length,
@@ -150,16 +114,12 @@ function InitSliderGrid(cdrData) {
             schema: {
                 model: {
                     fields: {
-                        title1: {
+                        doctorsCategoryEn: {
                             type: "string"
                         },
-                        title2: {
+                        doctorsCategoryAr: {
                             type: "string"
                         },
-                        title3: {
-                            type: "string"
-                        },
-                       
                         isActive: {
                             type: "string"
                         },
@@ -172,8 +132,8 @@ function InitSliderGrid(cdrData) {
 
         columns: [
             {
-                title: "Title1",
-                field: "title1",
+                title: "Doctors Category En",
+                field: "doctorsCategoryEn",
                 //filterable: {
                 //    operators: {
                 //        string: {
@@ -185,17 +145,12 @@ function InitSliderGrid(cdrData) {
             },
 
             {
-                title: "Title2",
-                field: "title2",
+                title: "Doctors Category Ar",
+                field: "doctorsCategoryAr",
                 filterable: true
 
             },
-            {
-                title: "Title3",
-                field: "title3",
-                filterable: true
 
-            },
             {
                 title: "Active",
                 field: "isActive",
@@ -236,14 +191,14 @@ function InitSliderGrid(cdrData) {
         },
         toolbar: ["excel"],
         excel: {
-            fileName: "Sliders.xlsx",
+            fileName: "Doctors Category.xlsx",
             proxyURL: "https://demos.telerik.com/kendo-ui/service/export",
             filterable: true
         },
 
 
     });
-    $("#sliderGrid").data("kendoGrid").dataSource.read();
+    $("#DoctorsCategoryGrid").data("kendoGrid").dataSource.read();
    // $("#overlay").css('display', 'none');
     // $("#printGrid").css('display','inline')
   
@@ -252,23 +207,14 @@ function InitSliderGrid(cdrData) {
 }
 
 
-$(document).on("dblclick", "#sliderGrid tbody tr", function (e) {
-   //debugger;
+$(document).on("dblclick", "#DoctorsCategoryGrid tbody tr", function (e) {
+   // debugger;
     var element = e.target || e.srcElement;
-    var dataItem = $("#sliderGrid").data("kendoGrid").dataItem($(element).closest("tr"));
+    var dataItem = $("#DoctorsCategoryGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
-    $("#title1").val(dataItem.title1);
-    $("#title2").val(dataItem.title2);
-    $("#title3").val(dataItem.title3);
+    $("#DoctorsCategoryEn").val(dataItem.doctorsCategoryEn);
+    $("#DoctorsCategoryAr").val(dataItem.doctorsCategoryAr);
 
-
-    $("#title1Ar").val(dataItem.title1Ar);
-    $("#title2Ar").val(dataItem.title2Ar);
-    $("#title3Ar").val(dataItem.title3Ar);
-
-    $("#SliderImage").val(dataItem.sliderImage);
-    //$("#SubServiceImageName").val(dataItem.subServiceImageName);
-   // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
 
         $("#IsActiveChecked").prop('checked', true);
@@ -277,16 +223,6 @@ $(document).on("dblclick", "#sliderGrid tbody tr", function (e) {
 
         $("#IsActiveChecked").prop('checked', false);
     }
-
-    if (dataItem.sliderImage != "" && dataItem.sliderImage != null) {
-        $("#subservice-img-tag").attr("src", "/medlab/images/content/slider/" + dataItem.sliderImage);
-    }
-    else {
-
-        $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
-    }
-
-
     //$("#tabs").tabs("select", "Store-Update")
 });
 

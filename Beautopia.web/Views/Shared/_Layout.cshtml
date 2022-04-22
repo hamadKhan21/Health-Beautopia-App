@@ -1,13 +1,21 @@
-﻿@using Beautopia.Services.IDataService
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
 @using Beautopia.Services.DataAppService
 @using Beautopia.Model.Area
-@{
+@using Beautopia.web.Areas.Admin.Extensions;
 
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
 	UsersAppService usersService = new UsersAppService();
 	IUsers _users;
-	_users=usersService;
+	_users = usersService;
 	SiteInfo siteInfo = _users.GetSiteInfo();
 	//siteInfo = siteInfo;
+
+
+
+
 }
 
 
@@ -78,27 +86,28 @@
 								<div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
 									<ul class="navbar-nav">
 										<li class="nav-item">
-											<a href="#" class="nav-link dropdown-toggle">About Us</a>
+											<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@(SessionLang=="Ar"? "معلومات عنا":"About Us")</a>
 											<ul class="dropdown-menu">
-												<li><a class="dropdown-item" asp-controller="Home" asp-action="BeyondtheBrand">Beyond the Brand</a></li>
-												<li><a class="dropdown-item" asp-controller="Home" asp-action="MessageFromCEO">Message From CEO </a></li>
+												<li><a class="dropdown-item" asp-controller="Home" asp-action="BeyondtheBrand">@(SessionLang=="Ar"? "ما وراء العلامة التجارية": "Beyond the Brand")</a></li>
+												<li><a class="dropdown-item" asp-controller="Home" asp-action="MessageFromCEO">@(SessionLang=="Ar"? "رسالة من الرئيس التنفيذي": "Message From CEO") </a></li>
 
 											</ul>
 										</li>
+
 										<li class="nav-item">
-											<a class="nav-link" href="#">Services</a>
+											<a class="nav-link" asp-controller="Home" asp-action="SERVICES">@(SessionLang=="Ar"? "خدمات" : "SERVICES")</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" asp-controller="Home" asp-action="OURSPECIALISTS">Our Doctors</a>
+											<a class="nav-link" asp-controller="Home" asp-action="OURSPECIALISTS">@(SessionLang=="Ar"? "أطبائنا" : "Our Doctors")</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" asp-controller="Home" asp-action="Devices">Devices</a>
+											<a class="nav-link" asp-controller="Home" asp-action="Devices">@(SessionLang=="Ar"? "الأجهزة" : "Devices")</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" asp-controller="Home" asp-action="GALLERY">Gallery</a>
+											<a class="nav-link" asp-controller="Home" asp-action="GALLERY">@(SessionLang=="Ar"? "صالة عرض" : "Gallery")</a>
 										</li>
-										
-									
+
+
 
 										<li class="nav-item" style="display:none">
 											<a class="nav-link" asp-controller="Home" asp-action="TESTIMONIALS">Testimonials</a>
@@ -112,11 +121,17 @@
 											</ul>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+											<a class="nav-link" asp-controller="Home" asp-action="ContactUs">@(SessionLang=="Ar"? "اتصل بنا" : "Contact Us")</a>
 										</li>
 										<li class="nav-item">
-											<a class="nav-link" asp-controller="Home" asp-action="requestservice">Schedule a Visit</a>
+											<a class="nav-link" asp-controller="Home" asp-action="requestservice">@(SessionLang=="Ar"? "جدولة زيارة" : "Schedule a Visit")</a>
 										</li>
+
+										<li class="nav-item">
+											<a href="#" id="changeLang" class="nav-link dropdown-toggle" data-toggle="dropdown">@(SessionLang == "Ar"?"En":"Ar")</a>
+
+										</li>
+
 									</ul>
 								</div>
 							</nav>
@@ -161,15 +176,15 @@
 						<div class="col-md">
 							<div class="footer-text mt-1 mt-lg-1">
 								@*<p>
-									To receive email releases, simply provide
-									<br>us with your email below
-								</p>
-								<form action="#" class="footer-subscribe">
-									<div class="input-group">
-										<input name="subscribe_mail" type="text" class="form-control" placeholder="Your Email" />
-										<span><i class="icon-black-envelope"></i></span>
-									</div>
-								</form>*@
+										To receive email releases, simply provide
+										<br>us with your email below
+									</p>
+									<form action="#" class="footer-subscribe">
+										<div class="input-group">
+											<input name="subscribe_mail" type="text" class="form-control" placeholder="Your Email" />
+											<span><i class="icon-black-envelope"></i></span>
+										</div>
+									</form>*@
 							</div>
 							<div class="footer-social d-md-none d-lg-block">
 								<a href="@(siteInfo.Facebook==""?"#":siteInfo.Facebook)" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
@@ -261,7 +276,7 @@
 			</div>
 		</div>
 	</div>
-
+	<input type="hidden" value="@(SessionLang == "Ar"?"En":"Ar")" id="Lang" />
 	<!-- Vendors -->
 	<script src="~/medlab/vendor/jquery/jquery-3.2.1.min.js"></script>
 
@@ -284,6 +299,37 @@
 	<script src="~/medlab/js/app.js"></script>
 	<script src="~/medlab/js/app-shop.js"></script>
 	<script src="~/medlab/form/forms.js"></script>
+	<link href="~/css/custom-butopia.css" rel="stylesheet" />
+
+	<script>
+
+		$("#changeLang").click(function () {
+
+			//if ($("#Lang").val() == "Ar") {
+			//	$("#Lang").val("Ar")
+
+			//}
+			//else {
+			//	$("#Lang").val("Ar")
+			//}
+
+			var datas = { 'Lang': $("#Lang").val() };
+			$.ajax({
+				type: "GET",
+				url: "/Home/ChangeTheLanguage",
+				//data: "{mdate:" + "m" + "}",
+				data: datas,//JSON.stringify(datas),
+				//dataType: "json",
+				// contentType: "application/json; charset=utf-8",
+				success: function (data) {
+					location.reload();
+
+				}
+			});
+
+		})
+	</script>
+
 	@RenderSection("Scripts", required: false)
 </body>
 

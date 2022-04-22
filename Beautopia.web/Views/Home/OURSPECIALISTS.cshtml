@@ -1,4 +1,10 @@
 ﻿@model Beautopia.Model.Area.HomeViewModel
+
+@{ 
+
+	var DocCategory = Model.Doctors.GroupBy(x => new { x.DoctorsCategoryID, x.DoctorsCategoryEn,x.DoctorsCategoryAr }).ToList();
+	var asdf = "";
+}
 		<!--section-->
 <div class="section mt-0">
 	<div class="breadcrumbs-wrap">
@@ -27,8 +33,11 @@
 		<div class="filters-by-category mb-2">
 			<ul class="option-set justify-content-center" data-option-key="filter">
 				<li><a href="#filter" data-option-value="*" class="selected">All</a></li>
-				@*<li><a href="#filter" data-option-value=".category1">Endodontics</a></li>
-					<li><a href="#filter" data-option-value=".category2">General dentistry</a></li>
+				@foreach (var cat in DocCategory) { 
+			<li><a href="#filter" data-option-value=".Category_@cat.Key.DoctorsCategoryID">@cat.Key.DoctorsCategoryEn</a></li>
+				}
+				
+					@*<li><a href="#filter" data-option-value=".category2">General dentistry</a></li>
 					<li><a href="#filter" data-option-value=".category3">Oral medicine</a></li>
 					<li><a href="#filter" data-option-value=".category4">Oral surgery</a></li>
 					<li><a href="#filter" data-option-value=".category5">Orthodontics</a></li>
@@ -39,7 +48,7 @@
 		<div class="gallery-specialist gallery-isotope" id="gallery-specialist">
 			@foreach (var item in Model.Doctors) {
 
-			<div class="gallery-item category1">
+			<div class="gallery-item Category_@item.DoctorsCategoryID">
 				<div class="doctor-box text-center">
 					<div class="doctor-box-photo">
 						<a href="#"><img src="/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>

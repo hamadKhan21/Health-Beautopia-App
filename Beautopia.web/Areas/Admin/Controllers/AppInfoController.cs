@@ -33,7 +33,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateSlider ([Bind("ID,SliderImage,title1,title2,title3,SliderImageFile,SliderImage,IsActiveChecked")] Slider obj)
+		public async Task<JsonResult> SaveUpdateSlider ([Bind("ID,title1Ar,title2Ar,title3Ar,title1,title2,title3,SliderImageFile,SliderImage,IsActiveChecked")] Slider obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Slider> Sliders = new List<Slider>();
@@ -110,7 +110,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateOffer([Bind("ID,Title,OfferImage,OfferImageFile,IsActiveChecked")] Offer obj)
+		public async Task<JsonResult> SaveUpdateOffer([Bind("ID,Title,TitleAr,Description,DescriptionAr,OfferImage,OfferImageFile,IsActiveChecked")] Offer obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Offer> Offers = new List<Offer>();
@@ -187,7 +187,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked")] Doctor obj)
+		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked,DoctorsCategoryID")] Doctor obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Doctor> listObj = new List<Doctor>();

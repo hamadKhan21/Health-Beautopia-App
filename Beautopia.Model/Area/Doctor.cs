@@ -22,7 +22,10 @@ namespace Beautopia.Model.Area
 		public string IsActiveChecked { get; set; }
 		
 		public bool IsActive { get; set; }
-		public int? DoctorCategory { get; set; }
+		public int? DoctorsCategoryID { get; set; }
+
+		public string DoctorsCategoryEn { get; set; }
+		public string DoctorsCategoryAr { get; set; }
 
 	}
 }

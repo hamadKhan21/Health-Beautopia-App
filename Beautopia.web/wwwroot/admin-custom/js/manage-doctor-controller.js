@@ -18,10 +18,10 @@ $document.ready(function () {
 					required: true,
 
                 },
-                //Description: {
-                //    required: true,
+                DoctorsCategoryID: {
+                    required: true,
 
-                //},
+                },
                 
             //    DoctorImageFile: {
                   //  required: true,
@@ -43,6 +43,11 @@ $document.ready(function () {
                     required: "Please enter Designation",
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
+                },
+                DoctorsCategoryID: {
+                    required: "Please Select Doctors Category",
+                    //minlength: "mobile must be 10 digits",
+                    //maxlength: "mobile must be 10 digits"
                 },
                // DoctorImageFile: {
                    // required: "Please Select Image",
@@ -94,11 +99,45 @@ $("#DoctorImageFile").change(function () {
 });
 
 
-
+GetDoctorCategoriesLkp();
 
 GetAllDoctors()
 
 
+function GetDoctorCategoriesLkp() {
+    $("#DoctorsCategoryID").empty();
+    $("#DoctorsCategoryID").append("<option value=''>Select Doctors Category</option>")
+
+    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
+    $.ajax({
+        type: "GET",
+        url: "/Admin/Settings/GetAllDoctorsCategory",
+        //data: "{mdate:" + "m" + "}",
+        //data: datas,//JSON.stringify(datas),
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            //debugger
+            var cdrData = data
+            var EmpToDisplay = "";
+            if (cdrData.length != 0) {
+                for (var i = 0; i < cdrData.length; i++) {
+
+                    $("#DoctorsCategoryID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].doctorsCategoryEn + "</option>");
+
+
+                }
+
+            }
+
+
+
+        }
+    });
+
+
+
+}
 
 
 
@@ -162,7 +201,9 @@ function InitDoctorGrid(cdrData) {
                         designationAr: {
                             type: "string"
                         },
-                       
+                        doctorsCategoryEn: {
+                            type: "string"
+                        },
                         isActive: {
                             type: "string"
                         },
@@ -195,6 +236,12 @@ function InitDoctorGrid(cdrData) {
             {
                 title: "Designation Ar",
                 field: "designationAr",
+                filterable: true
+
+            },
+            {
+                title: "Doctors Category",
+                field: "doctorsCategoryEn",
                 filterable: true
 
             },
@@ -265,6 +312,7 @@ $(document).on("dblclick", "#doctorGrid tbody tr", function (e) {
     $("#DesignationAr").val(dataItem.designationAr);
     $("#Description").val(dataItem.description);
     $("#DescriptionAr").val(dataItem.descriptionAr);
+    $("#DoctorsCategoryID").val(dataItem.doctorsCategoryID);
  
     $("#DoctorImage").val(dataItem.doctorImage);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Beautopia.web.Areas.Admin.Extensions;
 
 namespace Beautopia.web.Controllers
 {
@@ -29,8 +30,9 @@ namespace Beautopia.web.Controllers
 
 		public IActionResult Index()
 		{
+			var Lang = HttpContext.Session.GetObjectFromJson<string>("Lang");
 			HomeViewModel hmModel = new HomeViewModel();
-
+			hmModel.SiteInfo = _users.GetSiteInfo();
 			hmModel.Sliders=_users.GetSliders().Where(a => a.IsActive == true).ToList();
 			hmModel.Offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
 			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
@@ -38,7 +40,9 @@ namespace Beautopia.web.Controllers
 
 			hmModel.Equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
 			//hmModel.SiteInfo = _users.GetSiteInfo();
-
+			if (Lang == null) { 
+			HttpContext.Session.SetObjectAsJson("Lang", (hmModel.SiteInfo.IsArabicByDefault==true?"Ar":"En"));
+			}
 			return View(hmModel);
 		}
 		[Route("Privacy")]
@@ -72,7 +76,7 @@ namespace Beautopia.web.Controllers
 		[Route("SERVICES")]
 		public IActionResult SERVICES()
 		{
-			var equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
+			var equipments = _serviceRequest.GetAllServiceSubCategory().Where(a => a.IsActive == true).ToList();
 			return View(equipments);
 		}
 
@@ -215,6 +219,15 @@ namespace Beautopia.web.Controllers
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		}
+
+
+		public JsonResult ChangeTheLanguage(string Lang)
+		{
+			 HttpContext.Session.SetObjectAsJson("Lang",Lang);
+
+
+			return Json(Lang);
 		}
 	}
 }

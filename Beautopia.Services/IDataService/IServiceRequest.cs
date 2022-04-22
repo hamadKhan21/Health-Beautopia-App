@@ -35,5 +35,11 @@ namespace Beautopia.Services.IDataService
 		List<ActivityType> GetActivityType();
 		List<RS_Activity> GetRS_Activity(int RequestServiceID);
 		void InsertRS_Activity(RS_Activity param);
+
+
+		//Doctors Category
+		List<DoctorsCategory> GetDoctorsCategory();
+
+		void InsertUpdateDoctorsCategory(DoctorsCategory param);
 	}
 }

@@ -225,6 +225,9 @@ $(document).on("dblclick", "#offerGrid tbody tr", function (e) {
     var dataItem = $("#offerGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
     $("#Title").val(dataItem.title);
+    $("#TitleAr").val(dataItem.titleAr);
+    $("textarea#Description").val(dataItem.description);
+    $("textarea#DescriptionAr").val(dataItem.descriptionAr);
     
  
     $("#OfferImage").val(dataItem.offerImage);

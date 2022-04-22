@@ -706,6 +706,8 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = CreatedBy;
                 dbCommand.Parameters.Add("@SubServiceImageName", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageName;
+                dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 1000).Value = param.Description;
+                dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 1000).Value = param.DescriptionAr;
 
                 dbCommand.ExecuteNonQuery();
                 //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
@@ -769,7 +771,10 @@ namespace Beautopia.Services.DataAppService
                     obj.CategoryID = Convert.ToInt32(reader["CategoryID"]);
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
                     obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
-
+                    obj.Description = Convert.ToString(reader["Description"]);
+                    obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
+                    obj.CategoryNameEn = Convert.ToString(reader["CategoryNameEn"]);
+                    obj.CategoryNameAr = Convert.ToString(reader["CategoryNameAr"]);
 
                     Lisobj.Add(obj);
                 }
@@ -944,5 +949,104 @@ namespace Beautopia.Services.DataAppService
             // return ReturnEmpID;
             //
         }
+
+        public List<DoctorsCategory> GetDoctorsCategory()
+        {
+            List<DoctorsCategory> Lisobj = new List<DoctorsCategory>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetDoctorsCategory";
+                // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    DoctorsCategory obj = new DoctorsCategory();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.DoctorsCategoryEn = Convert.ToString(reader["DoctorsCategoryEn"]);
+                    obj.DoctorsCategoryAr = Convert.ToString(reader["DoctorsCategoryAr"]);
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+        public void InsertUpdateDoctorsCategory(DoctorsCategory param)
+        {
+            int ReturnEmpID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateDoctorsCategory";
+                dbCommand.Parameters.Add("@ID ", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@DoctorsCategoryEn", SqlDbType.NVarChar, 500).Value = param.DoctorsCategoryEn;
+                dbCommand.Parameters.Add("@DoctorsCategoryAr", SqlDbType.NVarChar, 500).Value = param.DoctorsCategoryAr;
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = param.CreatedBy;
+
+                dbCommand.ExecuteNonQuery();
+                //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            // return ReturnEmpID;
+            //
+        }
+
     }
 }

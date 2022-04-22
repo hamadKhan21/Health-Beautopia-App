@@ -12,6 +12,9 @@ namespace Beautopia.Model.Area
 		public IFormFile OfferImageFile { get; set; }
 		
 		public string Title { get; set; }
+		public string TitleAr { get; set; }
+		public string Description { get; set; }
+		public string DescriptionAr { get; set; }
 		public string CreatedBy { get; set; }
 		public string IsActiveChecked { get; set; }
 		public bool IsActive { get; set; }
