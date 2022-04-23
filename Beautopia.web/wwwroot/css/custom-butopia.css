@@ -2,3 +2,10 @@
 direction:rtl;
 
 }
+.custom-btn {
+	box-shadow: 0px 1px 9px 2px #eaeaea;
+	/*border-radius: 6px;*/
+	padding-left: 6px !important;
+	padding-right: 7px !important;
+	line-height: 34px !important;
+}

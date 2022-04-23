@@ -33,6 +33,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateSlider ([Bind("ID,title1Ar,title2Ar,title3Ar,title1,title2,title3,SliderImageFile,SliderImage,IsActiveChecked")] Slider obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
@@ -110,6 +111,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateOffer([Bind("ID,Title,TitleAr,Description,DescriptionAr,OfferImage,OfferImageFile,IsActiveChecked")] Offer obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
@@ -187,6 +189,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked,DoctorsCategoryID")] Doctor obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
@@ -264,6 +267,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateSmileGillary([Bind("ID,Title,SmileImage,SmileImageFile,IsActiveChecked")] SmileGillary obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
@@ -343,6 +347,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateEquipments([Bind("ID,Title,TitleAr,Description,DescriptionAr,EquipmentIcon,EquipmentImage,EquipmentImageFile,IsActiveChecked")] Equipment obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
@@ -421,6 +426,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		}
 
 		[HttpPost]
+
 		//[ValidateAntiForgeryToken]
 		public JsonResult SaveUpdateAboutUs([Bind("ID,AboutUSText,AboutUSTextAr,MessageFromCEOEn,MessageFromCEOAr")] AboutUs obj)
 		{
@@ -466,6 +472,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,AddressAr,Contact,ContactAr,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile,IsArabicByDefault,IsArabicByDefaultChecked")] SiteInfo obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");

@@ -1,11 +1,29 @@
 ﻿@model Beautopia.Model.Area.AboutUs
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
-<div class="section mt-0">
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+	//UsersAppService usersService = new UsersAppService();
+	//IUsers _users;
+	//_users = usersService;
+	//SiteInfo siteInfo = _users.GetSiteInfo();
+	////siteInfo = siteInfo;
+
+
+
+
+}
+<div class="section mt-0" style="display:none">
 	<div class="breadcrumbs-wrap">
 		<div class="container">
 			<div class="breadcrumbs">
-				<a href="index.html">Home</a>
-				<span>Beyond the Brand</span>
+				@*<a href="index.html">Home</a>
+				<span>Beyond the Brand</span>*@
 			</div>
 		</div>
 	</div>
@@ -15,7 +33,7 @@
 <div class="section page-content-first">
 
 	<div class="container">
-		@Html.Raw(Model.AboutUSText)
-		
+	@(SessionLang=="Ar"? Html.Raw(Model.AboutUSTextAr): Html.Raw(Model.AboutUSText))
+
 	</div>
 </div>

@@ -1,4 +1,25 @@
 ﻿@model Beautopia.Model.Area.HomeViewModel
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+	UsersAppService usersService = new UsersAppService();
+	IUsers _users;
+	_users = usersService;
+	SiteInfo siteInfo = _users.GetSiteInfo();
+	//siteInfo = siteInfo;
+
+
+
+
+}
+
 <!--section slider-->
 <div class="section mt-0">
 	<div class="quickLinks-wrap js-quickLinks-wrap-d d-none d-lg-flex">
@@ -7,7 +28,7 @@
 				<div class="row no-gutters">
 					<div class="col">
 						<a href="#" class="link">
-							<i class="icon-placeholder"></i><span>Location</span>
+							<i class="icon-placeholder"></i><span>@(SessionLang=="Ar"? "موقع" : "Location")</span>
 						</a>
 						<div class="link-drop p-0">
 							<div class="google-map">
@@ -16,62 +37,82 @@
 							</div>
 						</div>
 					</div>
-					<div class="col">
+					<div class="col" >
 						<a href="#" class="link">
-							<i class="icon-clock"></i><span>Working Time</span>
+							<i class="icon-clock"></i><span>@(SessionLang=="Ar"? "وقت العمل" : "Working Time")</span>
 						</a>
 						<div class="link-drop">
-							<h5 class="link-drop-title"><i class="icon-clock"></i>Working Time</h5>
+							<h5 class="link-drop-title"><i class="icon-clock"></i>@(SessionLang=="Ar"? "وقت العمل" : "Working Time")</h5>
 							<table class="row-table">
+								@if (SessionLang == "Ar")
+								{
+
+
 								<tr>
-									<td><i>Friday</i></td>
-									<td>Closed</td>
+									<td>@(SessionLang == "Ar" ? "مغلق" : "Closed")</td>
+									<td><i>@(SessionLang == "Ar" ? "جمعة" : "Friday")</i></td>
+
 								</tr>
 								<tr>
-									<td><i>Saturday</i></td>
-									<td> 09:00AM - 09:00PM</td>
+									<td> @(SessionLang == "Ar" ? "09:00PM - 09:00AM" : "09:00AM - 09:00PM")</td>
+									<td><i>@(SessionLang == "Ar" ? "السبت - الخميس" : "Sat-Thur")</i></td>
+
 								</tr>
-								<tr>
-									<td><i>Sunday</i></td>
-									<td>09:00AM - 09:00PM</td>
-								</tr>
-								<tr>
-									<td><i>Monday</i></td>
-									<td>09:00AM - 09:00PM</td>
-								</tr>
-								<tr>
-									<td><i>Tuesday</i></td>
-									<td>09:00AM - 09:00PM</td>
-								</tr>
-								<tr>
-									<td><i>Wednesday</i></td>
-									<td>09:00AM - 09:00PM</td>
-								</tr>
-								<tr>
-									<td><i>Thursday</i></td>
-									<td>09:00AM - 09:00PM</td>
-								</tr>
+								}
+								else
+								{
+
+									<tr>
+
+										<td><i>@(SessionLang == "Ar" ? "جمعة" : "Friday")</i></td>
+										<td>@(SessionLang == "Ar" ? "مغلق" : "Closed")</td>
+									</tr>
+									<tr>
+										<td><i>@(SessionLang == "Ar" ? "السبت - الخميس" : "Sat-Thur")</i></td>
+										<td> @(SessionLang == "Ar" ? "۰۹:۰۰ صباحا - ۰۹:۰۰ مساءا" : "09:00AM - 09:00PM")</td>
+									</tr>
+								}
+								@*<tr>
+			<td><i>@(SessionLang=="Ar"? "الأحد" : "Sunday")</i></td>
+			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+		</tr>
+		<tr>
+			<td><i>@(SessionLang=="Ar"? "الاثنين" : "Monday")</i></td>
+			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+		</tr>
+		<tr>
+			<td><i>@(SessionLang=="Ar"? "يوم الثلاثاء" : "Tuesday")</i></td>
+			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+		</tr>
+		<tr>
+			<td><i>@(SessionLang=="Ar"? "الأربعاء" : "Wednesday")</i></td>
+			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+		</tr>
+		<tr>
+			<td><i>@(SessionLang=="Ar"? "يوم الخميس" : "Thursday")</i></td>
+			<td>@(SessionLang=="Ar"? "۰۹:۰۰ صباحا - ۰۹:۰۰ مساءا" : "09:00AM - 09:00PM")</td>
+		</tr>*@
 							</table>
 						</div>
 					</div>
-					<div class="col">
+					<div class="col" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 						<a href="#" class="link">
-							<i class="icon-pencil-writing"></i><span>Request Form</span>
+							<i class="icon-pencil-writing"></i><span>@(SessionLang=="Ar"? "نموذج طلب" : "Request Form")</span>
 						</a>
 						<div class="link-drop">
-							<h5 class="link-drop-title"><i class="icon-pencil-writing"></i>Request Form</h5>
+							<h5 class="link-drop-title" style="float: @(SessionLang=="Ar"? "right": "left")"><i class="icon-pencil-writing"></i>@(SessionLang=="Ar"? "نموذج طلب" : "Request Form")</h5>
 							<form id="requestForm" method="post" novalidate>
 								<div class="successform">
-									<p>Your message was sent successfully!</p>
+									<p>@(SessionLang=="Ar"? "لقد تم ارسال رسالتك بنجاح!" : "Your message was sent successfully!")</p>
 								</div>
 								<div class="errorform">
-									<p>Something went wrong, try refreshing and submitting the form again.</p>
+									<p>@(SessionLang=="Ar"? "حدث خطأ ما ، حاول تحديث النموذج وإرساله مرة أخرى" : "Something went wrong, try refreshing and submitting the form again")</p>
 								</div>
 								<div class="input-group">
 									<span>
 										<i class="icon-user"></i>
 									</span>
-									<input name="requestname" type="text" class="form-control" placeholder="Your Name" />
+									<input name="requestname" type="text" class="form-control" placeholder="@(SessionLang=="Ar"? "اسمك" : "Your Name")" />
 								</div>
 								<div class="row row-sm-space mt-1">
 									<div class="col">
@@ -79,7 +120,7 @@
 											<span>
 												<i class="icon-email2"></i>
 											</span>
-											<input name="requestemail" type="text" class="form-control" placeholder="Your Email" />
+											<input name="requestemail" type="text" class="form-control" placeholder="@(SessionLang=="Ar"? "بريدك الالكتروني" : "Your Email")" />
 										</div>
 									</div>
 									<div class="col">
@@ -87,7 +128,7 @@
 											<span>
 												<i class="icon-smartphone"></i>
 											</span>
-											<input name="requestphone" type="text" class="form-control" placeholder="Your Phone" />
+											<input name="requestphone" type="text" class="form-control" placeholder="@(SessionLang=="Ar"? "رقم جوالك" : "Your Mobile")" />
 										</div>
 									</div>
 								</div>
@@ -96,10 +137,14 @@
 										<i class="icon-micro"></i>
 									</span>
 									<select name="requestservice" class="form-control">
-										<option selected="selected" disabled="disabled">Select Service</option>
+										<option selected="selected" disabled="disabled">@(SessionLang=="Ar"? "اختر الخدمة" : "Select Service")</option>
 										@foreach (var item in Model.ServiceSubCategorys)
 										{
-											<option value="@item.ID">@item.SubCategoryNameAr @item.ServicePrice ريال</option>
+									<option value="@item.ID">
+										
+										@(SessionLang=="Ar"? item.SubCategoryNameAr+""+ item.ServicePrice +"ريال" : item.SubCategoryNameEn + "" + item.ServicePrice + "SAR")
+
+									</option>
 										}
 
 									</select>
@@ -127,7 +172,7 @@
 									</div>
 								</div>
 								<div class="text-right mt-2">
-									<button type="submit" class="btn btn-sm btn-hover-fill">Request</button>
+									<button type="submit" class="btn btn-sm btn-hover-fill">@(SessionLang=="Ar"? "طلب" : "Request")</button>
 								</div>
 							</form>
 						</div>
@@ -141,7 +186,7 @@
 							<p>This simply works as a guide and helps you to connect with dentists of your choice. Please confirm the doctor’s availability before leaving your premises.</p>
 							<p class="text-right"><a href="#specialistsSection" class="btn btn-sm btn-hover-fill link-inside">Details</a></p>
 						</div>
-					</div> 
+					</div>
 					<div class="col" style="display:none">
 						<a href="#" class="link">
 							<i class="icon-price-tag"></i><span>Calculator</span>
@@ -176,20 +221,20 @@
 							</table>
 						</div>
 					</div>
-					<div class="col">
+					<div class="col" >
 						<a href="#" class="link">
-							<i class="icon-emergency-call"></i><span>Emergency Case</span>
+							<i class="icon-emergency-call"></i><span>@(SessionLang=="Ar"? "حالة طارئة" : "Emergency Case")</span>
 						</a>
 						<div class="link-drop">
-							<h5 class="link-drop-title"><i class="icon-emergency-call"></i>Emergency Case</h5>
-							<p>For emergency please contact us on below channels. </p>
+							<h5 class="link-drop-title"><i class="icon-emergency-call"></i>@(SessionLang=="Ar"? "حالة طارئة" : "Emergency Case")</h5>
+							<p>@(SessionLang=="Ar"? "لحالات الطوارئ يرجى الاتصال بنا على القنوات أدناه" : "For emergency please contact us on below channels") </p>
 							<ul class="icn-list">
 								<li>
-									<i class="icon-telephone"></i><span class="phone">920003645<br>920003645</span>
+									<i class="icon-telephone"></i><span class="phone">@(SessionLang=="Ar"?siteInfo.ContactAr : siteInfo.Contact)<br>@(SessionLang=="Ar"?siteInfo.ContactAr : siteInfo.Contact)</span>
 								</li>
-								<li><i class="icon-black-envelope"></i><a href="mailto:info@besthotel-email.com">info@besthotel-email.com</a></li>
+								<li><i class="icon-black-envelope"></i><a href="mailto:@siteInfo.Email">@siteInfo.Email</a></li>
 							</ul>
-							<p class="text-right mt-2"><a asp-controller="Home" asp-action="ContactUs" class="btn btn-sm btn-hover-fill link-inside">Our Contacts</a></p>
+							<p class="text-right mt-2"><a asp-controller="Home" asp-action="ContactUs" class="btn btn-sm btn-hover-fill link-inside">@(SessionLang=="Ar"? "لدينا اتصالات" : "Our Contacts")</a></p>
 						</div>
 					</div>
 					<div class="col col-close"><a href="#" class="js-quickLinks-close"><i class="icon-top" data-toggle="tooltip" data-placement="top" title="Close panel"></i></a></div>
@@ -236,7 +281,7 @@
 		<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
 
 			@foreach (var item in Model.Sliders)
-			{
+		{
 				<div class="slide">
 					<div class="img--holder" data-bg="/medlab/images/content/slider/@item.SliderImage"></div>
 					<div class="slide-content center">
@@ -244,11 +289,11 @@
 							<div class="vert">
 								<div class="container">
 									<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
-										@item.title1<br>
-										<b>@item.title2</b>
+										@(SessionLang=="Ar"? item.title1Ar : item.title1)<br>
+									 <b>@(SessionLang=="Ar"? item.title2Ar : item.title2)</b>
 									</div>
-									<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@item.title3</div>
-									<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>Explore our services</span><i class="icon-right-arrow"></i></a></div>
+									<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@(SessionLang=="Ar"? item.title3Ar : item.title3)</div>
+									<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "اكتشف خدماتنا" : "Explore our services")</span><i class="icon-right-arrow"></i></a></div>
 								</div>
 							</div>
 						</div>
@@ -265,8 +310,8 @@
 <div class="section bg-norepeat bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left2.png)">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<div class="h-sub theme-color">Best Offers</div>
-			<h1 class="double-title double-title--center double-title--vcenter" data-title="Best Offers"><span>A Professional & Care Provider</span></h1>
+			<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل العروض" : "Best Offers")</div>
+			<h1 class="double-title double-title--center double-title--vcenter" data-title="Best Offers"><span>@(SessionLang=="Ar"? "مقدم رعاية محترف" : "A Professional & Care Provider")</span></h1>
 			<div class="h-decor"></div>
 		</div>
 		@*<form action="#" class="content-search content-search--style2 d-flex mb-3">
@@ -309,46 +354,46 @@
 <div class="section bg-grey mt-md-0">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<h2 class="h1 double-title double-title--white double-title--center double-title--vcenter" data-title="Latest Equipments"><span>State of the Art<span class="clearfix d-sm-none"></span> Equipments</span></h2>
+			<h2 class="h1 double-title double-title--white double-title--center double-title--vcenter" data-title="Latest Equipments"><span>@(SessionLang=="Ar"? "أفضل" : "State of the Art")<span class="clearfix d-sm-none"></span>@(SessionLang=="Ar"? "الأجهزة" : "Devices") </span></h2>
 			<div class="h-decor"></div>
 		</div>
-		<div class="nav nav-pills-icons js-nav-pills-carousel" role="tablist">
+		<div class="nav nav-pills-icons js-nav-pills-carousel" role="tablist" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 			@{
 				var Counta = 1;
 				var Countaa = 1;
 			}
-			
+
 			@foreach (var asd in Model.Equipments)
 			{
 				if (Counta == 1)
 				{
-					<a class="nav-link active" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-molecular"></i><span>@asd.Title</span></a>
+					<a class="nav-link active" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-molecular"></i><span> @(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
 				}
 				else
 				{
 
-					<a class="nav-link" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-dental-chair"></i><span>@asd.Title</span></a>
+					<a class="nav-link" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-dental-chair"></i><span>@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
 				}
 
 
 				Counta++;
 			}
 			@*<a class="nav-link active" data-toggle="pill" href="#tab-A" role="tab"><i class="icon-molecular"></i><span>Deka</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-B" role="tab"><i class="icon-dental-chair"></i><span>GentleMax Pro</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-C" role="tab"><i class="icon-micro"></i><span>HydraFacial</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-D" role="tab"><i class="icon-testtube"></i><span>Scarlet</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-E" role="tab"><i class="icon-chromosome"></i><span>Ultraformer</span></a>*@
+				<a class="nav-link" data-toggle="pill" href="#tab-B" role="tab"><i class="icon-dental-chair"></i><span>GentleMax Pro</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-C" role="tab"><i class="icon-micro"></i><span>HydraFacial</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-D" role="tab"><i class="icon-testtube"></i><span>Scarlet</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-E" role="tab"><i class="icon-chromosome"></i><span>Ultraformer</span></a>*@
 
 
 			@*<a class="nav-link" data-toggle="pill" href="#tab-F" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-H" role="tab"><i class="icon-molecular"></i><span>Molecular Testing & Oncology</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-I" role="tab"><i class="icon-testtube2"></i><span>Histology</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-J" role="tab"><i class="icon-micro"></i><span>General Diagnostic<br>Tests</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-K" role="tab"><i class="icon-testtube"></i><span>Naturopathic<br>Tests</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-L" role="tab"><i class="icon-chromosome"></i><span>Genetics Tests</span></a>
-		<a class="nav-link" data-toggle="pill" href="#tab-M" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>*@
+				<a class="nav-link" data-toggle="pill" href="#tab-H" role="tab"><i class="icon-molecular"></i><span>Molecular Testing & Oncology</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-I" role="tab"><i class="icon-testtube2"></i><span>Histology</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-J" role="tab"><i class="icon-micro"></i><span>General Diagnostic<br>Tests</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-K" role="tab"><i class="icon-testtube"></i><span>Naturopathic<br>Tests</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-L" role="tab"><i class="icon-chromosome"></i><span>Genetics Tests</span></a>
+				<a class="nav-link" data-toggle="pill" href="#tab-M" role="tab"><i class="icon-dropper"></i><span>Cytology</span></a>*@
 		</div>
-		<div id="tab-content" class="tab-content mt-2 mt-sm-4">
+		<div id="tab-content" class="tab-content mt-2 mt-sm-4" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 
 			@foreach (var asd in Model.Equipments)
 			{
@@ -362,8 +407,8 @@
 							</div>
 							<div class="col-md-6">
 								<div class="pt-xl-1">
-									<h3>@asd.Title</h3>
-									@Html.Raw(asd.Description)
+									<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
+									<p> @(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
 									<a style="display:none" href="#" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
 								</div>
 							</div>
@@ -382,9 +427,9 @@
 								<img src="~/medlab/images/content/devices/@asd.EquipmentImage" alt="" class="img-fluid">
 							</div>
 							<div class="col-md-6">
-								<div class="pt-xl-1">
-									<h3>@asd.Title</h3>
-									@Html.Raw(asd.Description)
+								<div class="pt-xl-1" >
+									<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
+									<p>@(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
 									<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
 								</div>
 							</div>
@@ -398,92 +443,92 @@
 
 
 			@*<div id="tab-B" class="tab-pane fade" role="tabpanel">
-			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-			<div class="row">
-				<div class="col-md-6 h-100 mb-2 mb-md-0">
-					<img src="~/medlab/images/content/devices/GentleMax Pro.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-md-6">
-					<div class="pt-xl-1">
-						<h3>GentleMax Pro</h3>
-						<p>GentleMax Pro® is a gold standard premium for Laser Hair Removal. The GentleMax Pro® system is a consolidated, dual-wavelength laser platform that combines a fast and powerful 755 nm Alexandrite laser with a 1064 nm Nd: YAG laser to deliver effective and safe results for all skin types.</p>
-						<ul class="marker-list-md">
-							<li>Permanent removal of unwanted or excess hair in all skin types</li>
-							<li>Removal of benign keratoses and/or sun spots on all parts of the body</li>
-							<li>Treatment of facial redness and broken blood vessels.</li>
-							<li>Skin tightening</li>
-						</ul>
-						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+					<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+					<div class="row">
+						<div class="col-md-6 h-100 mb-2 mb-md-0">
+							<img src="~/medlab/images/content/devices/GentleMax Pro.png" alt="" class="img-fluid">
+						</div>
+						<div class="col-md-6">
+							<div class="pt-xl-1">
+								<h3>GentleMax Pro</h3>
+								<p>GentleMax Pro® is a gold standard premium for Laser Hair Removal. The GentleMax Pro® system is a consolidated, dual-wavelength laser platform that combines a fast and powerful 755 nm Alexandrite laser with a 1064 nm Nd: YAG laser to deliver effective and safe results for all skin types.</p>
+								<ul class="marker-list-md">
+									<li>Permanent removal of unwanted or excess hair in all skin types</li>
+									<li>Removal of benign keratoses and/or sun spots on all parts of the body</li>
+									<li>Treatment of facial redness and broken blood vessels.</li>
+									<li>Skin tightening</li>
+								</ul>
+								<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div id="tab-C" class="tab-pane fade" role="tabpanel">
-			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-			<div class="row">
-				<div class="col-md-6 h-100 mb-2 mb-md-0">
-					<img src="~/medlab/images/content/devices/HydraFacial.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-md-6">
-					<div class="pt-xl-1">
-						<h3>HydraFacial</h3>
-						<p>The HydraFacial is said to help improve overall skin texture, tone, and appearance. This is due to the deep exfoliation that cleans your pores, removing debris and allowing for better penetration of face serums tailored to your skin type.</p>
-						<ul class="marker-list-md">
-							<li>Immediate results</li>
-							<li>
-								Lifelong good skin
-							</li>
-							<li>Suitable for all skin types</li>
-							<li>Gives an overall skincare</li>
-						</ul>
-						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+				<div id="tab-C" class="tab-pane fade" role="tabpanel">
+					<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+					<div class="row">
+						<div class="col-md-6 h-100 mb-2 mb-md-0">
+							<img src="~/medlab/images/content/devices/HydraFacial.png" alt="" class="img-fluid">
+						</div>
+						<div class="col-md-6">
+							<div class="pt-xl-1">
+								<h3>HydraFacial</h3>
+								<p>The HydraFacial is said to help improve overall skin texture, tone, and appearance. This is due to the deep exfoliation that cleans your pores, removing debris and allowing for better penetration of face serums tailored to your skin type.</p>
+								<ul class="marker-list-md">
+									<li>Immediate results</li>
+									<li>
+										Lifelong good skin
+									</li>
+									<li>Suitable for all skin types</li>
+									<li>Gives an overall skincare</li>
+								</ul>
+								<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div id="tab-D" class="tab-pane fade" role="tabpanel">
-			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-			<div class="row">
-				<div class="col-md-6 h-100 mb-2 mb-md-0">
-					<img src="~/medlab/images/content/devices/Scarlet.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-md-6">
-					<div class="pt-xl-1">
-						<h3>Scarlet</h3>
-						<p>
-							Scarlet is a revolutionary treatment that utilizes RF (radiofrequency) and microneedling to rebuild collagen in the skin. This treatment will smooth fine lines, tighten skin, decrease pore size and improve the texture of the skin. It will also drastically improve acne and acne scarring.
-						</p>
-						<ul class="marker-list-md">
-							<li>Tighten the skin in the scalp, face, neck, and body</li>
-							<li>Lift the eyelids and improve skin texture, pores, photoaging, scars, acne, and stretch marks</li>
+				<div id="tab-D" class="tab-pane fade" role="tabpanel">
+					<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+					<div class="row">
+						<div class="col-md-6 h-100 mb-2 mb-md-0">
+							<img src="~/medlab/images/content/devices/Scarlet.png" alt="" class="img-fluid">
+						</div>
+						<div class="col-md-6">
+							<div class="pt-xl-1">
+								<h3>Scarlet</h3>
+								<p>
+									Scarlet is a revolutionary treatment that utilizes RF (radiofrequency) and microneedling to rebuild collagen in the skin. This treatment will smooth fine lines, tighten skin, decrease pore size and improve the texture of the skin. It will also drastically improve acne and acne scarring.
+								</p>
+								<ul class="marker-list-md">
+									<li>Tighten the skin in the scalp, face, neck, and body</li>
+									<li>Lift the eyelids and improve skin texture, pores, photoaging, scars, acne, and stretch marks</li>
 
-						</ul>
-						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+								</ul>
+								<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-		<div id="tab-E" class="tab-pane fade" role="tabpanel">
-			<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
-			<div class="row">
-				<div class="col-md-6 h-100 mb-2 mb-md-0">
-					<img src="~/medlab/images/content/devices/Ultraformer.png" alt="" class="img-fluid">
-				</div>
-				<div class="col-md-6">
-					<div class="pt-xl-1">
-						<h3>Genetics Tests</h3>
-						<p>Ultraformer III stimulates the production of new, stronger collagen with a more 'youthful' structure. This, in turn, strengthens your skin and reinforces its internal support system, helping to reverse the effects of ageing on your skin. Maximum benefits typically occur between six and nine months after treatment.</p>
-						<ul class="marker-list-md">
-							<li>More effective and, in the long run</li>
-							<li>Cost-effective</li>
-							<li>Visible tissue lifting across the 3-6 months post-treatment without any downtime</li>
-							<li>Reduce adipose (fatty) tissue</li>
-						</ul>
-						<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+				<div id="tab-E" class="tab-pane fade" role="tabpanel">
+					<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+					<div class="row">
+						<div class="col-md-6 h-100 mb-2 mb-md-0">
+							<img src="~/medlab/images/content/devices/Ultraformer.png" alt="" class="img-fluid">
+						</div>
+						<div class="col-md-6">
+							<div class="pt-xl-1">
+								<h3>Genetics Tests</h3>
+								<p>Ultraformer III stimulates the production of new, stronger collagen with a more 'youthful' structure. This, in turn, strengthens your skin and reinforces its internal support system, helping to reverse the effects of ageing on your skin. Maximum benefits typically occur between six and nine months after treatment.</p>
+								<ul class="marker-list-md">
+									<li>More effective and, in the long run</li>
+									<li>Cost-effective</li>
+									<li>Visible tissue lifting across the 3-6 months post-treatment without any downtime</li>
+									<li>Reduce adipose (fatty) tissue</li>
+								</ul>
+								<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>*@
+				</div>*@
 
 
 
@@ -495,8 +540,8 @@
 <div class="section bg-norepeat bg-right bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left.png)">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<div class="h-sub theme-color">Perfect Team</div>
-			<h1 class="double-title double-title--center double-title--vcenter" data-title="Perfect Team"><span>A Professional & Care Provider</span></h1>
+			<div class="h-sub theme-color">@(SessionLang=="Ar"? "فريق مثالي" : "Perfect Team")</div>
+			<h1 class="double-title double-title--center double-title--vcenter" data-title="Perfect Team"><span>@(SessionLang=="Ar"? "مقدم رعاية محترف" : "A Professional & Care Provider")</span></h1>
 			<div class="h-decor"></div>
 		</div>
 		@*<form action="#" class="content-search content-search--style2 d-flex mb-3">
@@ -525,8 +570,8 @@
 							</div>
 						</div>
 						<div class="doctor-box-top">
-							<h5 class="doctor-box-name"><a href="#">@item.DoctorName</a></h5>
-							<div class="doctor-box-position">@item.Designation</div>
+							<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
+							<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
 						</div>
 					</div>
 				</div>
@@ -969,31 +1014,30 @@
 				<div class="col-sm-7 col-lg-7 order-1 order-sm-1 d-flex">
 					<div class="pt-2 pt-lg-6 px-lg-3 text-center">
 						<div class="title-wrap-alt">
-							<h2 class="double-title double-title--vcenter double-title--center" data-title="Appointment"><span>Make an <span class="theme-color">Appointment</span></span></h2>
+							<h2 class="double-title double-title--vcenter double-title--center" data-title="Appointment"><span> <span class="theme-color">@(SessionLang=="Ar"? "ميعاد" : "Appointment")</span></span></h2>
 						</div>
 						<p>
-							We believe in providing the best possible care to all our existing patients and welcome
-							new patients to sample.
+							@(SessionLang=="Ar"? "نحن نؤمن بتوفير أفضل رعاية ممكنة لجميع مرضانا الحاليين ونرحب بهم مرضى جدد لأخذ عينات" : "We believe in providing the best possible care to all our existing patients and welcomenew patients to sample")
 						</p>
-						<form class="contact-form" id="contactForm" method="post" novalidate="novalidate">
+						<form class="contact-form" id="contactForm" method="post" novalidate="novalidate" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 							<div class="successform">
-								<p>Your message was sent successfully!</p>
+								<p>@(SessionLang=="Ar"? "لقد تم ارسال رسالتك بنجاح!" : "Your message was sent successfully!")</p>
 							</div>
 							<div class="errorform">
-								<p>Something went wrong, try refreshing and submitting the form again.</p>
+								<p>@(SessionLang=="Ar"? "حدث خطأ ما ، حاول تحديث النموذج وإرساله مرة أخرى" : "Something went wrong, try refreshing and submitting the form again")</p>
 							</div>
 							<div>
-								<input type="text" class="form-control" name="name" placeholder="Your name*">
+								<input type="text" class="form-control" name="name" placeholder="@(SessionLang=="Ar"? "اسمك" : "Your Name")*">
 							</div>
 							<div class="row row-sm-space mt-15">
-								<div class="col-sm-6"><input type="text" class="form-control" name="phone" placeholder="Your Phone"></div>
-								<div class="col-sm-6 mt-15 mt-sm-0"><input type="text" class="form-control" name="email" placeholder="Email*"></div>
+								<div class="col-sm-6"><input type="text" class="form-control" name="phone" placeholder="@(SessionLang=="Ar"? "رقم جوالك" : "Your Mobile")"></div>
+								<div class="col-sm-6 mt-15 mt-sm-0"><input type="text" class="form-control" name="email" placeholder="@(SessionLang=="Ar"? "بريدك الالكتروني" : "Your Email")"></div>
 							</div>
 							<div class="mt-15">
-								<textarea class="form-control" name="message" placeholder="Message"></textarea>
+								<textarea class="form-control" name="message" placeholder="@(SessionLang=="Ar"? "رسالة" : "Message")"></textarea>
 							</div>
 							<div class="mt-2 mt-lg-4">
-								<button type="submit" class="btn"><i class="icon-right-arrow"></i><span>Send request</span><i class="icon-right-arrow"></i></button>
+								<button type="submit" class="btn"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"?  "ارسل طلب" : "Send request")</span><i class="icon-right-arrow"></i></button>
 							</div>
 						</form>
 					</div>
@@ -1011,19 +1055,19 @@
 			</button>
 			<div class="modal-body">
 				<div class="modal-form">
-					<h3>Book an Appointment</h3>
+					<h3>@(SessionLang=="Ar"? "احجز موعدًا" : "Send request")</h3>
 					<form class="mt-15" id="bookingForm" method="post" novalidate>
 						<div class="successform">
-							<p>Your message was sent successfully!</p>
+							<p>@(SessionLang=="Ar"? "لقد تم ارسال رسالتك بنجاح!" : "Send request")</p>
 						</div>
 						<div class="errorform">
-							<p>Something went wrong, try refreshing and submitting the form again.</p>
+							<p>>@(SessionLang=="Ar"? "حدث خطأ ما ، حاول تحديث النموذج وإرساله مرة أخرى" : "Something went wrong, try refreshing and submitting the form again")</p>
 						</div>
 						<div class="input-group">
 							<span>
 								<i class="icon-user"></i>
 							</span>
-							<input type="text" name="bookingname" class="form-control" autocomplete="off" placeholder="Your Name*" />
+							<input type="text" name="bookingname" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "اسمك" : "Your Name")" />
 						</div>
 						<div class="row row-xs-space mt-1">
 							<div class="col-sm-6">
@@ -1031,7 +1075,7 @@
 									<span>
 										<i class="icon-email2"></i>
 									</span>
-									<input type="text" name="bookingemail" class="form-control" autocomplete="off" placeholder="Your Email*" />
+									<input type="text" name="bookingemail" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "بريدك الالكتروني" : "Your Email")" />
 								</div>
 							</div>
 							<div class="col-sm-6 mt-1 mt-sm-0">
@@ -1039,7 +1083,7 @@
 									<span>
 										<i class="icon-smartphone"></i>
 									</span>
-									<input type="text" name="bookingphone" class="form-control" autocomplete="off" placeholder="Your Phone" />
+									<input type="text" name="bookingphone" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "رقم جوالك" : "Your Mobile")" />
 								</div>
 							</div>
 						</div>
@@ -1058,10 +1102,14 @@
 								<i class="icon-micro"></i>
 							</span>
 							<select name="bookingservice" class="form-control">
-								<option selected="selected" disabled="disabled">Select Service</option>
+								<option selected="selected" disabled="disabled">@(SessionLang=="Ar"? "اختر الخدمة" : "Select Service")</option>
 								@foreach (var item in Model.ServiceSubCategorys)
 								{
-							<option value="@item.ID">@item.SubCategoryNameAr @item.ServicePrice ريال</option>
+							<option value="@item.ID">
+
+								
+								@(SessionLang=="Ar"? item.SubCategoryNameAr+item.ServicePrice +"ريال": item.SubCategoryNameAr + item.ServicePrice+"SAR")
+							</option>
 								}
 							</select>
 						</div>
@@ -1083,7 +1131,7 @@
 						</div>
 						<textarea name="bookingmessage" class="form-control" placeholder="Your comment"></textarea>
 						<div class="text-right mt-2">
-							<button type="submit" class="btn btn-sm btn-hover-fill">Book now</button>
+							<button type="submit" class="btn btn-sm btn-hover-fill">@(SessionLang=="Ar"? "احجز الآن" : "Book now")</button>
 						</div>
 					</form>
 				</div>

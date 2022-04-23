@@ -79,7 +79,7 @@ $document.ready(function () {
                         ClearFields()
                         Initequipment(data)
 					},
-					error: function error() {
+					error: function error(e) {
 						//	debugger
                         alert($manageequipment)
 						//$('.errorform', $LoginRequest).fadeIn();
@@ -281,6 +281,7 @@ $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
     $("#EquipmentIcon").val(dataItem.equipmentIcon);
     $("textarea#Description").val(dataItem.description);
     $("textarea#DescriptionAr").val(dataItem.descriptionAr);
+    //$("#DescriptionAr").val(dataItem.descriptionAr);
 
     //$("#Description").val(dataItem.description);
    // tinyMCE.activeEditor.setContent(dataItem.description);

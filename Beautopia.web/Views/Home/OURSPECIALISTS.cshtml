@@ -1,11 +1,28 @@
 ﻿@model Beautopia.Model.Area.HomeViewModel
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
 
-@{ 
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
 
-	var DocCategory = Model.Doctors.GroupBy(x => new { x.DoctorsCategoryID, x.DoctorsCategoryEn,x.DoctorsCategoryAr }).ToList();
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+	
+	
+	UsersAppService usersService = new UsersAppService();
+	IUsers _users;
+	_users = usersService;
+	SiteInfo siteInfo = _users.GetSiteInfo();
+
+
+	var DocCategory = Model.Doctors.GroupBy(x => new { x.DoctorsCategoryID, x.DoctorsCategoryEn, x.DoctorsCategoryAr }).ToList();
 	var asdf = "";
+
 }
-		<!--section-->
+
+
+<!--section-->
 <div class="section mt-0">
 	<div class="breadcrumbs-wrap">
 		<div class="container">
@@ -21,7 +38,7 @@
 <div class="section page-content-first">
 	<div class="container">
 		<div class="text-center mb-2  mb-md-3 mb-lg-4">
-			<div class="h-sub theme-color">Meet the Team</div>
+			<div class="h-sub theme-color">@(SessionLang=="Ar"?"قابل الفريق": "Meet the Team")</div>
 			@*<h1>Our Specialists</h1>*@
 			<div class="h-decor"></div>
 		</div>
@@ -33,11 +50,15 @@
 		<div class="filters-by-category mb-2">
 			<ul class="option-set justify-content-center" data-option-key="filter">
 				<li><a href="#filter" data-option-value="*" class="selected">All</a></li>
-				@foreach (var cat in DocCategory) { 
-			<li><a href="#filter" data-option-value=".Category_@cat.Key.DoctorsCategoryID">@cat.Key.DoctorsCategoryEn</a></li>
+				@foreach (var cat in DocCategory)
+				{
+					<li><a href="#filter" data-option-value=".Category_@cat.Key.DoctorsCategoryID">
+	
+	@(SessionLang=="Ar"? cat.Key.DoctorsCategoryAr : cat.Key.DoctorsCategoryEn)
+</a></li>
 				}
-				
-					@*<li><a href="#filter" data-option-value=".category2">General dentistry</a></li>
+
+				@*<li><a href="#filter" data-option-value=".category2">General dentistry</a></li>
 					<li><a href="#filter" data-option-value=".category3">Oral medicine</a></li>
 					<li><a href="#filter" data-option-value=".category4">Oral surgery</a></li>
 					<li><a href="#filter" data-option-value=".category5">Orthodontics</a></li>
@@ -46,27 +67,28 @@
 			</ul>
 		</div>
 		<div class="gallery-specialist gallery-isotope" id="gallery-specialist">
-			@foreach (var item in Model.Doctors) {
+			@foreach (var item in Model.Doctors)
+			{
 
-			<div class="gallery-item Category_@item.DoctorsCategoryID">
-				<div class="doctor-box text-center">
-					<div class="doctor-box-photo">
-						<a href="#"><img src="/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
-					</div>
-					<h5 class="doctor-box-name"><a href="#">@item.DoctorName</a></h5>
-					<div class="doctor-box-position">@item.Designation</div>
-					<div class="doctor-box-text">
-						<p>@item.Description</p>
-					</div>
-					<div class="doctor-box-bottom">
-						<div class="doctor-box-phone"><i class="icon-telephone"></i><a href="tel:920003645">920003645</a></div>
-						<div class="doctor-box-social">
-							<a href="https://www.facebook.com/" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
-							<a href="mailto:info@butopia-clinic.com" class="hovicon"><i class="icon-black-envelope"></i></a>
+				<div class="gallery-item Category_@item.DoctorsCategoryID">
+					<div class="doctor-box text-center">
+						<div class="doctor-box-photo">
+							<a href="#"><img src="/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
+						</div>
+						<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
+						<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
+						<div class="doctor-box-text">
+							<p>@(SessionLang=="Ar"? item.DescriptionAr : item.Description)</p>
+						</div>
+						<div class="doctor-box-bottom">
+							<div class="doctor-box-phone"><i class="icon-telephone"></i><a href="tel:@siteInfo.Contact">@(SessionLang=="Ar"? siteInfo.ContactAr : siteInfo.Contact)</a></div>
+							<div class="doctor-box-social">
+								<a href="https://www.facebook.com/" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
+								<a href="mailto:info@butopia-clinic.com" class="hovicon"><i class="icon-black-envelope"></i></a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			}
 
 

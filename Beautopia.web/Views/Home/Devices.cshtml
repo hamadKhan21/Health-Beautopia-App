@@ -1,4 +1,28 @@
 ﻿@model IEnumerable<Beautopia.Model.Area.Equipment>
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+
+
+	UsersAppService usersService = new UsersAppService();
+	IUsers _users;
+	_users = usersService;
+	SiteInfo siteInfo = _users.GetSiteInfo();
+
+
+
+
+}
+
+
+
 <!--section-->
 <div class="section mt-0">
 	<div class="breadcrumbs-wrap">
@@ -15,14 +39,17 @@
 <div class="section page-content-first">
 	<div class="container">
 		<div class="text-center mb-2  mb-md-3 mb-lg-4">
-			<div class="h-sub theme-color">Our Sate of the Art Equipments</div>
+			<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل أجهزتنا": "Our state of the Art Devices")</div>
 			@*<h1>Best Technologies</h1>*@
 			<div class="h-decor"></div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="text-center mb-3 mb-md-4 max-900" style="display:none">
-			<p>We love to see our patients smile! Here are some of our best before-and-after pictures,<br>all in one fantastic Smile Gallery</p>
+			<p>
+				@(SessionLang=="Ar"? "نحن نحب أن نرى مرضانا يبتسمون! إليكم بعضًا من أفضل الصور قبل وبعد ، كل ذلك في معرض ابتسامة واحد رائع": "We love to see our patients smile! Here are some of our best before-and-after pictures,all in one fantastic Smile Gallery")
+				
+			</p>
 		</div>
 		<div class="filters-by-category mb-2 mb-lg-4" style="display:none">
 			<ul class="option-set justify-content-center" data-option-key="filter">
@@ -42,14 +69,15 @@
 				<div class="inner-circles-loader"></div>
 			</div>
 			<div class="gallery-smiles gallery-isotope" id="gallery">
-				@foreach (var item in Model) {
+				@foreach (var item in Model)
+				{
 
-				<div class="gallery-item category2 category7">
-					<div class="twentytwenty-container">
-						<img src="/medlab/images/content/devices/@item.EquipmentImage" alt="" />
+					<div class="gallery-item category2 category7">
+						<div class="twentytwenty-container">
+							<img src="/medlab/images/content/devices/@item.EquipmentImage" alt="" />
 
+						</div>
 					</div>
-				</div>
 
 				}
 			</div>
@@ -65,11 +93,14 @@
 			<div class="row no-gutters">
 				<div class="col-md-7 d-flex align-items-center">
 					<div class="text-center w-100">
-						<h2>Want the Same <span class="theme-color">Wonderful Smile?</span></h2>
+						<h2>@(SessionLang=="Ar"? "تريد نفس الشيء": "Want the Same") <span class="theme-color">@(SessionLang=="Ar"? "ابتسامة رائعة؟": "Wonderful Smile?")</span></h2>
 						<div class="h-decor"></div>
-						<p class="mt-sm-1 mt-lg-4 text-left text-sm-center">We provide advanced, trusted dental care delivered by a dedicated team in our modern practice.</p>
+						<p class="mt-sm-1 mt-lg-4 text-left text-sm-center">
+							@(SessionLang=="Ar"? "نحن نقدم رعاية أسنان متقدمة وموثوقة يقدمها فريق متخصص في عيادتنا الحديثة": "We provide advanced, trusted dental care delivered by a dedicated team in our modern practice")
+							
+						</p>
 						<div class="mt-2 mt-lg-4 text-center">
-							<a href="#" class="banner-call-phone"><i class="icon-telephone"></i>920003645, 920003645</a>
+							<a href="#" class="banner-call-phone"><i class="icon-telephone"></i>@(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact), @(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact)</a>
 						</div>
 					</div>
 				</div>

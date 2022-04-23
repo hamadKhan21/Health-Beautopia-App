@@ -1,5 +1,27 @@
 ﻿@model IEnumerable<Beautopia.Model.Area.SmileGillary>
-		<!--section-->
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+
+
+	UsersAppService usersService = new UsersAppService();
+	IUsers _users;
+	_users = usersService;
+	SiteInfo siteInfo = _users.GetSiteInfo();
+
+
+
+
+}
+
+<!--section-->
 <div class="section mt-0">
 	<div class="breadcrumbs-wrap">
 		<div class="container">
@@ -15,14 +37,17 @@
 <div class="section page-content-first">
 	<div class="container">
 		<div class="text-center mb-2  mb-md-3 mb-lg-4">
-			<div class="h-sub theme-color">Our Clients Stories</div>
-			<h1>Smiles Gallery</h1>
+			<div class="h-sub theme-color">@(SessionLang=="Ar"? "قصص عملائنا": "Our Clients Stories")</div>
+			<h1>@(SessionLang=="Ar"? "معرض الابتسامات": "Smiles Gallery")</h1>
 			<div class="h-decor"></div>
 		</div>
 	</div>
 	<div class="container">
 		<div class="text-center mb-3 mb-md-4 max-900">
-			<p>We love to see our patients smile! Here are some of our best before-and-after pictures,<br>all in one fantastic Smile Gallery</p>
+			<p>
+				@(SessionLang=="Ar"? "نحن نحب أن نرى مرضانا يبتسمون! إليكم بعضًا من أفضل الصور قبل وبعد ، كل ذلك في معرض ابتسامة واحد رائع": "We love to see our patients smile! Here are some of our best before-and-after pictures,all in one fantastic Smile Gallery")
+				
+			</p>
 		</div>
 		<div class="filters-by-category mb-2 mb-lg-4" style="display:none">
 			<ul class="option-set justify-content-center" data-option-key="filter">
@@ -44,14 +69,14 @@
 			<div class="gallery-smiles gallery-isotope" id="gallery">
 				@foreach (var ite in Model)
 				{
-						<div class="gallery-item category2 category7">
-							<div class="twentytwenty-container">
-								<img src="/medlab/images/content/gallery/@ite.SmileImage" alt="" />
+					<div class="gallery-item category2 category7">
+						<div class="twentytwenty-container">
+							<img src="/medlab/images/content/gallery/@ite.SmileImage" alt="" />
 
-							</div>
 						</div>
+					</div>
 
-					
+
 				}
 
 			</div>

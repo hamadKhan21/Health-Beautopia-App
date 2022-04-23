@@ -27,7 +27,7 @@
 				},
 				messages: {
 					Service: {
-						required: "Please select the service"
+						required: ($("#Lang").val() == "Ar" ? "الرجاء تحديد الخدمة" : "Please select the service")
 						//minlength: "Your name must consist of at least 2 characters"
 					},
 					//Name: {
@@ -35,16 +35,16 @@
 					//	//minlength: "Your message must consist of at least 20 characters"
 					//},
 					Mobile: {
-						required: "Please enter your Mobile #",
-						minlength: "mobile must be 10 digits",
-						maxlength: "mobile must be 10 digits"
+						required: ($("#Lang").val() == "Ar" ? "الرجاء إدخال هاتفك المحمول" : "Please enter your Mobile #"),
+						minlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits"),
+						maxlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits")
 					}
 				},
 				submitHandler: function submitHandler(form) {
 					var selectedChk = GetSelectedServicesCheckboxe();
 					//debugger
 					if (selectedChk.length == 0) {
-						$('.errorform').text("Please select the services you are interested in");
+						$('.errorform').text(($("#Lang").val() == "Ar" ? "الرجاء تحديد الخدمات التي تهتم بها" : "Please select the services you are interested in"));
 						$('.errorform').css("display","inline")
 						return false;
 					}
@@ -112,7 +112,7 @@ $("#serviceRequestID").change(function () {
 
 function GetServiceCategories() {
 	$("#serviceRequestID").empty();
-	$("#serviceRequestID").append("<option value='-1'>Select Service Category</option>")
+	$("#serviceRequestID").append("<option value='-1'>" + ($("#Lang").val() == "En" ? "حدد فئة الخدمة" : "Select Service Category")+"</option>")
 
 	////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
 	$.ajax({
@@ -129,7 +129,7 @@ function GetServiceCategories() {
 			if (cdrData.length != 0) {
 				for (var i = 0; i < cdrData.length; i++) {
 
-					$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].categoryNameAr + "</option>");
+					$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + ($("#Lang").val() == "En" ? cdrData[i].categoryNameAr  : cdrData[i].categoryNameEn)+ "</option>");
 
 
 				}
@@ -170,7 +170,10 @@ function GetServiceSubCategory(CategoryID) {
 				
 				for (var i = 0; i < cdrData.length; i++) {
 
-					AppendServiceCheckboxes(cdrData[i].subCategoryNameAr, cdrData[i].id, cdrData[i].servicePrice, cdrData[i].subServiceImageName)
+
+					var ServiceCategory = ($("#Lang").val() == "En" ? cdrData[i].subCategoryNameAr : cdrData[i].subCategoryNameEn);
+					var ServicePrice = ($("#Lang").val() == "En" ? cdrData[i].servicePrice + 'ريال ' : cdrData[i].servicePrice+" SAR");
+					AppendServiceCheckboxes(ServiceCategory, cdrData[i].id, ServicePrice, cdrData[i].subServiceImageName)
 
 					//$("#serviceRequestID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].categoryNameAr + "</option>");
 
@@ -227,7 +230,7 @@ function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price
 			+ '<input type="checkbox" checked class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" />'
 			+ '<div class="service-requested-h-decor"></div>'
 			+'<p class="services-desc-cl">'
-			+ SubCategoryService + ' ' + price + ' ' + 'ريال '
+			+ SubCategoryService + ' ' + price
 			+ '</p></div></div>'
 		);
 
@@ -254,7 +257,7 @@ function AppendServiceCheckboxes(SubCategoryService, SubCategoryServiceID, price
 			+ '<input type="checkbox" class="subserviceClass form-control" name="servicecheck" id="service_' + SubCategoryServiceID + '" style="margin-left: 3px;" />'
 			+ '<div class="service-requested-h-decor"></div>'
 			+ '<p class="services-desc-cl">'
-			+ SubCategoryService + ' ' + price +' '+ 'ريال '
+			+ SubCategoryService + ' ' + price 
 			+ '</p></div></div>'
 		);
 	}

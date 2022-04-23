@@ -1,4 +1,24 @@
 ﻿@model Beautopia.Model.Area.SiteInfo
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+
+
+	//UsersAppService usersService = new UsersAppService();
+	//IUsers _users;
+	//_users = usersService;
+	//SiteInfo siteInfo = _users.GetSiteInfo();
+
+
+
+
+}
 
 <!--section-->
 <div class="section mt-0">
@@ -8,48 +28,48 @@
 </div>
 <!--//section-->
 <!--section-->
-<div class="section mt-0 bg-grey">
+<div class="section mt-0 bg-grey" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 	<div class="container">
 		<div class="row">
 			<div class="col-md">
 				<div class="title-wrap">
-					<h5>Clinic Location</h5>
+					<h5>@(SessionLang=="Ar"? "موقع العيادة": "Clinic Location")</h5>
 					<div class="h-decor"></div>
 				</div>
 				<ul class="icn-list-lg">
 					<li>
-						<i class="icon-placeholder2"></i> @Model.Address
+						<i class="icon-placeholder2"></i>@(SessionLang=="Ar" ? Model.AddressAr : Model.Address)
 					</li>
 				</ul>
 			</div>
 			<div class="col-md mt-3 mt-md-0">
 				<div class="title-wrap">
-					<h5>Contact Info</h5>
+					<h5>@(SessionLang=="Ar" ? "معلومات الاتصال" : "Contact Info")</h5>
 					<div class="h-decor"></div>
 				</div>
 				<ul class="icn-list-lg">
 					<li>
-						<i class="icon-telephone"></i>Phone: <span class="theme-color">
-																 <span class="text-nowrap">@Model.Contact,</span> <span class="text-nowrap">@Model.Contact</span>
+						<i class="icon-telephone"></i>@(SessionLang=="Ar" ? "هاتف:" : "Phone:") <span class="theme-color">
+							<span class="text-nowrap">@(SessionLang=="Ar" ? Model.ContactAr : Model.Contact),</span> <span class="text-nowrap">@(SessionLang=="Ar" ? Model.ContactAr : Model.Contact)</span>
 						</span>
 						@*<br> Fax: <span class="theme-color">
-									  <span class="text-nowrap">@Model.Contact</span>
-						</span>*@
+					  <span class="text-nowrap">@Model.Contact</span>
+		</span>*@
 					</li>
 					<li><i class="icon-black-envelope"></i><a href="mailto:@Model.Email">@Model.Email</a></li>
 				</ul>
 			</div>
 			<div class="col-md mt-3 mt-md-0">
 				<div class="title-wrap">
-					<h5>Working Time</h5>
+					<h5>@(SessionLang=="Ar" ? "وقت العمل" : "Working Time")</h5>
 					<div class="h-decor"></div>
 				</div>
 				<ul class="icn-list-lg">
 					<li>
 						<i class="icon-clock"></i>
 						<div>
-							<div class="d-flex"><span>Friday</span><span class="theme-color">Closed</span></div>
-							<div class="d-flex"><span>Sat-Thur</span><span class="theme-color">09:00AM - 09:00PM</span></div>
+							<div class="d-flex"><span>@(SessionLang=="Ar" ? "جمعة" : "Friday")</span><span class="theme-color">@(SessionLang=="Ar" ? "مغلق" : "Closed")</span></div>
+							<div class="d-flex"><span>@(SessionLang=="Ar" ? "السبت - الخميس" : "Sat-Thur")</span><span class="theme-color">@(SessionLang=="Ar" ? "۰۹:۰۰ صباحا - ۰۹:۰۰ مساءا" : "09:00AM - 09:00PM")</span></div>
 
 						</div>
 					</li>
@@ -60,51 +80,54 @@
 </div>
 <!--//section-->
 <!--section-->
-<div class="section">
+<div class="section" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 	<div class="container">
 		<div class="row">
 			<div class="col-md col-lg-5">
 				<div class="pr-0 pr-lg-8">
 					<div class="title-wrap">
-						<h2>Get In Touch With Us</h2>
+						<h2>@(SessionLang=="Ar" ? "ابق على تواصل معنا" : "Get In Touch With Us")</h2>
 						<div class="h-decor"></div>
 					</div>
 					<div class="mt-2 mt-lg-4">
-						<p>For general questions, please send us a message and we’ll get right back to you. You can also call us directly to speak with a member of our service team or insurance expert.</p>
-						<p class="p-sm">Fields marked with a * are required.</p>
+						<p>
+							
+							@(SessionLang=="Ar" ? "للأسئلة العامة ، يرجى إرسال رسالة إلينا وسنعاود الاتصال بك مباشرة. يمكنك أيضًا الاتصال بنا مباشرة للتحدث مع أحد أعضاء فريق الخدمة أو خبير التأمين" : "For general questions, please send us a message and we’ll get right back to you. You can also call us directly to speak with a member of our service team or insurance expert")
+						</p>
+						
 					</div>
 					<div class="mt-2 mt-md-5"></div>
-					<h5>Stay Connected</h5>
+					<h5>@(SessionLang=="Ar"? "ابق على اتصال": "Stay Connected")</h5>
 					<div class="content-social mt-15">
 						<a href="@(Model.Facebook==""?"#":Model.Facebook)" target="blank" class="hovicon"><i class="icon-facebook-logo-circle"></i></a>
 						<a href="@(Model.Twitter==""?"#":Model.Twitter)" target="blank" class="hovicon"><i class="icon-twitter-logo-circle"></i></a>
-						<a href="@(Model.GooglePlus==""?"#":Model.GooglePlus)"  target="blank" class="hovicon"><i class="icon-google-plus-circle"></i></a>
-						<a href="@(Model.Instagram==""?"#":Model.Instagram)"  target="blank" class="hovicon"><i class="icon-instagram-circle"></i></a>
+						<a href="@(Model.GooglePlus==""?"#":Model.GooglePlus)" target="blank" class="hovicon"><i class="icon-google-plus-circle"></i></a>
+						<a href="@(Model.Instagram==""?"#":Model.Instagram)" target="blank" class="hovicon"><i class="icon-instagram-circle"></i></a>
 					</div>
 				</div>
 			</div>
 			<div class="col-md col-lg-6 mt-4 mt-md-0">
 				<form class="contact-form" id="contactForm" method="post" novalidate="novalidate">
 					<div class="successform">
-						<p>Your message was sent successfully!</p>
+						<p>>@(SessionLang=="Ar" ? "لقد تم ارسال رسالتك بنجاح!" : "Your message was sent successfully!")</p>
 					</div>
 					<div class="errorform">
-						<p>Something went wrong, try refreshing and submitting the form again.</p>
+						<p>@(SessionLang=="Ar" ? "حدث خطأ ما ، حاول تحديث النموذج وإرساله مرة أخرى" : "Something went wrong, try refreshing and submitting the form again")</p>
 					</div>
 					<div>
-						<input type="text" class="form-control" name="name" placeholder="Your name*">
+						<input type="text" class="form-control" name="name" placeholder="@(SessionLang=="Ar"? "اسمك" : "Your Name")">
 					</div>
 					<div class="mt-15">
-						<input type="text" class="form-control" name="email" placeholder="Email*">
+						<input type="text" class="form-control" name="email" placeholder="@(SessionLang=="Ar"? "بريدك الالكتروني" : "Your Email")">
 					</div>
 					<div class="mt-15">
-						<input type="text" class="form-control" name="phone" placeholder="Your Phone">
+						<input type="text" class="form-control" name="phone" placeholder="@(SessionLang=="Ar"? "رقم جوالك" : "Your Mobile")">
 					</div>
 					<div class="mt-15">
-						<textarea class="form-control" name="message" placeholder="Message"></textarea>
+						<textarea class="form-control" name="message" placeholder="@(SessionLang=="Ar"? "رسالة" : "Message")"></textarea>
 					</div>
 					<div class="mt-3">
-						<button type="submit" class="btn btn-hover-fill"><i class="icon-right-arrow"></i><span>Send message</span><i class="icon-right-arrow"></i></button>
+						<button type="submit" class="btn btn-hover-fill"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar" ? "أرسل رسالة" : "Send message")</span><i class="icon-right-arrow"></i></button>
 					</div>
 				</form>
 			</div>
