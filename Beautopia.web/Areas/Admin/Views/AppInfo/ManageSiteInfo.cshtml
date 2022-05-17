@@ -24,7 +24,7 @@
 							Address Ar
 						</Label>
 						<input type="text" name="AddressAr" id="AddressAr" class="form-control inputClass" autocomplete="off" placeholder="Enter Address Ar" />
-						<input type="hidden" name="ID" id="ID" value="0" />
+						@*<input type="hidden" name="ID" id="ID" value="0" />*@
 
 					</div>
 					<div class="col-sm-3 mt-1 mt-sm-0">
@@ -36,7 +36,7 @@
 
 					</div>
 
-					<div class="col-sm-3 mt-1 mt-sm-0">
+					<div class="col-sm-3 mt-1 mt-sm-0" style="display:none">
 						<Label>
 							Contact Ar
 						</Label>
@@ -56,6 +56,11 @@
 
 					</div>
 
+
+				</div>
+
+				<div class="row row-xs-space mt-1">
+
 					<div class="col-sm-3 mt-1 mt-sm-0">
 
 
@@ -67,10 +72,6 @@
 
 
 					</div>
-
-				</div>
-
-				<div class="row row-xs-space mt-1">
 					<div class="col-sm-3">
 						<Label>
 							Twitter
@@ -99,6 +100,12 @@
 
 					</div>
 
+
+				</div>
+
+				<div class="row row-xs-space mt-1" style="margin-top:11px">
+
+
 					<div class="col-sm-3 mt-1 mt-sm-0">
 
 
@@ -110,12 +117,6 @@
 
 
 					</div>
-
-				</div>
-
-				<div class="row row-xs-space mt-1" style="margin-top:11px">
-
-
 					<div class="col-sm-3 mt-1 mt-sm-0">
 
 
@@ -130,7 +131,7 @@
 
 					<div class="col-sm-4 mt-1 mt-sm-0">
 						<Label>
-							Image
+							English Logo
 						</Label>
 
 						<input type="file" name="LogoImageFile" id="LogoImageFile" class="form-control inputClass" />
@@ -144,6 +145,28 @@
 						<img src="" id="subservice-img-tag" onerror='this.src = "../admin-custom/Images/no image.png"' style="width: 166px;" />
 
 					</div>
+
+
+				</div>
+				<div class="row row-xs-space mt-1" style="margin-top:11px">
+
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<Label>
+							Arabic Logo
+						</Label>
+
+						<input type="file" name="LogoImageFileAr" id="LogoImageFileAr" class="form-control inputClass" />
+						<input type="hidden" name="LogoImageAr" id="LogoImageAr" class="form-control inputClass" />
+
+					</div>
+					<div class="col-sm-2 mt-1 mt-sm-0">
+
+
+
+						<img src="" id="subservice-img-tag-ar" onerror='this.src = "../admin-custom/Images/no image.png"' style="width: 166px;" />
+
+					</div>
+
 					<div class="col-sm-2 mt-1 mt-sm-0" style="text-align:center">
 						<Label>
 							Is Arabic By Default
@@ -155,7 +178,6 @@
 						<button type="submit" class="btn btn-success" style=" margin-right: 13px;">Save</button>
 					</div>
 				</div>
-
 
 			</form>
 

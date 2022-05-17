@@ -16,6 +16,9 @@ namespace Beautopia.Model.Area
 		public string EquipmentImage { get; set; }
 
 		public IFormFile EquipmentImageFile { get; set; }
+		public string EquipmentImageAr { get; set; }
+
+		public IFormFile EquipmentImageFileAr { get; set; }
 		public bool IsActive { get; set; }
 		public string IsActiveChecked { get; set; }
 		public string CreatedBy { get; set; }

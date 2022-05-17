@@ -503,9 +503,9 @@ pre {
   @media (min-width: 1024px) {
     .container {
       max-width: 100%; } }
-  @media (min-width: 1230px) {
+/*  @media (min-width: 1230px) {
     .container {
-      max-width: 1200px; } }
+      max-width: 1200px; } }*/
 
 .container-fluid {
   width: 100%;
@@ -2376,7 +2376,7 @@ tbody.collapse.show {
 
 .navbar-collapse {
   flex-basis: 100%;
-  flex-grow: 1;
+  /*flex-grow: 1;*/
   align-items: center; }
 
 .navbar-toggler {

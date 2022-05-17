@@ -493,6 +493,7 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.SliderImage = Convert.ToString(reader["SliderImage"]);
+                    obj.SliderImageAr = Convert.ToString(reader["SliderImageAr"]);
                     obj.title1 = Convert.ToString(reader["title1"]);
                     obj.title2 = Convert.ToString(reader["title2"]);
                     obj.title3 = Convert.ToString(reader["title3"]);
@@ -539,6 +540,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateSliders";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@SliderImage", SqlDbType.NVarChar, 400000).Value = param.SliderImage;
+                dbCommand.Parameters.Add("@SliderImageAr", SqlDbType.NVarChar, 400000).Value = param.SliderImageAr;
                 dbCommand.Parameters.Add("@title1", SqlDbType.NVarChar, 250).Value = param.title1;
                 dbCommand.Parameters.Add("@title2", SqlDbType.NVarChar, 250).Value = param.title2;
                 dbCommand.Parameters.Add("@title3", SqlDbType.NVarChar, 250).Value = param.title3;
@@ -615,6 +617,7 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.OfferImage = Convert.ToString(reader["OfferImage"]);
+                    obj.OfferImageAr = Convert.ToString(reader["OfferImageAr"]);
                     obj.Title = Convert.ToString(reader["Title"]);
                     obj.TitleAr = Convert.ToString(reader["TitleAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
@@ -659,6 +662,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateOffers";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@OfferImage", SqlDbType.NVarChar, 400000).Value = param.OfferImage;
+                dbCommand.Parameters.Add("@OfferImageAr", SqlDbType.NVarChar, 400000).Value = param.OfferImageAr;
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
                 dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
@@ -734,6 +738,7 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.DoctorImage = Convert.ToString(reader["DoctorImage"]);
+                    obj.DoctorImageAr = Convert.ToString(reader["DoctorImageAr"]);
                     obj.DoctorName = Convert.ToString(reader["DoctorName"]);
                     obj.DoctorNameAr = Convert.ToString(reader["DoctorNameAr"]);
                     obj.Designation = Convert.ToString(reader["Designation"]);
@@ -783,6 +788,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateDoctor";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@DoctorImage", SqlDbType.NVarChar, 400000).Value = param.DoctorImage;
+                dbCommand.Parameters.Add("@DoctorImageAr", SqlDbType.NVarChar, 400000).Value = param.DoctorImageAr;
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
                 dbCommand.Parameters.Add("@Designation", SqlDbType.NVarChar, 250).Value = param.Designation;
                 dbCommand.Parameters.Add("@DoctorName", SqlDbType.NVarChar, 250).Value = param.DoctorName;
@@ -859,6 +865,7 @@ namespace Beautopia.Services.DataAppService
                     // obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.ID = Convert.ToInt32(reader["ID"]);
                     obj.SmileImage = Convert.ToString(reader["SmileImage"]);
+                    obj.SmileImageAr = Convert.ToString(reader["SmileImageAr"]);
                     obj.Title = Convert.ToString(reader["Title"]);
 
 
@@ -900,6 +907,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandText = "SP_InsertUpdateSmileGillary";
                 dbCommand.Parameters.Add("@ID", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@SmileImage", SqlDbType.NVarChar, 400000).Value = param.SmileImage;
+                dbCommand.Parameters.Add("@SmileImageAr", SqlDbType.NVarChar, 400000).Value = param.SmileImageAr;
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
 
 
@@ -976,6 +984,7 @@ namespace Beautopia.Services.DataAppService
                     obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
                     obj.EquipmentImage = Convert.ToString(reader["EquipmentImage"]);
+                    obj.EquipmentImageAr = Convert.ToString(reader["EquipmentImageAr"]);
                     obj.EquipmentIcon = Convert.ToString(reader["EquipmentIcon"]);
 
 
@@ -1022,6 +1031,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
                 dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
                 dbCommand.Parameters.Add("@EquipmentImage", SqlDbType.NVarChar, 400000).Value = param.EquipmentImage;
+                dbCommand.Parameters.Add("@EquipmentImageAr", SqlDbType.NVarChar, 400000).Value = param.EquipmentImageAr;
 
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
@@ -1221,6 +1231,7 @@ namespace Beautopia.Services.DataAppService
                     obj.TikTok = Convert.ToString(reader["TikTok"]);
                     obj.Twitter = Convert.ToString(reader["Twitter"]);
                     obj.LogoImage = Convert.ToString(reader["LogoImage"]);
+                    obj.LogoImageAr = Convert.ToString(reader["LogoImageAr"]);
                     obj.IsArabicByDefault = Convert.ToBoolean(reader["IsArabicByDefault"]);
                     
 
@@ -1275,6 +1286,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@TikTok", SqlDbType.NVarChar, 500).Value = param.TikTok;
                 dbCommand.Parameters.Add("@Twitter", SqlDbType.NVarChar, 500).Value = param.Twitter;
                 dbCommand.Parameters.Add("@LogoImage", SqlDbType.NVarChar, 40000).Value = param.LogoImage;
+                dbCommand.Parameters.Add("@LogoImageAr", SqlDbType.NVarChar, 40000).Value = param.LogoImageAr;
                 dbCommand.Parameters.Add("@IsArabicByDefault", SqlDbType.Bit).Value = param.IsArabicByDefault;
 
                 dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;

@@ -20,6 +20,7 @@
 
 }
 
+
 <!--section slider-->
 <div class="section mt-0">
 	<div class="quickLinks-wrap js-quickLinks-wrap-d d-none d-lg-flex">
@@ -95,7 +96,7 @@
 							</table>
 						</div>
 					</div>
-					<div class="col" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
+					<div class="col" dir="@(SessionLang=="Ar"? "rtl": "ltr")" style="display:none">
 						<a href="#" class="link">
 							<i class="icon-pencil-writing"></i><span>@(SessionLang=="Ar"? "نموذج طلب" : "Request Form")</span>
 						</a>
@@ -223,14 +224,14 @@
 					</div>
 					<div class="col" >
 						<a href="#" class="link">
-							<i class="icon-emergency-call"></i><span>@(SessionLang=="Ar"? "حالة طارئة" : "Emergency Case")</span>
+							<i class="icon-emergency-call"></i><span>@(SessionLang=="Ar"? "بيانات المتصل" : "Contact Details")</span>
 						</a>
 						<div class="link-drop">
-							<h5 class="link-drop-title"><i class="icon-emergency-call"></i>@(SessionLang=="Ar"? "حالة طارئة" : "Emergency Case")</h5>
-							<p>@(SessionLang=="Ar"? "لحالات الطوارئ يرجى الاتصال بنا على القنوات أدناه" : "For emergency please contact us on below channels") </p>
+							<h5 class="link-drop-title"><i class="icon-emergency-call"></i>@(SessionLang=="Ar"? "بيانات المتصل" : "Contact Details")</h5>
+							<p>@(SessionLang=="Ar"? "يرجى الاتصال بنا على القنوات أدناه" : "Please contact us on below channels") </p>
 							<ul class="icn-list">
 								<li>
-									<i class="icon-telephone"></i><span class="phone">@(SessionLang=="Ar"?siteInfo.ContactAr : siteInfo.Contact)<br>@(SessionLang=="Ar"?siteInfo.ContactAr : siteInfo.Contact)</span>
+									<i class="icon-telephone"></i><span class="phone">@(SessionLang=="Ar"?siteInfo.Contact : siteInfo.Contact)</span>
 								</li>
 								<li><i class="icon-black-envelope"></i><a href="mailto:@siteInfo.Email">@siteInfo.Email</a></li>
 							</ul>
@@ -367,12 +368,12 @@
 			{
 				if (Counta == 1)
 				{
-					<a class="nav-link active" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-molecular"></i><span> @(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
+					<a class="nav-link active" data-toggle="pill" href="#Equip_@asd.ID" role="tab"><i class=""></i><span> @(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
 				}
 				else
 				{
 
-					<a class="nav-link" data-toggle="pill" href="#@asd.EquipmentIcon" role="tab"><i class="icon-dental-chair"></i><span>@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
+					<a class="nav-link" data-toggle="pill" href="#Equip_@asd.ID" role="tab"><i class=""></i><span>@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
 				}
 
 
@@ -399,7 +400,7 @@
 			{
 				if (Countaa == 1)
 				{
-					<div id="@asd.EquipmentIcon" class="tab-pane fade show active" role="tabpanel">
+					<div id="Equip_@asd.ID" class="tab-pane fade show active" role="tabpanel">
 						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
 						<div class="row">
 							<div class="col-md-6 h-100 mb-2 mb-md-0">
@@ -420,7 +421,7 @@
 				{
 
 
-					<div id="@asd.EquipmentIcon" class="tab-pane fade" role="tabpanel">
+					<div id="Equip_@asd.ID" class="tab-pane fade" role="tabpanel">
 						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
 						<div class="row">
 							<div class="col-md-6 h-100 mb-2 mb-md-0">

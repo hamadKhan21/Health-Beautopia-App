@@ -11,15 +11,15 @@
 			<form id="manageequipment" method="post" novalidate>
 
 				<div class="row row-xs-space mt-1">
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<Label>
 							Title En
-						</Label> 
+						</Label>
 						<input type="text" name="Title" id="Title" class="form-control inputClass" autocomplete="off" placeholder="Enter Title En" />
 
 
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<Label>
 							Title Ar
 						</Label>
@@ -27,7 +27,7 @@
 
 
 					</div>
-					<div class="col-sm-2 mt-1 mt-sm-0">
+					<div class="col-sm-2 mt-1 mt-sm-0" style="display:none">
 						<Label>
 							Equipment Icon
 						</Label>
@@ -50,6 +50,23 @@
 
 
 						<img src="" id="subservice-img-tag" onerror='this.src = "../admin-custom/Images/no image.png"' style="width:145px;" />
+
+					</div>
+
+					<div class="col-sm-2 mt-1 mt-sm-0">
+						<Label>
+							Image
+						</Label>
+
+						<input type="file" name="EquipmentImageFileAr" id="EquipmentImageFileAr" class="form-control inputClass" />
+						<input type="hidden" name="EquipmentImageAr" id="EquipmentImageAr" class="form-control inputClass" />
+
+					</div>
+					<div class="col-sm-2 mt-1 mt-sm-0">
+
+
+
+						<img src="" id="subservice-img-tagAr" onerror='this.src = "../admin-custom/Images/no image.png"' style="width:145px;" />
 
 					</div>
 

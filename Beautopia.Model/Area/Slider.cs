@@ -12,6 +12,9 @@ namespace Beautopia.Model.Area
 		public IFormFile SliderImageFile { get; set; }
 		public string SliderImage { get; set; }
 
+		public IFormFile SliderImageFileAr { get; set; }
+		public string SliderImageAr { get; set; }
+
 		public string title1 { get; set; }
 		public string title2 { get; set; }
 		public string title3 { get; set; }

@@ -23,7 +23,12 @@ namespace Beautopia.Model.Area
 
 		public string LogoImage { get; set; }
 		public IFormFile LogoImageFile { get; set; }
-		
+
+		public string LogoImageAr { get; set; }
+		public IFormFile LogoImageFileAr { get; set; }
+
+
+
 		public string IsArabicByDefaultChecked { get; set; }
 		public bool IsArabicByDefault { get; set; }
 

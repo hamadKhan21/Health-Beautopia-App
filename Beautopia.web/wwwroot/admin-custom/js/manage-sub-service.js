@@ -105,7 +105,19 @@ $("#SubServiceImage").change(function () {
     readURL(this);
 });
 
+function readURLAr(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $('#subservice-img-tagAr').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#SubServiceImageAr").change(function () {
+    readURLAr(this);
+});
 
 GetServiceCategoriesLkp();
 GetAllSubServiceCategory()
@@ -160,6 +172,7 @@ function ClearFields() {
     $(".chkClass").prop('checked', false);
     $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
     $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
    // $(".selectClass").val();
 }
 
@@ -249,7 +262,7 @@ function InitGetAllSubServiceCategory(cdrData) {
             },
 
            
-            //{ command: { text: "Return", click: showDetails }, title: " ", width: "100px" }
+            { command: { text: "Delete", click: DeleteRecord }, title: " ", width: "100px" }
 
 
 
@@ -295,7 +308,44 @@ function InitGetAllSubServiceCategory(cdrData) {
 
   
 }
+function DeleteRecord(e) {
 
+
+   // ShowPreloader()
+   // $("#customerTobeApprovedDiv").empty();
+  //  $("#customerTobeApprovedDiv").append('<div id="customerTobeApproved" style="margin-top:5px;z-index:5 !important;"></div>')
+
+
+    e.preventDefault();
+
+
+    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+   // var IsActiveORNot = (dataItem.IsActive == "false" ? true : false);
+    //debugger
+    var datas = { 'ID': dataItem.id, 'Entity':'ServiceSubCategory'};
+    $.ajax({
+        type: "POST",
+        url: "/Admin/Settings/RemoveTheRecord",
+        //data: "{mdate:" + "m" + "}",
+        data: datas,
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        //headers: { "Authorization": $("#JSonParaValue").val() },
+        success: function (data) {
+
+
+            //CountofAvailableMarkers = data.length;
+            InitGrid(data);
+
+
+
+        }
+
+
+
+    });
+}
 
 $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) {
    //debugger;
@@ -307,6 +357,7 @@ $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) 
     $("#ServicePrice").val(dataItem.servicePrice);
     $("#CategoryID").val(dataItem.categoryID);
     $("#SubServiceImageName").val(dataItem.subServiceImageName);
+    $("#SubServiceImageNameAr").val(dataItem.subServiceImageNameAr);
 
     $("textarea#Description").val(dataItem.description);
     $("textarea#DescriptionAr").val(dataItem.descriptionAr);
@@ -329,7 +380,13 @@ $(document).on("dblclick", "#ServiceSubCatereceivedGrid tbody tr", function (e) 
         $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
     }
 
+    if (dataItem.subServiceImageNameAr != "" && dataItem.subServiceImageNameAr != null) {
+        $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/SubServices/" + dataItem.subServiceImageNameAr);
+    }
+    else {
 
+        $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
+    }
     //$("#tabs").tabs("select", "Store-Update")
 });
 

@@ -93,7 +93,19 @@ $("#SliderImageFile").change(function () {
     readURL(this);
 });
 
+function readURLAr(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+            $('#subservice-img-tagAr').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#SliderImageFileAr").change(function () {
+    readURLAr(this);
+});
 
 
 GetAllSliders()
@@ -115,6 +127,7 @@ function ClearFields() {
     $(".chkClass").prop('checked', false);
   //  $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
     $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
    // $(".selectClass").val();
 }
 
@@ -267,6 +280,7 @@ $(document).on("dblclick", "#sliderGrid tbody tr", function (e) {
     $("#title3Ar").val(dataItem.title3Ar);
 
     $("#SliderImage").val(dataItem.sliderImage);
+    $("#SliderImageAr").val(dataItem.sliderImageAr);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);
    // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
@@ -286,6 +300,14 @@ $(document).on("dblclick", "#sliderGrid tbody tr", function (e) {
         $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
     }
 
+
+    if (dataItem.sliderImageAr != "" && dataItem.sliderImageAr != null) {
+        $("#subservice-img-tagAr").attr("src", "/medlab/images/content/slider/" + dataItem.sliderImageAr);
+    }
+    else {
+
+        $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
+    }
 
     //$("#tabs").tabs("select", "Store-Update")
 });

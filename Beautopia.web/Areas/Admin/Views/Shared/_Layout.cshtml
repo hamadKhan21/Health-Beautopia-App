@@ -50,7 +50,7 @@
 <body>
 
 	<div id="wrapper">
-
+		@Html.AntiForgeryToken()
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
@@ -64,7 +64,7 @@
 			</div>
 			<!-- /.navbar-header -->
 
-			<ul class="nav navbar-top-links navbar-right" >
+			<ul class="nav navbar-top-links navbar-right">
 
 				<li class="dropdown" style="display:none">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -132,12 +132,12 @@
 					</a>
 					<ul class="dropdown-menu dropdown-user">
 						@*<li>
-								<a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-							</li>
-							<li class="divider"></li>*@
+							<a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>*@
 						<li>
 							<a href="/Admin"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 						</li>
@@ -165,23 +165,23 @@
 
 						@foreach (var item in Menus)
 						{@*<li>
-									<a href="/Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-								</li>*@
-										<li>
-											@{ var arrowClass = (item.MenuUrl == "/Dashboard" ? "" : "fa arrow"); }
-											<a href="@item.MenuUrl"><i class="@item.customIcon"></i> @item.MenuNameEn<span class="@arrowClass"></span></a>
-											<ul class="nav nav-second-level">
-												@{var SubMenuList = login.Menus.Where(a => a.SubMenuId == item.MenuID).ToList(); }
-												@foreach (var men in SubMenuList)
-												{
-								<li>
-									<a href="@men.MenuUrl">@men.MenuNameAr</a>
-								</li>
-}
-											</ul>
-											<!-- /.nav-second-level -->
-										</li>
-}
+								<a href="/Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+							</li>*@
+						<li>
+							@{ var arrowClass = (item.MenuUrl == "/Dashboard" ? "" : "fa arrow"); }
+							<a href="@item.MenuUrl"><i class="@item.customIcon"></i> @item.MenuNameEn<span class="@arrowClass"></span></a>
+							<ul class="nav nav-second-level">
+								@{var SubMenuList = login.Menus.Where(a => a.SubMenuId == item.MenuID).ToList(); }
+								@foreach (var men in SubMenuList)
+								{
+									<li>
+										<a href="@men.MenuUrl">@men.MenuNameAr</a>
+									</li>
+								}
+							</ul>
+							<!-- /.nav-second-level -->
+						</li>
+					}
 					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->

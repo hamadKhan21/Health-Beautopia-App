@@ -30,6 +30,8 @@ namespace Beautopia.Services.IDataService
 
 		void InsertUpdateServiceSubCategory(ServiceSubCategory param, string CreatedBy);
 
+		void RemoveEntityRecord(string Entity, string ID);
+
 		List<ServiceSubCategory> GetAllServiceSubCategory();
 
 		List<ActivityType> GetActivityType();

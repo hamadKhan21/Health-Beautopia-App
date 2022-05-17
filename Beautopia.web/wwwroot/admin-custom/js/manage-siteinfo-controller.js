@@ -22,10 +22,10 @@ $document.ready(function () {
                     required: true,
                     //minlength: 2
                 },
-                ContactAr: {
-                    required: true,
-                    //minlength: 2
-                },
+                //ContactAr: {
+                //    required: true,
+                //    //minlength: 2
+                //},
                 Email: {
                     required: true,
                     //minlength: 2
@@ -47,10 +47,10 @@ $document.ready(function () {
                     required: "Please Enter Contact"
                     //minlength: "Your name must consist of at least 2 characters"
                 },
-                ContactAr: {
-                    required: "Please Enter Contact Ar"
-                    //minlength: "Your name must consist of at least 2 characters"
-                },
+                //ContactAr: {
+                //    required: "Please Enter Contact Ar"
+                //    //minlength: "Your name must consist of at least 2 characters"
+                //},
                 Email: {
                     required: "Please Enter Email"
                     //minlength: "Your name must consist of at least 2 characters"
@@ -106,6 +106,19 @@ $("#LogoImageFile").change(function () {
 });
 
 
+function readURLAr(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#subservice-img-tag-ar').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#LogoImageFileAr").change(function () {
+    readURLAr(this);
+});
 
 
 GetSiteInfo()
@@ -159,6 +172,7 @@ function BindData(dataItem) {
     $("#SnapChat").val(dataItem.snapChat);
     $("#TikTok").val(dataItem.tikTok);
     $("#LogoImage").val(dataItem.logoImage);
+    $("#LogoImageAr").val(dataItem.logoImageAr);
 
     if (dataItem.isArabicByDefault == true) {
 
@@ -177,6 +191,16 @@ function BindData(dataItem) {
     else {
 
         $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    }
+
+
+
+    if (dataItem.logoImageAr != "" && dataItem.logoImageAr != null) {
+        $("#subservice-img-tag-ar").attr("src", "/medlab/images/content/logo/" + dataItem.logoImageAr);
+    }
+    else {
+
+        $("#subservice-img-tag-ar").attr("src", "/admin-custom/Images/no image.png");
     }
 }
 

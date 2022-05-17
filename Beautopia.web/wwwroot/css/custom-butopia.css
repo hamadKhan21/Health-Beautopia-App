@@ -9,3 +9,16 @@ direction:rtl;
 	padding-right: 7px !important;
 	line-height: 34px !important;
 }
+
+.nav-item-custom {
+	padding: 0 29px !important;
+	
+}
+.nav-link-custom {
+	font-size: 19px !important 
+}
+
+.navbar-nav-custom {
+	margin-right: -51px !important;
+}
+

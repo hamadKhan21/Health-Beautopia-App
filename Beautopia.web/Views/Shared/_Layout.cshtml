@@ -57,7 +57,7 @@
 				<div class="row align-items-center">
 					<div class="col-auto d-flex align-items-center">
 						<div class="header-info"><i class="icon-placeholder2"></i>@(SessionLang=="Ar"? siteInfo.AddressAr:siteInfo.Address) </div>
-						<div class="header-phone"><i class="icon-telephone"></i><a href="tel:@siteInfo.Contact">@(SessionLang=="Ar"? siteInfo.ContactAr:siteInfo.Contact)</a></div>
+						<div class="header-phone"><i class="icon-telephone"></i><a href="tel:@siteInfo.Contact">@(SessionLang=="Ar"? siteInfo.Contact:siteInfo.Contact)</a></div>
 						<div class="header-info"><i class="icon-black-envelope"></i><a href="mailto:@siteInfo.Email">@siteInfo.Email</a></div>
 					</div>
 					<div class="col-auto ml-auto d-flex align-items-center">
@@ -78,15 +78,15 @@
 						<span class="icon-menu"></span>
 					</button>
 					<div class="col-lg-auto col-lg-2 d-flex align-items-lg-center">
-						<a asp-controller="Home" asp-action="Index" class="header-logo"><img src="~/medlab/images/content/logo/@(SessionLang=="Ar"?siteInfo.LogoImage:"logo_21102622.png")" alt="" class="img-fluid"></a>
+						<a asp-controller="Home" asp-action="Index" class="header-logo"><img src="~/medlab/images/content/logo/@(SessionLang=="Ar"?siteInfo.LogoImageAr:siteInfo.LogoImage)" alt="" class="img-fluid"></a>
 					</div>
 					<div class="col-lg ml-auto header-nav-wrap">
 						<div class="header-nav js-header-nav">
 							<nav class="navbar navbar-expand-lg btco-hover-menu">
 								<div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-									<ul class="navbar-nav">
-										<li class="nav-item">
-											<a href="#" class="nav-link dropdown-toggle  custom-btn" data-toggle="dropdown">@(SessionLang=="Ar"? "معلومات عنا":"About Us")</a>
+									<ul class="@(SessionLang=="Ar"? "navbar-nav navbar-nav-custom":"navbar-nav")">
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a href="#" class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") dropdown-toggle  custom-btn" data-toggle="dropdown">@(SessionLang=="Ar"? "معلومات عنا":"About Us")</a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" asp-controller="Home" asp-action="BeyondtheBrand">@(SessionLang=="Ar"? "ما وراء العلامة التجارية": "Beyond the Brand")</a></li>
 												<li><a class="dropdown-item" asp-controller="Home" asp-action="MessageFromCEO">@(SessionLang=="Ar"? "رسالة من الرئيس التنفيذي": "Message From CEO") </a></li>
@@ -94,40 +94,43 @@
 											</ul>
 										</li>
 
-										<li class="nav-item">
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="SERVICES">@(SessionLang=="Ar"? "خدمات" : "SERVICES")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="SERVICES">@(SessionLang=="Ar"? "خدمات" : "SERVICES")</a>
 										</li>
-										<li class="nav-item">
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="OURSPECIALISTS">@(SessionLang=="Ar"? "أطبائنا" : "Our Doctors")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="OURSPECIALISTS">@(SessionLang=="Ar"? "أطبائنا" : "Our Doctors")</a>
 										</li>
-										<li class="nav-item">
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="Devices">@(SessionLang=="Ar"? "الأجهزة" : "Devices")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="Devices">@(SessionLang=="Ar"? "الأجهزة" : "Devices")</a>
 										</li>
-										<li class="nav-item">
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="GALLERY">@(SessionLang=="Ar"? "صالة عرض" : "Gallery")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="Devices">@(SessionLang=="Ar"? "عرض" : "Offer")</a>
+										</li>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="GALLERY">@(SessionLang=="Ar"? "صالة عرض" : "Gallery")</a>
 										</li>
 
 
 
-										<li class="nav-item custom-btn" style="display:none">
-											<a class="nav-link" asp-controller="Home" asp-action="TESTIMONIALS">Testimonials</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item") custom-btn" style="display:none">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link")" asp-controller="Home" asp-action="TESTIMONIALS">Testimonials</a>
 										</li>
-										<li class="nav-item dropdown" style="display:none">
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item") dropdown" style="display:none">
 											<a href="blog.html" class="nav-link dropdown-toggle" data-toggle="dropdown">Blog</a>
-											<ul class="dropdown-menu">
+											cust		<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="blog.html">Blog Posts</a></li>
 												<li><a class="dropdown-item" href="blog-grid.html">Blog Grid Posts</a></li>
 												<li><a class="dropdown-item" href="blog-post-page.html">Blog Single Post</a></li>
 											</ul>
 										</li>
-										<li class="nav-item"> 
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="ContactUs">@(SessionLang=="Ar"? "اتصل بنا" : "Contact Us")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="ContactUs">@(SessionLang=="Ar"? "اتصل بنا" : "Contact Us")</a>
 										</li>
-										<li class="nav-item">
-											<a class="nav-link custom-btn" asp-controller="Home" asp-action="requestservice">@(SessionLang=="Ar"? "جدولة زيارة" : "Schedule a Visit")</a>
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
+											<a class="@(SessionLang=="Ar"? "nav-link nav-link-custom":"nav-link") custom-btn" asp-controller="Home" asp-action="requestservice">@(SessionLang=="Ar"? "جدولة زيارة" : "Schedule a Visit")</a>
 										</li>
 
-										<li class="nav-item">
+										<li class="@(SessionLang=="Ar"? "nav-item nav-item-custom":"nav-item")">
 											<a href="#" id="changeLang" class="nav-link custom-btn">@(SessionLang == "Ar"?"En":"Ar")</a>
 
 										</li>
@@ -163,7 +166,7 @@
 					<div class="row flex-column flex-md-row flex-lg-column">
 						<div class="col-md col-lg-auto">
 							<div class="footer-logo">
-								<img src="~/medlab/images/content/logo/@(SessionLang=="Ar"?siteInfo.LogoImage:"logo_21102622.png")" alt="" class="img-fluid">
+								<img src="~/medlab/images/content/logo/@(SessionLang=="Ar"?siteInfo.LogoImageAr:siteInfo.LogoImage)" alt="" class="img-fluid">
 							</div>
 							<div class="mt-2 mt-lg-0"></div>
 							<div class="footer-social d-none d-md-block d-lg-none">
@@ -208,7 +211,7 @@
 							<a href="https://goo.gl/maps/FWqonVYrZn8tqZhV6" target="_blank" class="btn btn-xs btn-gradient"><i class="icon-placeholder2"></i><span>@(SessionLang=="Ar"? "الحصول على الاتجاهات على الخريطة": "Get directions on the map")</span><i class="icon-right-arrow"></i></a>
 						</li>
 						<li>
-							<i class="icon-telephone"></i><b><span class="phone"><span class="text-nowrap">@(SessionLang=="Ar"? siteInfo.ContactAr:siteInfo.Contact)</span>, <span class="text-nowrap">@(SessionLang=="Ar"? siteInfo.ContactAr:siteInfo.Contact)</span></span></b>
+							<i class="icon-telephone"></i><b><span class="phone"><span class="text-nowrap">@(SessionLang=="Ar"? siteInfo.Contact:siteInfo.Contact)</span></span></b>
 							<br>@(SessionLang=="Ar"? "(۲٤/۷ الاستفسار العام)" : "(24/7 General inquiry)")
 						</li>
 						<li><i class="icon-black-envelope"></i><a href="mailto:@siteInfo.Email">@siteInfo.Email</a></li>
@@ -223,7 +226,7 @@
 						@(SessionLang=="Ar"? "حقوق النشر © ۲۰۲۰" : "Copyright © 2022") <a href="#">@(SessionLang=="Ar"? "بيوتوبيا" : "BUTOPIA")</a><span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span>
 						<a href="#">@(SessionLang=="Ar"? "سياسة الخصوصية" : "Privacy Policy")</a>
 					</div>
-					<div class="col-sm-auto ml-auto"><span class="d-none d-sm-inline">@(SessionLang=="Ar"? "للحالات الطارئة" : "For emergency cases")&nbsp;&nbsp;&nbsp;</span><i class="icon-telephone"></i>&nbsp;&nbsp;<b>@(SessionLang=="Ar"? siteInfo.ContactAr:siteInfo.Contact)</b></div>
+					<div class="col-sm-auto ml-auto"><span class="d-none d-sm-inline">@(SessionLang=="Ar"? "تواصل معنا على" : "Contact Us at")&nbsp;&nbsp;&nbsp;</span><i class="icon-telephone"></i>&nbsp;&nbsp;<b>@(SessionLang=="Ar"? siteInfo.Contact:siteInfo.Contact)</b></div>
 				</div>
 			</div>
 		</div>

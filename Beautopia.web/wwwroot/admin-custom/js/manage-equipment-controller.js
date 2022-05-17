@@ -18,10 +18,10 @@ $document.ready(function () {
                     required: true,
                     //minlength: 2
                 },
-                EquipmentIcon: {
-					required: true,
+                //EquipmentIcon: {
+					//required: true,
 
-                },
+               // },
 
                 
               //  EquipmentImageFile: {
@@ -45,11 +45,11 @@ $document.ready(function () {
 				//	required: "Please enter your Name",
 				//	//minlength: "Your message must consist of at least 20 characters"
 				//},
-                EquipmentIcon: {
-                    required: "Please enter EquipmentIcon",
+                //EquipmentIcon: {
+                    //required: "Please enter EquipmentIcon",
 					//minlength: "mobile must be 10 digits",
 					//maxlength: "mobile must be 10 digits"
-                },
+                //},
               //  EquipmentImageFile: {
                 //    required: "Please Select Image",
                     //minlength: "mobile must be 10 digits",
@@ -108,6 +108,20 @@ $("#EquipmentImageFile").change(function () {
 });
 
 
+function readURLAr(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#subservice-img-tagAr').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#EquipmentImageFileAr").change(function () {
+    readURLAr(this);
+});
+
 
 
 GetAllDoctors()
@@ -129,6 +143,7 @@ function ClearFields() {
     $(".chkClass").prop('checked', false);
   //  $("#CategoryID option:contains(" + "Select Sub Service Category" + ")").attr('selected', 'selected');
     $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
+    $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
    // $(".selectClass").val();
 }
 
@@ -170,9 +185,9 @@ function Initequipment(cdrData) {
                         titleAr: {
                             type: "string"
                         },
-                        equipmentIcon: {
-                            type: "string"
-                        },
+                        //equipmentIcon: {
+                        //    type: "string"
+                        //},
                        
                         //description: {
                         //    type: "string"
@@ -202,12 +217,12 @@ function Initequipment(cdrData) {
 
             },
 
-            {
-                title: "Equipment Icon",
-                field: "equipmentIcon",
-                filterable: true
+            //{
+            //    title: "Equipment Icon",
+            //    field: "equipmentIcon",
+            //    filterable: true
 
-            },
+            //},
             //{
               //  title: "Description",
              //   field: "description",
@@ -290,6 +305,7 @@ $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
    // tinyMCE.get('DescriptionArEditor').setContent(dataItem.descriptionAr);
 
     $("#EquipmentImage").val(dataItem.equipmentImage);
+    $("#EquipmentImageAr").val(dataItem.equipmentImageAr);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);
    // document.querySelector("#SubServiceImage").src = "/admin-custom/Images/SubServices/"+dataItem.subServiceImageName
     if (dataItem.isActive == "true") {
@@ -309,7 +325,13 @@ $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
         $("#subservice-img-tag").attr("src", "/admin-custom/Images/no image.png");
     }
 
+    if (dataItem.equipmentImageAr != "" && dataItem.equipmentImageAr != null) {
+        $("#subservice-img-tagAr").attr("src", "/medlab/images/content/devices/" + dataItem.equipmentImageAr);
+    }
+    else {
 
+        $("#subservice-img-tagAr").attr("src", "/admin-custom/Images/no image.png");
+    }
     //$("#tabs").tabs("select", "Store-Update")
 });
 

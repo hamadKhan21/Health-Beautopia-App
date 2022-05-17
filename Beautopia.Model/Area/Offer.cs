@@ -10,7 +10,10 @@ namespace Beautopia.Model.Area
 		public int ID { get; set; }
 		public string OfferImage { get; set; }
 		public IFormFile OfferImageFile { get; set; }
-		
+
+		public string OfferImageAr { get; set; }
+		public IFormFile OfferImageFileAr { get; set; }
+
 		public string Title { get; set; }
 		public string TitleAr { get; set; }
 		public string Description { get; set; }

@@ -87,7 +87,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<JsonResult> SaveUpdateSubServices([Bind("ID,SubCategoryNameEn,SubCategoryNameAr" +
-			",Description,DescriptionAr,IsActiveChecked,ServicePrice,CategoryID,SubServiceImage,SubServiceImageName")] ServiceSubCategory obj)
+			",Description,DescriptionAr,IsActiveChecked,ServicePrice,CategoryID,SubServiceImage,SubServiceImageName,SubServiceImageAr,SubServiceImageNameAr")] ServiceSubCategory obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<ServiceSubCategory> servicecate = new List<ServiceSubCategory>();
@@ -131,7 +131,40 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 				}
 
+				if (obj.SubServiceImageAr != null)
+				{
+					var extention = Path.GetExtension(obj.SubServiceImageAr.FileName);
+					if (extention == ".jpg" || extention == ".jpeg" || extention == ".png")
+					{
+						// Create a File Info 
+						FileInfo fi = new FileInfo(obj.SubServiceImageAr.FileName);
 
+						// This code creates a unique file name to prevent duplications 
+						// stored at the file location
+						var newFilenameAr = login.UserName + "_" + String.Format("{0:d}",
+										  (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+						var webPath = _hostEnvironment.ContentRootPath;
+						var path = Path.Combine("", webPath + @"\wwwroot\admin-custom\Images\SubServices\" + newFilenameAr);
+
+						// IMPORTANT: The pathToSave variable will be save on the column in the database
+						//var pathToSave = @"/images/" + newFilename;
+						obj.SubServiceImageNameAr = newFilenameAr;
+						//info.IncomingCreatedBy = login.EmployeeNumber;
+						// This stream the physical file to the allocate wwwroot/ImageFiles folder
+						using (var stream = new FileStream(path, FileMode.Create))
+						{
+							await obj.SubServiceImageAr.CopyToAsync(stream);
+						}
+						//_dispatchService.InsertUpdateOutdoing(info);
+						//message = "Success";
+					}
+					else
+					{
+						//message = "File is not in correct format, only png,jpeg, pdf or jpg is allowed";
+					}
+					// This save the path to the record
+
+				}
 
 				_serviceRequest.InsertUpdateServiceSubCategory(obj, login.UserName);
 				 servicecate = _serviceRequest.GetAllServiceSubCategory();
@@ -159,7 +192,14 @@ namespace Beautopia.web.Areas.Admin.Controllers
 
 			return Json(data);
 		}
+		//[ValidateAntiForgeryToken]
+		public JsonResult RemoveTheRecord(string Entity,string ID)
+		{
+			_serviceRequest.RemoveEntityRecord(Entity, ID);
 
+
+			return Json("");
+		}
 
 		public JsonResult GetServiceCategory()
 		{

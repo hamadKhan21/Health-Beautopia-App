@@ -706,6 +706,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = CreatedBy;
                 dbCommand.Parameters.Add("@SubServiceImageName", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageName;
+                dbCommand.Parameters.Add("@SubServiceImageNameAr", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageNameAr;
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 1000).Value = param.Description;
                 dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 1000).Value = param.DescriptionAr;
 
@@ -732,6 +733,47 @@ namespace Beautopia.Services.DataAppService
             //
         }
 
+        public void RemoveEntityRecord(string Entity, string ID)
+        {
+            int ReturnEmpID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_RemoveEntityRecord";
+                dbCommand.Parameters.Add("@ID ", SqlDbType.NVarChar, 500).Value = ID;
+                dbCommand.Parameters.Add("@Entity", SqlDbType.NVarChar, 500).Value = Entity;
+              
+
+                dbCommand.ExecuteNonQuery();
+                //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            // return ReturnEmpID;
+            //
+        }
         public List<ServiceSubCategory> GetAllServiceSubCategory()
         {
             List<ServiceSubCategory> Lisobj = new List<ServiceSubCategory>();
@@ -771,6 +813,7 @@ namespace Beautopia.Services.DataAppService
                     obj.CategoryID = Convert.ToInt32(reader["CategoryID"]);
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
                     obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
+                    obj.SubServiceImageNameAr = Convert.ToString(reader["SubServiceImageNameAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
                     obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
                     obj.CategoryNameEn = Convert.ToString(reader["CategoryNameEn"]);

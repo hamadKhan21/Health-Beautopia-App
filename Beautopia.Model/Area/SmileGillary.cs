@@ -12,6 +12,10 @@ namespace Beautopia.Model.Area
 		public string SmileImage { get; set; }
 		
 		public IFormFile SmileImageFile { get; set; }
+
+		public string SmileImageAr { get; set; }
+
+		public IFormFile SmileImageFileAr { get; set; }
 		public bool IsActive { get; set; }
 		public string IsActiveChecked { get; set; }
 		public string CreatedBy { get; set; }
