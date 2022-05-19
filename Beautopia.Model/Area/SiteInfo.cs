@@ -32,5 +32,18 @@ namespace Beautopia.Model.Area
 		public string IsArabicByDefaultChecked { get; set; }
 		public bool IsArabicByDefault { get; set; }
 
+
+
+		public string ServicesTagEn { get; set; }
+		public string ServicesTagAr { get; set; }
+		public string DoctorTagEn { get; set; }
+		public string DoctorTagAr { get; set; }
+		public string DevicesTagEn { get; set; }
+		public string DevicesTagAr { get; set; }
+		public string OfferTagEn { get; set; }
+		public string OfferTagAr { get; set; }
+		public string GillaryTagEn { get; set; }
+		public string GillaryTagAr { get; set; }
+
 	}
 }

@@ -202,6 +202,18 @@ function BindData(dataItem) {
 
         $("#subservice-img-tag-ar").attr("src", "/admin-custom/Images/no image.png");
     }
+
+    $("#ServicesTagEn").val(dataItem.servicesTagEn);
+    $("#ServicesTagAr").val(dataItem.servicesTagAr);
+
+    $("#DoctorTagEn").val(dataItem.doctorTagEn);
+    $("#DoctorTagAr").val(dataItem.doctorTagAr);
+
+    $("#DevicesTagEn").val(dataItem.devicesTagEn);
+    $("#DevicesTagAr").val(dataItem.devicesTagAr);
+
+    $("#OfferTagEn").val(dataItem.offerTagEn);
+    $("#OfferTagAr").val(dataItem.offerTagAr);
 }
 
 

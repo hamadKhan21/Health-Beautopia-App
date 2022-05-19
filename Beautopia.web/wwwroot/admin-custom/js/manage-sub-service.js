@@ -336,7 +336,7 @@ function DeleteRecord(e) {
 
 
             //CountofAvailableMarkers = data.length;
-            InitGrid(data);
+            GetAllSubServiceCategory()
 
 
 

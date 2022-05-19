@@ -642,7 +642,8 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[ValidateAntiForgeryToken]
 		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,AddressAr,Contact,ContactAr,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile," +
-			"LogoImageAr,LogoImageFileAr,IsArabicByDefault,IsArabicByDefaultChecked")] SiteInfo obj)
+			"LogoImageAr,LogoImageFileAr,IsArabicByDefault,IsArabicByDefaultChecked," +
+			"ServicesTagEn,ServicesTagAr,DoctorTagEn,DoctorTagAr,DevicesTagEn,DevicesTagAr,OfferTagEn,OfferTagAr")] SiteInfo obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			SiteInfo objec = new SiteInfo();

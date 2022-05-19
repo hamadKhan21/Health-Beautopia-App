@@ -124,7 +124,7 @@ $("#EquipmentImageFileAr").change(function () {
 
 
 
-GetAllDoctors()
+GetAllEquipments()
 
 
 
@@ -149,7 +149,7 @@ function ClearFields() {
 
 
 
-function GetAllDoctors() {
+function GetAllEquipments() {
 
     $.ajax({
         type: "POST",
@@ -238,7 +238,7 @@ function Initequipment(cdrData) {
             },
 
            
-            //{ command: { text: "Return", click: showDetails }, title: " ", width: "100px" }
+            { command: { text: "Delete", click: DeleteRecord }, title: " ", width: "100px" }
 
 
 
@@ -284,7 +284,31 @@ function Initequipment(cdrData) {
 
   
 }
+function DeleteRecord(e) {
+    e.preventDefault();
 
+    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+    // var IsActiveORNot = (dataItem.IsActive == "false" ? true : false);
+    //debugger
+    var datas = { 'ID': dataItem.id, 'Entity': 'Equipment' };
+    $.ajax({
+        type: "POST",
+        url: "/Admin/Settings/RemoveTheRecord",
+        //data: "{mdate:" + "m" + "}",
+        data: datas,
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        //headers: { "Authorization": $("#JSonParaValue").val() },
+        success: function (data) {
+            GetAllEquipments()
+
+        }
+
+
+
+    });
+}
 
 $(document).on("dblclick", "#equipmentGrid tbody tr", function (e) {
   // debugger;

@@ -159,7 +159,7 @@ function InitGetDoctorsCategory(cdrData) {
             },
 
            
-            //{ command: { text: "Return", click: showDetails }, title: " ", width: "100px" }
+            { command: { text: "Delete", click: DeleteRecord }, title: " ", width: "100px" }
 
 
 
@@ -205,7 +205,36 @@ function InitGetDoctorsCategory(cdrData) {
 
   
 }
+function DeleteRecord(e) {
+    e.preventDefault();
 
+    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+
+    // var IsActiveORNot = (dataItem.IsActive == "false" ? true : false);
+    //debugger
+    var datas = { 'ID': dataItem.id, 'Entity': 'DoctorsCategory' };
+    $.ajax({
+        type: "POST",
+        url: "/Admin/Settings/RemoveTheRecord",
+        //data: "{mdate:" + "m" + "}",
+        data: datas,
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        //headers: { "Authorization": $("#JSonParaValue").val() },
+        success: function (data) {
+
+
+            //CountofAvailableMarkers = data.length;
+            GetAllDoctorsCategory()
+
+
+
+        }
+
+
+
+    });
+}
 
 $(document).on("dblclick", "#DoctorsCategoryGrid tbody tr", function (e) {
    // debugger;

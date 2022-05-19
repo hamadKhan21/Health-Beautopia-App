@@ -1233,7 +1233,17 @@ namespace Beautopia.Services.DataAppService
                     obj.LogoImage = Convert.ToString(reader["LogoImage"]);
                     obj.LogoImageAr = Convert.ToString(reader["LogoImageAr"]);
                     obj.IsArabicByDefault = Convert.ToBoolean(reader["IsArabicByDefault"]);
-                    
+                    obj.ServicesTagEn = Convert.ToString(reader["ServicesTagEn"]);
+                    obj.ServicesTagAr = Convert.ToString(reader["ServicesTagAr"]);
+                    obj.DevicesTagEn = Convert.ToString(reader["DevicesTagEn"]);
+                    obj.DevicesTagAr = Convert.ToString(reader["DevicesTagAr"]);
+                    obj.DoctorTagEn = Convert.ToString(reader["DoctorTagEn"]);
+                    obj.DoctorTagAr = Convert.ToString(reader["DoctorTagAr"]);
+                    obj.OfferTagEn = Convert.ToString(reader["OfferTagEn"]);
+                    obj.OfferTagAr = Convert.ToString(reader["OfferTagAr"]);
+                    obj.GillaryTagEn = Convert.ToString(reader["GillaryTagEn"]);
+                    obj.GillaryTagAr = Convert.ToString(reader["GillaryTagAr"]);
+
 
 
                     //obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -1288,6 +1298,16 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@LogoImage", SqlDbType.NVarChar, 40000).Value = param.LogoImage;
                 dbCommand.Parameters.Add("@LogoImageAr", SqlDbType.NVarChar, 40000).Value = param.LogoImageAr;
                 dbCommand.Parameters.Add("@IsArabicByDefault", SqlDbType.Bit).Value = param.IsArabicByDefault;
+                dbCommand.Parameters.Add("@ServicesTagEn", SqlDbType.NVarChar, 500).Value = param.ServicesTagEn;
+                dbCommand.Parameters.Add("@ServicesTagAr", SqlDbType.NVarChar, 500).Value = param.ServicesTagAr;
+                dbCommand.Parameters.Add("@DevicesTagEn", SqlDbType.NVarChar, 500).Value = param.DevicesTagEn;
+                dbCommand.Parameters.Add("@DevicesTagAr", SqlDbType.NVarChar, 500).Value = param.DevicesTagAr;
+                dbCommand.Parameters.Add("@DoctorTagEn", SqlDbType.NVarChar, 500).Value = param.DoctorTagEn;
+                dbCommand.Parameters.Add("@DoctorTagAr", SqlDbType.NVarChar, 500).Value = param.DoctorTagAr;
+                dbCommand.Parameters.Add("@OfferTagEn", SqlDbType.NVarChar, 500).Value = param.OfferTagEn;
+                dbCommand.Parameters.Add("@OfferTagAr", SqlDbType.NVarChar, 500).Value = param.OfferTagAr;
+                dbCommand.Parameters.Add("@GillaryTagEn", SqlDbType.NVarChar, 500).Value = param.GillaryTagEn;
+                dbCommand.Parameters.Add("@GillaryTagAr", SqlDbType.NVarChar, 500).Value = param.GillaryTagAr;
 
                 dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
                 // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;
