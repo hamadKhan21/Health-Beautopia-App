@@ -173,6 +173,7 @@ function BindData(dataItem) {
     $("#TikTok").val(dataItem.tikTok);
     $("#LogoImage").val(dataItem.logoImage);
     $("#LogoImageAr").val(dataItem.logoImageAr);
+    $("#GoogleMapLocation").val(dataItem.googleMapLocation);
 
     if (dataItem.isArabicByDefault == true) {
 

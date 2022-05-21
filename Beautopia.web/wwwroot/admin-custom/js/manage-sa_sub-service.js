@@ -70,7 +70,7 @@ $document.ready(function () {
 				$(form).ajaxSubmit({
 					type: "POST",
 					data: $(form).serialize(),
-                    url: "/Admin/Settings/SaveUpdateSubServices",
+                    url: "/Admin/Settings/SaveUpdateSA_SubServices",
                     success: function success(data) {
                         $(".ServiceSubCatereceivedGridDiv").empty();
                         $(".ServiceSubCatereceivedGridDiv").append('<div id="ServiceSubCatereceivedGrid"></div>')
@@ -129,7 +129,7 @@ function GetServiceCategoriesLkp() {
     ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
     $.ajax({
         type: "GET",
-        url: "/Admin/Settings/GetServiceCategory",
+        url: "/Admin/Settings/GetSA_ServiceCategory",
         //data: "{mdate:" + "m" + "}",
         //data: datas,//JSON.stringify(datas),
         //dataType: "json",
@@ -182,7 +182,7 @@ function GetAllSubServiceCategory() {
 
     $.ajax({
         type: "POST",
-        url: "/Admin/Settings/GetAllSubServiceCategory",
+        url: "/Admin/Settings/GetAllSA_SubServiceCategory",
         //data: "{mdate:" + "m" + "}",
         //data: JSON.stringify(datas),
         // dataType: "json",
@@ -323,7 +323,7 @@ function DeleteRecord(e) {
 
    // var IsActiveORNot = (dataItem.IsActive == "false" ? true : false);
     //debugger
-    var datas = { 'ID': dataItem.id, 'Entity':'ServiceSubCategory'};
+    var datas = { 'ID': dataItem.id, 'Entity':'SA_ServiceSubCategory'};
     $.ajax({
         type: "POST",
         url: "/Admin/Settings/RemoveTheRecord",

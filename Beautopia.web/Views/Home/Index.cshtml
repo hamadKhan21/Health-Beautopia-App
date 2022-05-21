@@ -34,11 +34,12 @@
 						<div class="link-drop p-0">
 							<div class="google-map">
 								@*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40119.804311386426!2d-97.32055794896301!3d37.64364017354126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87bae4ec254beb5f%3A0x410df48edd2f5ede!2sGraceMed%20Jardine%20Family%20Clinic!5e0!3m2!1sen!2sua!4v1579853082410!5m2!1sen!2sua"></iframe>*@
-								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.6520008942302!2d46.68930911500049!3d24.73882478411148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03ec5a5c7df1%3A0xb79f935fa3caa1f3!2sFirst%20Specialist%20Medical%20Center!5e0!3m2!1sen!2ssa!4v1646404311161!5m2!1sen!2ssa"></iframe>
+								@*<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.6520008942302!2d46.68930911500049!3d24.73882478411148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03ec5a5c7df1%3A0xb79f935fa3caa1f3!2sFirst%20Specialist%20Medical%20Center!5e0!3m2!1sen!2ssa!4v1646404311161!5m2!1sen!2ssa"></iframe>*@
+								<iframe src="@siteInfo.GoogleMapLocation"></iframe>
 							</div>
 						</div>
 					</div>
-					<div class="col" >
+					<div class="col">
 						<a href="#" class="link">
 							<i class="icon-clock"></i><span>@(SessionLang=="Ar"? "وقت العمل" : "Working Time")</span>
 						</a>
@@ -49,16 +50,16 @@
 								{
 
 
-								<tr>
-									<td>@(SessionLang == "Ar" ? "مغلق" : "Closed")</td>
-									<td><i>@(SessionLang == "Ar" ? "جمعة" : "Friday")</i></td>
+									<tr>
+										<td>@(SessionLang == "Ar" ? "مغلق" : "Closed")</td>
+										<td><i>@(SessionLang == "Ar" ? "جمعة" : "Friday")</i></td>
 
-								</tr>
-								<tr>
-									<td> @(SessionLang == "Ar" ? "09:00PM - 09:00AM" : "09:00AM - 09:00PM")</td>
-									<td><i>@(SessionLang == "Ar" ? "السبت - الخميس" : "Sat-Thur")</i></td>
+									</tr>
+									<tr>
+										<td> @(SessionLang == "Ar" ? "09:00PM - 09:00AM" : "09:00AM - 09:00PM")</td>
+										<td><i>@(SessionLang == "Ar" ? "السبت - الخميس" : "Sat-Thur")</i></td>
 
-								</tr>
+									</tr>
 								}
 								else
 								{
@@ -74,25 +75,25 @@
 									</tr>
 								}
 								@*<tr>
-			<td><i>@(SessionLang=="Ar"? "الأحد" : "Sunday")</i></td>
-			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
-		</tr>
-		<tr>
-			<td><i>@(SessionLang=="Ar"? "الاثنين" : "Monday")</i></td>
-			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
-		</tr>
-		<tr>
-			<td><i>@(SessionLang=="Ar"? "يوم الثلاثاء" : "Tuesday")</i></td>
-			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
-		</tr>
-		<tr>
-			<td><i>@(SessionLang=="Ar"? "الأربعاء" : "Wednesday")</i></td>
-			<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
-		</tr>
-		<tr>
-			<td><i>@(SessionLang=="Ar"? "يوم الخميس" : "Thursday")</i></td>
-			<td>@(SessionLang=="Ar"? "۰۹:۰۰ صباحا - ۰۹:۰۰ مساءا" : "09:00AM - 09:00PM")</td>
-		</tr>*@
+										<td><i>@(SessionLang=="Ar"? "الأحد" : "Sunday")</i></td>
+										<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+									</tr>
+									<tr>
+										<td><i>@(SessionLang=="Ar"? "الاثنين" : "Monday")</i></td>
+										<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+									</tr>
+									<tr>
+										<td><i>@(SessionLang=="Ar"? "يوم الثلاثاء" : "Tuesday")</i></td>
+										<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+									</tr>
+									<tr>
+										<td><i>@(SessionLang=="Ar"? "الأربعاء" : "Wednesday")</i></td>
+										<td>@(SessionLang=="Ar"? "09:00AM - 09:00PM" : "09:00AM - 09:00PM")</td>
+									</tr>
+									<tr>
+										<td><i>@(SessionLang=="Ar"? "يوم الخميس" : "Thursday")</i></td>
+										<td>@(SessionLang=="Ar"? "۰۹:۰۰ صباحا - ۰۹:۰۰ مساءا" : "09:00AM - 09:00PM")</td>
+									</tr>*@
 							</table>
 						</div>
 					</div>
@@ -141,11 +142,11 @@
 										<option selected="selected" disabled="disabled">@(SessionLang=="Ar"? "اختر الخدمة" : "Select Service")</option>
 										@foreach (var item in Model.ServiceSubCategorys)
 										{
-									<option value="@item.ID">
-										
-										@(SessionLang=="Ar"? item.SubCategoryNameAr+""+ item.ServicePrice +"ريال" : item.SubCategoryNameEn + "" + item.ServicePrice + "SAR")
+											<option value="@item.ID">
 
-									</option>
+												@(SessionLang=="Ar"? item.SubCategoryNameAr+""+ item.ServicePrice +"ريال" : item.SubCategoryNameEn + "" + item.ServicePrice + "SAR")
+
+											</option>
 										}
 
 									</select>
@@ -222,7 +223,7 @@
 							</table>
 						</div>
 					</div>
-					<div class="col" >
+					<div class="col">
 						<a href="#" class="link">
 							<i class="icon-emergency-call"></i><span>@(SessionLang=="Ar"? "بيانات المتصل" : "Contact Details")</span>
 						</a>
@@ -282,7 +283,7 @@
 		<div class="main-slider mb-0 arrows-white arrows-bottom" id="mainSlider" data-slick='{"arrows": false, "dots": true}'>
 
 			@foreach (var item in Model.Sliders)
-		{
+			{
 				<div class="slide">
 					<div class="img--holder" data-bg="/medlab/images/content/slider/@item.SliderImage"></div>
 					<div class="slide-content center">
@@ -291,7 +292,7 @@
 								<div class="container">
 									<div class="slide-txt1 text-no-uppercase" data-animation="fadeInDown" data-animation-delay="1s">
 										@(SessionLang=="Ar"? item.title1Ar : item.title1)<br>
-									 <b>@(SessionLang=="Ar"? item.title2Ar : item.title2)</b>
+										<b>@(SessionLang=="Ar"? item.title2Ar : item.title2)</b>
 									</div>
 									<div class="slide-txt2 text-no-uppercase" data-animation="fadeInUp" data-animation-delay="1.5s">@(SessionLang=="Ar"? item.title3Ar : item.title3)</div>
 									<div class="slide-btn"><a asp-controller="Home" asp-action="SERVICES" class="btn link-inside" data-animation="fadeInUp" data-animation-delay="2s"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "اكتشف خدماتنا" : "Explore our services")</span><i class="icon-right-arrow"></i></a></div>
@@ -307,12 +308,12 @@
 	</div>
 </div>
 <!--//section slider-->
-<!--section Offers-->
+<!--section Services-->
 <div class="section bg-norepeat bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left2.png)">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل العروض" : "Best Offers")</div>
-			<h1 class="double-title double-title--center double-title--vcenter" data-title="Best Offers"><span>@(SessionLang=="Ar"? "مقدم رعاية محترف" : "A Professional & Care Provider")</span></h1>
+			@*<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل العروض" : "Best Offers")</div>*@
+			<h1 class="double-title double-title--center double-title--vcenter" data-title="@(SessionLang=="Ar"? siteInfo.ServicesTagAr : siteInfo.ServicesTagEn)<"><span>@(SessionLang=="Ar"? siteInfo.ServicesTagAr : siteInfo.ServicesTagEn)</span></h1>
 			<div class="h-decor"></div>
 		</div>
 		@*<form action="#" class="content-search content-search--style2 d-flex mb-3">
@@ -329,12 +330,12 @@
 		<div class="row specialist-carousel js-specialist-carousel">
 
 
-			@foreach (var item in Model.Offers)
+			@foreach (var item in Model.SA_ServiceSubCategorys)
 			{
 				<div class="col-sm-6 col-md-4 category1">
 					<div class="doctor-box doctor-box-style3 text-center">
 						<div class="doctor-box-photo">
-							<a href="#"><img src="~/medlab/images/content/Offers/@item.OfferImage" class="img-fluid" alt=""></a>
+							<a asp-controller="Home" asp-action="SERVICES"><img src="~/admin-custom/Images/SubServices/@(SessionLang=="Ar"? item.SubCategoryNameAr: item.SubServiceImageName)" class="img-fluid" alt=""></a>
 							@*<div class="doctor-box-links">
 									<a href="#"><i class="icon-facebook-logo"></i></a>
 									<a href="#"><i class="icon-google-logo"></i></a>
@@ -350,12 +351,59 @@
 		</div>
 	</div>
 </div>
-<!--//section Offers-->
+<!--//section Services-->
+<!--section specialists-->
+<div class="section bg-norepeat bg-right bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left.png)">
+	<div class="container">
+		<div class="title-wrap text-center">
+			@*<div class="h-sub theme-color">@(SessionLang=="Ar"? "فريق مثالي" : "Perfect Team")</div>*@
+			<h1 class="double-title double-title--center double-title--vcenter" data-title="@(SessionLang=="Ar"? siteInfo.DoctorTagAr : siteInfo.DoctorTagEn)"><span>@(SessionLang=="Ar"? siteInfo.DoctorTagAr : siteInfo.DoctorTagEn)</span></h1>
+			<div class="h-decor"></div>
+		</div>
+		@*<form action="#" class="content-search content-search--style2 d-flex mb-3">
+				<div class="input-wrap">
+					<input type="text" class="form-control" placeholder="Search for specialist" list="doctorPosition">
+					<datalist id="doctorPosition">
+						<option value="Medical Director"></option>
+						<option value="Tissue Bank Director"></option>
+						<option value="Embryologist"></option>
+					</datalist>
+				</div>
+				<button type="submit"><i class="icon-search"></i></button>
+			</form>*@
+		<div class="row specialist-carousel js-specialist-carousel">
+			@foreach (var item in Model.Doctors)
+			{
+
+				<div class="col-sm-6 col-md-4 category1">
+					<div class="doctor-box doctor-box-style3 text-center">
+						<div class="doctor-box-photo">
+							<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@(SessionLang=="Ar"? item.DoctorImageAr: item.DoctorImage)" class="img-fluid" alt=""></a>
+							<div class="doctor-box-links">
+								<a asp-controller="Home" asp-action="GALLERY" title="Gallary"><i class="icon-card"></i></a>
+								<a href="@item.InstagramLink" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+							</div>
+						</div>
+						<div class="doctor-box-top">
+							<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
+							<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
+						</div>
+					</div>
+				</div>
+			}
+
+
+
+
+		</div>
+	</div>
+</div>
+<!--//section specialists-->
 <!--section Equipments-->
 <div class="section bg-grey mt-md-0">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<h2 class="h1 double-title double-title--white double-title--center double-title--vcenter" data-title="Latest Equipments"><span>@(SessionLang=="Ar"? "أفضل" : "State of the Art")<span class="clearfix d-sm-none"></span>@(SessionLang=="Ar"? "الأجهزة" : "Devices") </span></h2>
+			<h2 class="h1 double-title double-title--white double-title--center double-title--vcenter" data-title="@(SessionLang=="Ar"? siteInfo.DevicesTagAr : siteInfo.DevicesTagEn)"><span>@(SessionLang=="Ar"? siteInfo.DevicesTagAr : siteInfo.DevicesTagEn)</span></h2>
 			<div class="h-decor"></div>
 		</div>
 		<div class="nav nav-pills-icons js-nav-pills-carousel" role="tablist" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
@@ -404,7 +452,7 @@
 						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
 						<div class="row">
 							<div class="col-md-6 h-100 mb-2 mb-md-0">
-								<img src="~/medlab/images/content/devices/@asd.EquipmentImage" alt="" class="img-fluid">
+								<img src="~/medlab/images/content/devices/@(SessionLang=="Ar"? asd.EquipmentImageAr: asd.EquipmentImage)" alt="" class="img-fluid">
 							</div>
 							<div class="col-md-6">
 								<div class="pt-xl-1">
@@ -425,10 +473,10 @@
 						<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
 						<div class="row">
 							<div class="col-md-6 h-100 mb-2 mb-md-0">
-								<img src="~/medlab/images/content/devices/@asd.EquipmentImage" alt="" class="img-fluid">
+								<img src="~/medlab/images/content/devices/@(SessionLang=="Ar"? asd.EquipmentImageAr: asd.EquipmentImage)" alt="" class="img-fluid">
 							</div>
 							<div class="col-md-6">
-								<div class="pt-xl-1" >
+								<div class="pt-xl-1">
 									<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
 									<p>@(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
 									<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
@@ -537,12 +585,12 @@
 	</div>
 </div>
 <!--//section-->
-<!--section specialists-->
-<div class="section bg-norepeat bg-right bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left.png)">
+<!--section Offers-->
+<div class="section bg-norepeat bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left2.png)">
 	<div class="container">
 		<div class="title-wrap text-center">
-			<div class="h-sub theme-color">@(SessionLang=="Ar"? "فريق مثالي" : "Perfect Team")</div>
-			<h1 class="double-title double-title--center double-title--vcenter" data-title="Perfect Team"><span>@(SessionLang=="Ar"? "مقدم رعاية محترف" : "A Professional & Care Provider")</span></h1>
+			@*<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل العروض" : "Best Offers")</div>*@
+			<h1 class="double-title double-title--center double-title--vcenter" data-title="@(SessionLang=="Ar"? siteInfo.OfferTagAr : siteInfo.OfferTagEn)"><span>@(SessionLang=="Ar"? siteInfo.OfferTagAr : siteInfo.OfferTagEn)</span></h1>
 			<div class="h-decor"></div>
 		</div>
 		@*<form action="#" class="content-search content-search--style2 d-flex mb-3">
@@ -557,34 +605,32 @@
 				<button type="submit"><i class="icon-search"></i></button>
 			</form>*@
 		<div class="row specialist-carousel js-specialist-carousel">
-			@foreach (var item in Model.Doctors)
-			{
 
+
+			@foreach (var item in Model.Offers)
+			{
 				<div class="col-sm-6 col-md-4 category1">
 					<div class="doctor-box doctor-box-style3 text-center">
 						<div class="doctor-box-photo">
-							<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
-							<div class="doctor-box-links">
-								<a href="#"><i class="icon-facebook-logo"></i></a>
-								<a href="#"><i class="icon-google-logo"></i></a>
-								<a href="#"><i class="icon-instagram"></i></a>
-							</div>
+							<a href="#"><img src="~/medlab/images/content/Offers/@(SessionLang=="Ar"? item.OfferImageAr: item.OfferImage)" class="img-fluid" alt=""></a>
+							@*<div class="doctor-box-links">
+									<a href="#"><i class="icon-facebook-logo"></i></a>
+									<a href="#"><i class="icon-google-logo"></i></a>
+									<a href="#"><i class="icon-instagram"></i></a>
+								</div>*@
 						</div>
-						<div class="doctor-box-top">
-							<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
-							<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
-						</div>
+
 					</div>
 				</div>
 			}
 
 
-
-
 		</div>
 	</div>
 </div>
-<!--//section specialists-->
+<!--//section Offers-->
+
+
 <!--section services -->
 <div class="section bg-norepeat bg-md-none section-top-padding" style="background-image: url(/medlab/images/bg-top-left.png);display:none">
 	<div class="container-fluid px-0 over-visible">
@@ -1106,11 +1152,11 @@
 								<option selected="selected" disabled="disabled">@(SessionLang=="Ar"? "اختر الخدمة" : "Select Service")</option>
 								@foreach (var item in Model.ServiceSubCategorys)
 								{
-							<option value="@item.ID">
+									<option value="@item.ID">
 
-								
-								@(SessionLang=="Ar"? item.SubCategoryNameAr+item.ServicePrice +"ريال": item.SubCategoryNameAr + item.ServicePrice+"SAR")
-							</option>
+
+										@(SessionLang=="Ar"? item.SubCategoryNameAr+item.ServicePrice +"ريال": item.SubCategoryNameAr + item.ServicePrice+"SAR")
+									</option>
 								}
 							</select>
 						</div>

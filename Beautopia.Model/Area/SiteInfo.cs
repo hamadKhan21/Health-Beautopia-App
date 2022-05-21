@@ -44,6 +44,8 @@ namespace Beautopia.Model.Area
 		public string OfferTagAr { get; set; }
 		public string GillaryTagEn { get; set; }
 		public string GillaryTagAr { get; set; }
+		public string GoogleMapLocation { get; set; }
+		
 
 	}
 }

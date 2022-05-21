@@ -350,6 +350,7 @@ $(document).on("dblclick", "#doctorGrid tbody tr", function (e) {
     $("#Description").val(dataItem.description);
     $("#DescriptionAr").val(dataItem.descriptionAr);
     $("#DoctorsCategoryID").val(dataItem.doctorsCategoryID);
+    $("#InstagramLink").val(dataItem.instagramLink);
  
     $("#DoctorImage").val(dataItem.doctorImage);
     $("#DoctorImageAr").val(dataItem.doctorImageAr);

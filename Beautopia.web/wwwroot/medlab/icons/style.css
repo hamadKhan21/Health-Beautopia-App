@@ -1,3 +1,66 @@
+
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v128/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    display: block;
+    position: relative;
+    height: 48px;
+    padding: 0 13px;
+    z-index: 1;
+    font-size: 22px;
+    line-height: 48px;
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 20%);
+    transition: all .2s;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.material-icons-down {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    display: block;
+    position: relative;
+    height: 48px;
+    padding: 0 13px;
+    z-index: 1;
+    font-size: 22px;
+    line-height: 48px;
+    box-shadow: 0 0 0 0 rgb(255 255 255 / 20%);
+    transition: all .2s;
+    border-radius: 50%;
+    color: #248193;
+}
+
 @font-face {
   font-family: 'dentco';
   src:  url('fonts/dentco.eot?hg2v5b');
@@ -326,6 +389,8 @@
 .icon-twitter-logo-circle:before {
   content: "\e92a";
 }
+
+
 .icon-twitter-logo:before {
   content: "\e92b";
 }

@@ -37,6 +37,8 @@ namespace Beautopia.web.Controllers
 			hmModel.Offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
 			hmModel.Doctors = _users.GetDoctor().Where(a => a.IsActive == true).ToList();
 			hmModel.ServiceSubCategorys = _serviceRequest.GetAllServiceSubCategory().Where(a => a.IsActive == true).ToList();
+			hmModel.SA_ServiceSubCategorys = _serviceRequest.GetAllSA_ServiceSubCategory().Where(a => a.IsActive == true).ToList();
+			hmModel.SmileGillary = _users.GetSmileGillary().Where(a => a.IsActive == true).ToList();
 
 			hmModel.Equipments = _users.GetEquipment().Where(a => a.IsActive == true).ToList();
 			//hmModel.SiteInfo = _users.GetSiteInfo();
@@ -76,7 +78,15 @@ namespace Beautopia.web.Controllers
 		[Route("SERVICES")]
 		public IActionResult SERVICES()
 		{
-			var equipments = _serviceRequest.GetAllServiceSubCategory().Where(a => a.IsActive == true).ToList();
+			var equipments = _serviceRequest.GetAllSA_ServiceSubCategory().Where(a => a.IsActive == true).ToList();
+			return View(equipments);
+		}
+
+
+		[Route("Offers")]
+		public IActionResult Offers()
+		{
+			var equipments = _serviceRequest.GetAllSA_ServiceSubCategory().Where(a => a.IsActive == true).ToList();
 			return View(equipments);
 		}
 
@@ -118,8 +128,14 @@ namespace Beautopia.web.Controllers
 			return View();
 		}
 
+		public JsonResult GetSA_ServiceCategory()
+		{
+			var data = _serviceRequest.GetSA_ServiceCategory();
 
-		
+
+			return Json(data);
+		}
+
 		//[ValidateAntiForgeryToken]
 		public JsonResult GetServiceCategory()
 		{

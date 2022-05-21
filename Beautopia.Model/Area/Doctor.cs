@@ -30,6 +30,7 @@ namespace Beautopia.Model.Area
 
 		public string DoctorsCategoryEn { get; set; }
 		public string DoctorsCategoryAr { get; set; }
+		public string InstagramLink { get; set; }
 
 	}
 }

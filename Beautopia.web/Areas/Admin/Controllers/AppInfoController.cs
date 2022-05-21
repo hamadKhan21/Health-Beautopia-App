@@ -258,7 +258,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
-		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorImageAr,DoctorImageFileAr,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked,DoctorsCategoryID")] Doctor obj)
+		public async Task<JsonResult> SaveUpdateDoctor([Bind("ID,DoctorImage,DoctorImageFile,DoctorImageAr,DoctorImageFileAr,DoctorName,DoctorNameAr,Designation,DesignationAr,Description,DescriptionAr,IsActiveChecked,DoctorsCategoryID,InstagramLink")] Doctor obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Doctor> listObj = new List<Doctor>();
@@ -643,7 +643,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
 		public async Task<JsonResult> SaveUpdateSiteInfo([Bind("ID,Address,AddressAr,Contact,ContactAr,Email,Facebook,Twitter,Instagram,GooglePlus,SnapChat,TikTok,LogoImage,LogoImageFile," +
 			"LogoImageAr,LogoImageFileAr,IsArabicByDefault,IsArabicByDefaultChecked," +
-			"ServicesTagEn,ServicesTagAr,DoctorTagEn,DoctorTagAr,DevicesTagEn,DevicesTagAr,OfferTagEn,OfferTagAr")] SiteInfo obj)
+			"ServicesTagEn,ServicesTagAr,DoctorTagEn,DoctorTagAr,DevicesTagEn,DevicesTagAr,OfferTagEn,OfferTagAr,GoogleMapLocation")] SiteInfo obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			SiteInfo objec = new SiteInfo();

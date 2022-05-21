@@ -748,7 +748,8 @@ namespace Beautopia.Services.DataAppService
                     obj.DoctorsCategoryID = Convert.ToInt32(reader["DoctorsCategoryID"]);
                     obj.DoctorsCategoryEn = Convert.ToString(reader["DoctorsCategoryEn"]);
                     obj.DoctorsCategoryAr = Convert.ToString(reader["DoctorsCategoryAr"]);
-
+                    obj.InstagramLink = Convert.ToString(reader["InstagramLink"]);
+                    
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
 
@@ -796,7 +797,8 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 4000).Value = param.DescriptionAr;
                 dbCommand.Parameters.Add("@DesignationAr", SqlDbType.NVarChar, 250).Value = param.DesignationAr;
                 dbCommand.Parameters.Add("@DoctorNameAr", SqlDbType.NVarChar, 250).Value = param.DoctorNameAr;
-
+                dbCommand.Parameters.Add("@InstagramLink", SqlDbType.NVarChar, 250).Value = param.InstagramLink;
+                
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
                 dbCommand.Parameters.Add("@DoctorsCategoryID", SqlDbType.Int).Value = param.DoctorsCategoryID;
                 dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 250).Value = param.CreatedBy;
@@ -1243,6 +1245,7 @@ namespace Beautopia.Services.DataAppService
                     obj.OfferTagAr = Convert.ToString(reader["OfferTagAr"]);
                     obj.GillaryTagEn = Convert.ToString(reader["GillaryTagEn"]);
                     obj.GillaryTagAr = Convert.ToString(reader["GillaryTagAr"]);
+                    obj.GoogleMapLocation = Convert.ToString(reader["GoogleMapLocation"]);
 
 
 
@@ -1308,6 +1311,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@OfferTagAr", SqlDbType.NVarChar, 500).Value = param.OfferTagAr;
                 dbCommand.Parameters.Add("@GillaryTagEn", SqlDbType.NVarChar, 500).Value = param.GillaryTagEn;
                 dbCommand.Parameters.Add("@GillaryTagAr", SqlDbType.NVarChar, 500).Value = param.GillaryTagAr;
+                dbCommand.Parameters.Add("@GoogleMapLocation", SqlDbType.NVarChar, 500).Value = param.GoogleMapLocation;
 
                 dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
                 // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;

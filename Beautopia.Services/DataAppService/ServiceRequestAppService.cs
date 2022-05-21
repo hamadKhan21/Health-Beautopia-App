@@ -351,6 +351,59 @@ namespace Beautopia.Services.DataAppService
             return Lisobj;
         }
 
+        public List<ServiceCategory> GetSA_ServiceCategory()
+        {
+            List<ServiceCategory> Lisobj = new List<ServiceCategory>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetSA_ServiceCategory";
+                // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServiceCategory obj = new ServiceCategory();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.CategoryNameEn = Convert.ToString(reader["CategoryNameEn"]);
+                    obj.CategoryNameAr = Convert.ToString(reader["CategoryNameAr"]);
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
         public List<ServiceCategory> GetAllServiceCategory()
         {
             List<ServiceCategory> Lisobj = new List<ServiceCategory>();
@@ -371,6 +424,60 @@ namespace Beautopia.Services.DataAppService
                 //dbCommand.CommandType = CommandType.;
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "Sp_GetAllServiceCategory";
+                // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServiceCategory obj = new ServiceCategory();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.CategoryNameEn = Convert.ToString(reader["CategoryNameEn"]);
+                    obj.CategoryNameAr = Convert.ToString(reader["CategoryNameAr"]);
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+        public List<ServiceCategory> GetAllSA_ServiceCategory()
+        {
+            List<ServiceCategory> Lisobj = new List<ServiceCategory>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetAllSA_ServiceCategory";
                 // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
 
 
@@ -425,6 +532,62 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "Sp_GetServiceSubCategory";
                  dbCommand.Parameters.Add("@CategoryID", SqlDbType.Int).Value = CategoryID;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServiceSubCategory obj = new ServiceSubCategory();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.SubCategoryNameEn = Convert.ToString(reader["SubCategoryNameEn"]);
+                    obj.SubCategoryNameAr = Convert.ToString(reader["SubCategoryNameAr"]);
+                    obj.ServicePrice = Convert.ToString(reader["ServicePrice"]);
+                    obj.CategoryID = Convert.ToInt32(reader["CategoryID"]);
+                    obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
+
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+        public List<ServiceSubCategory> GetSA_ServiceSubCategory(int CategoryID)
+        {
+            List<ServiceSubCategory> Lisobj = new List<ServiceSubCategory>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetSA_ServiceSubCategory";
+                dbCommand.Parameters.Add("@CategoryID", SqlDbType.Int).Value = CategoryID;
 
 
 
@@ -681,6 +844,49 @@ namespace Beautopia.Services.DataAppService
             // return ReturnEmpID;
             //
         }
+        public void InsertUpdateSA_ServiceCategory(ServiceCategory param, string CreatedBy)
+        {
+            int ReturnEmpID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateSA_ServiceCategory";
+                dbCommand.Parameters.Add("@ID ", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@CategoryNameEn", SqlDbType.NVarChar, 500).Value = param.CategoryNameEn;
+                dbCommand.Parameters.Add("@CategoryNameAr", SqlDbType.NVarChar, 500).Value = param.CategoryNameAr;
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = CreatedBy;
+
+                dbCommand.ExecuteNonQuery();
+                //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            // return ReturnEmpID;
+            //
+        }
 
 
         public void InsertUpdateServiceSubCategory(ServiceSubCategory param, string CreatedBy)
@@ -698,6 +904,56 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Transaction = trn;
                 dbCommand.CommandType = CommandType.StoredProcedure;
                 dbCommand.CommandText = "SP_InsertUpdateServiceSubCategory";
+                dbCommand.Parameters.Add("@ID ", SqlDbType.Int).Value = param.ID;
+                dbCommand.Parameters.Add("@SubCategoryNameEn", SqlDbType.NVarChar, 500).Value = param.SubCategoryNameEn;
+                dbCommand.Parameters.Add("@SubCategoryNameAr", SqlDbType.NVarChar, 500).Value = param.SubCategoryNameAr;
+                dbCommand.Parameters.Add("@ServicePrice", SqlDbType.NVarChar, 500).Value = param.ServicePrice;
+                dbCommand.Parameters.Add("@CategoryID", SqlDbType.Int).Value = param.CategoryID;
+                dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
+                dbCommand.Parameters.Add("@CreatedBy", SqlDbType.NVarChar, 500).Value = CreatedBy;
+                dbCommand.Parameters.Add("@SubServiceImageName", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageName;
+                dbCommand.Parameters.Add("@SubServiceImageNameAr", SqlDbType.NVarChar, 1000).Value = param.SubServiceImageNameAr;
+                dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 1000).Value = param.Description;
+                dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 1000).Value = param.DescriptionAr;
+
+                dbCommand.ExecuteNonQuery();
+                //ReturnEmpID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            // return ReturnEmpID;
+            //
+        }
+
+        public void InsertUpdateSA_ServiceSubCategory(ServiceSubCategory param, string CreatedBy)
+        {
+            int ReturnEmpID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "SP_InsertUpdateSA_ServiceSubCategory";
                 dbCommand.Parameters.Add("@ID ", SqlDbType.Int).Value = param.ID;
                 dbCommand.Parameters.Add("@SubCategoryNameEn", SqlDbType.NVarChar, 500).Value = param.SubCategoryNameEn;
                 dbCommand.Parameters.Add("@SubCategoryNameAr", SqlDbType.NVarChar, 500).Value = param.SubCategoryNameAr;
@@ -834,7 +1090,66 @@ namespace Beautopia.Services.DataAppService
 
             return Lisobj;
         }
+        public List<ServiceSubCategory> GetAllSA_ServiceSubCategory()
+        {
+            List<ServiceSubCategory> Lisobj = new List<ServiceSubCategory>();
 
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetAllSA_ServiceSubCategory";
+                // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ServiceSubCategory obj = new ServiceSubCategory();
+
+                    //
+                    obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.SubCategoryNameAr = Convert.ToString(reader["SubCategoryNameAr"]);
+                    obj.SubCategoryNameEn = Convert.ToString(reader["SubCategoryNameEn"]);
+                    obj.ServicePrice = Convert.ToString(reader["ServicePrice"]);
+                    obj.CategoryID = Convert.ToInt32(reader["SA_CategoryID"]);
+                    obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
+                    obj.SubServiceImageName = Convert.ToString(reader["SubServiceImageName"]);
+                    obj.SubServiceImageNameAr = Convert.ToString(reader["SubServiceImageNameAr"]);
+                    obj.Description = Convert.ToString(reader["Description"]);
+                    obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
+                    obj.CategoryNameEn = Convert.ToString(reader["CategoryNameEn"]);
+                    obj.CategoryNameAr = Convert.ToString(reader["CategoryNameAr"]);
+
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
         public List<ActivityType> GetActivityType()
         {
             List<ActivityType> Lisobj = new List<ActivityType>();

@@ -17,22 +17,28 @@ namespace Beautopia.Services.IDataService
 
 		void InsertRequestServiceAndSubCategoryMapping(RequestServiceAndSubCategoryMapping param);
 		List<ServiceCategory> GetServiceCategory();
+		List<ServiceCategory> GetSA_ServiceCategory();
 		List<ServiceSubCategory> GetServiceSubCategory(int CategoryID);
+		List<ServiceSubCategory> GetSA_ServiceSubCategory(int CategoryID);
 		UserLogin UserLogin(string UserName, string Password);
 
 		List<Source> GetSources();
 
 		void InsertUpdateServiceCategory(ServiceCategory param,string CreatedBy);
+		void InsertUpdateSA_ServiceCategory(ServiceCategory param,string CreatedBy);
 
 		List<ServiceCategory> GetAllServiceCategory();
+		List<ServiceCategory> GetAllSA_ServiceCategory();
 
 
 
 		void InsertUpdateServiceSubCategory(ServiceSubCategory param, string CreatedBy);
+		void InsertUpdateSA_ServiceSubCategory(ServiceSubCategory param, string CreatedBy);
 
 		void RemoveEntityRecord(string Entity, string ID);
 
 		List<ServiceSubCategory> GetAllServiceSubCategory();
+		List<ServiceSubCategory> GetAllSA_ServiceSubCategory();
 
 		List<ActivityType> GetActivityType();
 		List<RS_Activity> GetRS_Activity(int RequestServiceID);
