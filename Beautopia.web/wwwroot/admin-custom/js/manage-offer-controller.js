@@ -95,7 +95,7 @@ $("#OfferImageFileAr").change(function () {
 
 GetAllOffers()
 
-
+GetDoctorCategoriesLkp();
 
 
 
@@ -106,6 +106,7 @@ function ClearFields() {
     //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
     $("#ID").val("0")
+    $("#DepartmentID").val("")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
@@ -268,7 +269,7 @@ $(document).on("dblclick", "#offerGrid tbody tr", function (e) {
     $("textarea#Description").val(dataItem.description);
     $("textarea#DescriptionAr").val(dataItem.descriptionAr);
     
- 
+    $("#DepartmentID").val(dataItem.departmentID);
     $("#OfferImage").val(dataItem.offerImage);
     $("#OfferImageAr").val(dataItem.offerImageAr);
     //$("#SubServiceImageName").val(dataItem.subServiceImageName);
@@ -308,6 +309,40 @@ $(document).on("dblclick", "#offerGrid tbody tr", function (e) {
 
 
 
+function GetDoctorCategoriesLkp() {
+    $("#DepartmentID").empty();
+    $("#DepartmentID").append("<option value=''>Select Department</option>")
+
+    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
+    $.ajax({
+        type: "GET",
+        url: "/Admin/Settings/GetAllDoctorsCategory",
+        //data: "{mdate:" + "m" + "}",
+        //data: datas,//JSON.stringify(datas),
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            //debugger
+            var cdrData = data
+            var EmpToDisplay = "";
+            if (cdrData.length != 0) {
+                for (var i = 0; i < cdrData.length; i++) {
+
+                    $("#DepartmentID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].doctorsCategoryEn + "</option>");
+
+
+                }
+
+            }
+
+
+
+        }
+    });
+
+
+
+}
 
 
 

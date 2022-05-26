@@ -9,6 +9,10 @@ namespace Beautopia.Model.Area
 	{
 		public int ID { get; set; }
 		public string Title { get; set; }
+		public string TitleAr { get; set; }
+		public string DepartmentID { get; set; }
+		public string DepartmentNameEn { get; set; }
+		public string DepartmentNameAr { get; set; }
 		public string SmileImage { get; set; }
 		
 		public IFormFile SmileImageFile { get; set; }

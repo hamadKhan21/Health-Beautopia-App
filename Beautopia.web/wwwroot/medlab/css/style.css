@@ -19523,3 +19523,11 @@ ul.category-list {
     width: 100%;
     background-color: #248193;
 }
+
+.h-decor-full {
+    position: relative;
+    display: inline-block;
+    height: 3px;
+    width: 100%;
+    background-color: #248193;
+}

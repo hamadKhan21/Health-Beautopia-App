@@ -132,7 +132,7 @@ function InitGetDoctorsCategory(cdrData) {
 
         columns: [
             {
-                title: "Doctors Category En",
+                title: "Department En",
                 field: "doctorsCategoryEn",
                 //filterable: {
                 //    operators: {
@@ -145,7 +145,7 @@ function InitGetDoctorsCategory(cdrData) {
             },
 
             {
-                title: "Doctors Category Ar",
+                title: "Department Ar",
                 field: "doctorsCategoryAr",
                 filterable: true
 

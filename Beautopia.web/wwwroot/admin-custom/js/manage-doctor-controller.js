@@ -118,7 +118,7 @@ GetAllDoctors()
 
 function GetDoctorCategoriesLkp() {
     $("#DoctorsCategoryID").empty();
-    $("#DoctorsCategoryID").append("<option value=''>Select Doctors Category</option>")
+    $("#DoctorsCategoryID").append("<option value=''>Select Department</option>")
 
     ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
     $.ajax({
@@ -253,7 +253,7 @@ function InitDoctorGrid(cdrData) {
 
             },
             {
-                title: "Doctors Category",
+                title: "Department",
                 field: "doctorsCategoryEn",
                 filterable: true
 

@@ -86,8 +86,8 @@ namespace Beautopia.web.Controllers
 		[Route("Offers")]
 		public IActionResult Offers()
 		{
-			var equipments = _serviceRequest.GetAllSA_ServiceSubCategory().Where(a => a.IsActive == true).ToList();
-			return View(equipments);
+			var offers = _users.GetOffers().Where(a => a.IsActive == true).ToList();
+			return View(offers);
 		}
 
 		[Route("Devices")]
@@ -99,7 +99,7 @@ namespace Beautopia.web.Controllers
 		[Route("GALLERY")]
 		public IActionResult GALLERY()
 		{
-			var gallary=_users.GetSmileGillary();
+			var gallary=_users.GetSmileGillary().Where(a => a.IsActive == true).ToList();
 			return View(gallary);
 		}
 		[Route("OURSPECIALISTS")]

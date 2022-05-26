@@ -9,11 +9,11 @@
 
 @{
 	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
-	//UsersAppService usersService = new UsersAppService();
-	//IUsers _users;
-	//_users = usersService;
-	//SiteInfo siteInfo = _users.GetSiteInfo();
-	////siteInfo = siteInfo;
+	UsersAppService usersService = new UsersAppService();
+	IUsers _users;
+	_users = usersService;
+	SiteInfo siteInfo = _users.GetSiteInfo();
+	//siteInfo = siteInfo;
 
 
 	var DocCategory = Model.GroupBy(x => new { x.CategoryID, x.CategoryNameEn, x.CategoryNameAr }).ToList();
@@ -37,40 +37,38 @@
 	</div>
 	<!--//section-->
 	<!--section-->
-	<div class="section page-content-first">
+
+
+	<div class="section page-content-first" style=" margin-top: 20px !important;">
 		<div class="container">
 			<div class="text-center mb-2  mb-md-3 mb-lg-4">
-				<div class="h-sub theme-color">@(SessionLang=="Ar"? "ماذا نقدم": "What We Offer")</div>
-				<h1>@(SessionLang=="Ar"? "خدماتنا": "Our Services")</h1>
-
+				<div class="h-sub theme-color">@(SessionLang=="Ar"? siteInfo.ServicesTagAr : siteInfo.ServicesTagEn)</div>
+				@*<h1>Our Specialists</h1>*@
+				<div class="h-decor"></div>
 			</div>
 		</div>
-	</div>
-
-	<div class="section page-content-first">
-
 		<div class="container">
-			<div class="text-center mb-2 mb-md-3" style="display:none">
-				<p>At Medin Dental Clinic we strive to give you the best possible treatment and experience to help<br>you achieve your dental goals</p>
-			</div>
+		
 			<div class="filters-by-category mb-2">
 				<ul class="option-set justify-content-center" data-option-key="filter">
 					<li><a href="#filter" data-option-value="*" class="selected">All</a></li>
 					@foreach (var cat in DocCategory)
-	{
-						<li><a href="#filter" data-option-value=".Category_@cat.Key.CategoryID">
+					{
+						<li>
+							<a href="#filter" data-option-value=".Category_@cat.Key.CategoryID">
 
-	
-	@(SessionLang=="Ar"? cat.Key.CategoryNameAr : cat.Key.CategoryNameEn)
-</a></li>
+
+								@(SessionLang=="Ar"? cat.Key.CategoryNameAr : cat.Key.CategoryNameEn)
+							</a>
+						</li>
 					}
 
 					@*<li><a href="#filter" data-option-value=".category2">General dentistry</a></li>
-						<li><a href="#filter" data-option-value=".category3">Oral medicine</a></li>
-						<li><a href="#filter" data-option-value=".category4">Oral surgery</a></li>
-						<li><a href="#filter" data-option-value=".category5">Orthodontics</a></li>
-						<li><a href="#filter" data-option-value=".category6">Periodontics</a></li>
-						<li><a href="#filter" data-option-value=".category7">Prosthodontics</a></li>*@
+					<li><a href="#filter" data-option-value=".category3">Oral medicine</a></li>
+					<li><a href="#filter" data-option-value=".category4">Oral surgery</a></li>
+					<li><a href="#filter" data-option-value=".category5">Orthodontics</a></li>
+					<li><a href="#filter" data-option-value=".category6">Periodontics</a></li>
+					<li><a href="#filter" data-option-value=".category7">Prosthodontics</a></li>*@
 				</ul>
 			</div>
 			<div class="gallery-specialist gallery-isotope" id="gallery-specialist">
@@ -82,14 +80,16 @@
 							<div class="doctor-box-photo">
 								<a href="#"><img src="~/admin-custom/Images/SubServices/@item.SubServiceImageName" class="img-fluid" alt=""></a>
 							</div>
-							<h5 class="doctor-box-name"><a href="#">
-	
-	@(SessionLang=="Ar"? item.SubCategoryNameAr +" "+item.ServicePrice +"ريال ": item.SubCategoryNameEn +" "+ item.ServicePrice +" SAR")
-</a></h5>
+							<h5 class="doctor-box-name">
+								<a href="#">
+
+									@(SessionLang=="Ar"? item.SubCategoryNameAr +" "+item.ServicePrice +"ريال ": item.SubCategoryNameEn +" "+ item.ServicePrice +" SAR")
+								</a>
+							</h5>
 
 							<div class="doctor-box-text">
 								<p>
-									
+
 									@(SessionLang=="Ar"? item.DescriptionAr : item.Description)
 								</p>
 							</div>

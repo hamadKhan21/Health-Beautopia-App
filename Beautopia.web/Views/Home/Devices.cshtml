@@ -16,99 +16,143 @@
 	_users = usersService;
 	SiteInfo siteInfo = _users.GetSiteInfo();
 
-
+	var DocCategory = Model.GroupBy(x => new { x.ID, x.Title, x.TitleAr}).ToList();
 
 
 }
 
 
-
-<!--section-->
-<div class="section mt-0">
-	<div class="breadcrumbs-wrap">
+<div class="page-content">
+	<!--section-->
+	<div class="section mt-0" style="display:none">
+		<div class="breadcrumbs-wrap">
+			<div class="container">
+				<div class="breadcrumbs">
+					<a href="index.html">Home</a>
+					<span>Devices</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//section-->
+	<!--section-->
+	<div class="section page-content-first" style=" margin-top: 20px !important;">
 		<div class="container">
-			<div class="breadcrumbs">
-				<a href="index.html">Home</a>
-				<span>Devices</span>
+			<div class="text-center mb-2  mb-md-3 mb-lg-4">
+				<div class="h-sub theme-color">@(SessionLang=="Ar"? siteInfo.DevicesTagAr: siteInfo.DevicesTagEn)</div>
+				@*<h1>Best Technologies</h1>*@
+				<div class="h-decor"></div>
 			</div>
 		</div>
-	</div>
-</div>
-<!--//section-->
-<!--section-->
-<div class="section page-content-first">
-	<div class="container">
-		<div class="text-center mb-2  mb-md-3 mb-lg-4">
-			<div class="h-sub theme-color">@(SessionLang=="Ar"? "أفضل أجهزتنا": "Our state of the Art Devices")</div>
-			@*<h1>Best Technologies</h1>*@
-			<div class="h-decor"></div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="text-center mb-3 mb-md-4 max-900" style="display:none">
-			<p>
-				@(SessionLang=="Ar"? "نحن نحب أن نرى مرضانا يبتسمون! إليكم بعضًا من أفضل الصور قبل وبعد ، كل ذلك في معرض ابتسامة واحد رائع": "We love to see our patients smile! Here are some of our best before-and-after pictures,all in one fantastic Smile Gallery")
-				
-			</p>
-		</div>
-		<div class="filters-by-category mb-2 mb-lg-4" style="display:none">
-			<ul class="option-set justify-content-center" data-option-key="filter">
-				<li><a href="#filter" data-option-value="*" class="selected">All</a></li>
-				<li><a href="#filter" data-option-value=".category1">Crowns</a></li>
-				<li><a href="#filter" data-option-value=".category2">Bridges</a></li>
-				<li><a href="#filter" data-option-value=".category3">Dental Implants</a></li>
-				<li><a href="#filter" data-option-value=".category4">Cosmetic Filling</a></li>
-				<li><a href="#filter" data-option-value=".category5">Lumineers</a></li>
-				<li><a href="#filter" data-option-value=".category6">Dentures</a></li>
-				<li><a href="#filter" data-option-value=".category7">Porcelain Veneers</a></li>
-				<li><a href="#filter" data-option-value=".category8">Diamond Polish</a></li>
-			</ul>
-		</div>
-		<div class="gallery-wrap">
-			<div class="loading-content">
-				<div class="inner-circles-loader"></div>
-			</div>
-			<div class="gallery-smiles gallery-isotope" id="gallery">
-				@foreach (var item in Model)
-				{
+		<div class="container">
+			<div class="section bg-grey mt-md-0" style="padding: 0px 0 !important;">
+				<div class="container">
 
-					<div class="gallery-item category2 category7">
-						<div class="twentytwenty-container">
-							<img src="/medlab/images/content/devices/@item.EquipmentImage" alt="" />
+					<div class="nav nav-pills-icons js-nav-pills-carousel" role="tablist" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
+						@{
+							var Counta = 1;
+							var Countaa = 1;
+						}
 
-						</div>
+						@foreach (var asd in Model)
+						{
+							if (Counta == 1)
+							{
+								<a class="nav-link active" data-toggle="pill" href="#Equip_@asd.ID" role="tab"><i class=""></i><span> @(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
+							}
+							else
+							{
+
+								<a class="nav-link" data-toggle="pill" href="#Equip_@asd.ID" role="tab"><i class=""></i><span>@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</span></a>
+							}
+
+
+							Counta++;
+						}
+						
 					</div>
+					<div id="tab-content" class="tab-content mt-2 mt-sm-4" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
 
-				}
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-</div>
-<!--//section-->
-<!--section call us-->
-<div class="section mt-5" style="display:none">
-	<div class="container">
-		<div class="banner-call">
-			<div class="row no-gutters">
-				<div class="col-md-7 d-flex align-items-center">
-					<div class="text-center w-100">
-						<h2>@(SessionLang=="Ar"? "تريد نفس الشيء": "Want the Same") <span class="theme-color">@(SessionLang=="Ar"? "ابتسامة رائعة؟": "Wonderful Smile?")</span></h2>
-						<div class="h-decor"></div>
-						<p class="mt-sm-1 mt-lg-4 text-left text-sm-center">
-							@(SessionLang=="Ar"? "نحن نقدم رعاية أسنان متقدمة وموثوقة يقدمها فريق متخصص في عيادتنا الحديثة": "We provide advanced, trusted dental care delivered by a dedicated team in our modern practice")
-							
-						</p>
-						<div class="mt-2 mt-lg-4 text-center">
-							<a href="#" class="banner-call-phone"><i class="icon-telephone"></i>@(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact), @(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact)</a>
-						</div>
+						@foreach (var asd in Model)
+						{
+							if (Countaa == 1)
+							{
+								<div id="Equip_@asd.ID" class="tab-pane fade show active" role="tabpanel">
+									<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+									<div class="row">
+										<div class="col-md-6 h-100 mb-2 mb-md-0">
+											<img src="~/medlab/images/content/devices/@(SessionLang=="Ar"? asd.EquipmentImageAr: asd.EquipmentImage)" alt="" class="img-fluid">
+										</div>
+										<div class="col-md-6">
+											<div class="pt-xl-1">
+												<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
+												<p> @(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
+												<a style="display:none" href="#" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							}
+							else
+							{
+
+
+								<div id="Equip_@asd.ID" class="tab-pane fade" role="tabpanel">
+									<div class="tab-bg"><img src="~/medlab/images/content/bg-map.png" alt=""></div>
+									<div class="row">
+										<div class="col-md-6 h-100 mb-2 mb-md-0">
+											<img src="~/medlab/images/content/devices/@(SessionLang=="Ar"? asd.EquipmentImageAr: asd.EquipmentImage)" alt="" class="img-fluid">
+										</div>
+										<div class="col-md-6">
+											<div class="pt-xl-1">
+												<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
+												<p>@(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
+												<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							}
+							Countaa++;
+						}
+
+
+
+
+
 					</div>
 				</div>
-				<div class="col-md-5 col-lg-5 mt-3 mt-md-0 text-center text-lg-left">
-					<img src="/medlab/images/content/banner-callus-2.jpg" alt="" class="shift-right">
+			</div>
+		</div>
+	</div>
+	<!--//section-->
+	<!--section call us-->
+	<div class="section mt-5" style="display:none">
+		<div class="container">
+			<div class="banner-call">
+				<div class="row no-gutters">
+					<div class="col-md-7 d-flex align-items-center">
+						<div class="text-center w-100">
+							<h2>@(SessionLang=="Ar"? "تريد نفس الشيء": "Want the Same") <span class="theme-color">@(SessionLang=="Ar"? "ابتسامة رائعة؟": "Wonderful Smile?")</span></h2>
+							<div class="h-decor"></div>
+							<p class="mt-sm-1 mt-lg-4 text-left text-sm-center">
+								@(SessionLang=="Ar"? "نحن نقدم رعاية أسنان متقدمة وموثوقة يقدمها فريق متخصص في عيادتنا الحديثة": "We provide advanced, trusted dental care delivered by a dedicated team in our modern practice")
+
+							</p>
+							<div class="mt-2 mt-lg-4 text-center">
+								<a href="#" class="banner-call-phone"><i class="icon-telephone"></i>@(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact), @(SessionLang=="Ar"?siteInfo.ContactAr:siteInfo.Contact)</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-5 col-lg-5 mt-3 mt-md-0 text-center text-lg-left">
+						<img src="/medlab/images/content/banner-callus-2.jpg" alt="" class="shift-right">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<!--section call us-->
+	<!--section call us-->

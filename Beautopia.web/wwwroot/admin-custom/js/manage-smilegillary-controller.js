@@ -93,7 +93,7 @@ $("#SmileImageFileAr").change(function () {
 
 GetAllSmileGillary()
 
-
+GetDoctorCategoriesLkp();
 
 
 
@@ -104,6 +104,7 @@ function ClearFields() {
     //$("#CategoryID option:contains(" + "Select Sub Service Category" + ")").removeAttr('selected');
     $(".inputClass").val("")
     $("#ID").val("0")
+    $("#DepartmentID").val("")
     //$(".filterprop").val("-1")
    // $("#IsActiveChecked").prop('checked', false);
     //$("#IsActiveChecked").prop('checked', true)
@@ -263,6 +264,8 @@ $(document).on("dblclick", "#SmileGillaryGrid tbody tr", function (e) {
     var dataItem = $("#SmileGillaryGrid").data("kendoGrid").dataItem($(element).closest("tr"));
     $("#ID").val(dataItem.id);
     $("#Title").val(dataItem.title);
+    $("#TitleAr").val(dataItem.titleAr);
+    $("#DepartmentID").val(dataItem.departmentID);
     
  
     $("#SmileImage").val(dataItem.smileImage);
@@ -299,7 +302,40 @@ $(document).on("dblclick", "#SmileGillaryGrid tbody tr", function (e) {
 
 
 
+function GetDoctorCategoriesLkp() {
+    $("#DepartmentID").empty();
+    $("#DepartmentID").append("<option value=''>Select Department</option>")
 
+    ////var datas = { 'IsEmployees': 1, 'Section': -1, 'IsActive': 1 };
+    $.ajax({
+        type: "GET",
+        url: "/Admin/Settings/GetAllDoctorsCategory",
+        //data: "{mdate:" + "m" + "}",
+        //data: datas,//JSON.stringify(datas),
+        //dataType: "json",
+        // contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            //debugger
+            var cdrData = data
+            var EmpToDisplay = "";
+            if (cdrData.length != 0) {
+                for (var i = 0; i < cdrData.length; i++) {
+
+                    $("#DepartmentID").append("<option value='" + cdrData[i].id + "'>" + cdrData[i].doctorsCategoryEn + "</option>");
+
+
+                }
+
+            }
+
+
+
+        }
+    });
+
+
+
+}
 
 
 

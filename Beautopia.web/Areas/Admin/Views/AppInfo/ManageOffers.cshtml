@@ -11,7 +11,19 @@
 			<form id="manageoffer" method="post" novalidate>
 
 				<div class="row row-xs-space mt-1">
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						<Label>
+							Department
+						</Label>
+
+						<select name="DepartmentID" class="form-control selectClass" id="DepartmentID" style="font-weight:bold">
+							<option selected="selected" value="" disabled="disabled">Select Department</option>
+
+						</select>
+
+
+					</div>
+					<div class="col-sm-2">
 						<Label>
 							Title En
 						</Label>
@@ -19,7 +31,7 @@
 						<input type="hidden" name="ID" id="ID" value="0" />
 
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<Label>
 							Title Ar
 						</Label>
@@ -34,7 +46,7 @@
 							Description En
 						</Label>
 						<textarea name="Description" id="Description" class="form-control inputClass" autocomplete="off" placeholder="Enter Description"></textarea>
-					
+
 
 					</div>
 
@@ -44,7 +56,7 @@
 							Description Ar
 						</Label>
 						<textarea name="DescriptionAr" id="DescriptionAr" class="form-control inputClass" autocomplete="off" placeholder="Enter Description Ar"></textarea>
-						
+
 
 
 					</div>

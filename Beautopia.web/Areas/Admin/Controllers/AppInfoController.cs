@@ -145,7 +145,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
-		public async Task<JsonResult> SaveUpdateOffer([Bind("ID,Title,TitleAr,Description,DescriptionAr,OfferImage,OfferImageFile,OfferImageAr,OfferImageFileAr,IsActiveChecked")] Offer obj)
+		public async Task<JsonResult> SaveUpdateOffer([Bind("ID,Title,TitleAr,Description,DescriptionAr,OfferImage,OfferImageFile,OfferImageAr,OfferImageFileAr,IsActiveChecked,DepartmentID")] Offer obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<Offer> Offers = new List<Offer>();
@@ -370,7 +370,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[RequestFormLimits(ValueCountLimit = Int32.MaxValue)]
-		public async Task<JsonResult> SaveUpdateSmileGillary([Bind("ID,Title,SmileImage,SmileImageFile,SmileImageAr,SmileImageFileAr,IsActiveChecked")] SmileGillary obj)
+		public async Task<JsonResult> SaveUpdateSmileGillary([Bind("ID,Title,SmileImage,SmileImageFile,SmileImageAr,SmileImageFileAr,IsActiveChecked,TitleAr,DepartmentID")] SmileGillary obj)
 		{
 			var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
 			List<SmileGillary> Offers = new List<SmileGillary>();

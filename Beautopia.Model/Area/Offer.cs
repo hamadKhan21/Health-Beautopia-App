@@ -20,6 +20,9 @@ namespace Beautopia.Model.Area
 		public string DescriptionAr { get; set; }
 		public string CreatedBy { get; set; }
 		public string IsActiveChecked { get; set; }
+		public string DepartmentID { get; set; }
+		public string DepartmentNameEn { get; set; }
+		public string DepartmentNameAr { get; set; }
 		public bool IsActive { get; set; }
 	}
 }

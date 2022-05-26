@@ -386,7 +386,7 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		}
 
 		[SessionTimeout]
-		[Route("Admin/ManageDoctorsCategory")]
+		[Route("Admin/ManageDepartment")]
 		public IActionResult ManageDoctorsCategory()
 		{
 			return View();

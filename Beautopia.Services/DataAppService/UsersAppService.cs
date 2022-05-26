@@ -622,6 +622,9 @@ namespace Beautopia.Services.DataAppService
                     obj.TitleAr = Convert.ToString(reader["TitleAr"]);
                     obj.Description = Convert.ToString(reader["Description"]);
                     obj.DescriptionAr = Convert.ToString(reader["DescriptionAr"]);
+                    obj.DepartmentID = Convert.ToString(reader["DepartmentID"]);
+                    obj.DepartmentNameEn = Convert.ToString(reader["DepartmentNameEn"]);
+                    obj.DepartmentNameAr = Convert.ToString(reader["DepartmentNameAr"]);
                    
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -667,6 +670,7 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
                 dbCommand.Parameters.Add("@Description", SqlDbType.NVarChar, 4000).Value = param.Description;
                 dbCommand.Parameters.Add("@DescriptionAr", SqlDbType.NVarChar, 4000).Value = param.DescriptionAr;
+                dbCommand.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = param.DepartmentID;
              
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
@@ -869,6 +873,10 @@ namespace Beautopia.Services.DataAppService
                     obj.SmileImage = Convert.ToString(reader["SmileImage"]);
                     obj.SmileImageAr = Convert.ToString(reader["SmileImageAr"]);
                     obj.Title = Convert.ToString(reader["Title"]);
+                    obj.TitleAr = Convert.ToString(reader["TitleAr"]);
+                    obj.DepartmentID = Convert.ToString(reader["DepartmentID"]);
+                    obj.DepartmentNameEn = Convert.ToString(reader["DepartmentNameEn"]);
+                    obj.DepartmentNameAr = Convert.ToString(reader["DepartmentNameAr"]);
 
 
                     obj.IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -911,6 +919,8 @@ namespace Beautopia.Services.DataAppService
                 dbCommand.Parameters.Add("@SmileImage", SqlDbType.NVarChar, 400000).Value = param.SmileImage;
                 dbCommand.Parameters.Add("@SmileImageAr", SqlDbType.NVarChar, 400000).Value = param.SmileImageAr;
                 dbCommand.Parameters.Add("@Title", SqlDbType.NVarChar, 250).Value = param.Title;
+                dbCommand.Parameters.Add("@TitleAr", SqlDbType.NVarChar, 250).Value = param.TitleAr;
+                dbCommand.Parameters.Add("@DepartmentID", SqlDbType.Int).Value = param.DepartmentID;
 
 
                 dbCommand.Parameters.Add("@IsActive", SqlDbType.Bit).Value = param.IsActive;
