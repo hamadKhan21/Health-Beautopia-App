@@ -27,7 +27,7 @@
 				},
 				messages: {
 					Service: {
-						required: ($("#Lang").val() == "Ar" ? "الرجاء تحديد الخدمة" : "Please select the service")
+						required: ($("#Lang").val() != "Ar" ? "الرجاء تحديد الخدمة" : "Please select the service")
 						//minlength: "Your name must consist of at least 2 characters"
 					},
 					//Name: {
@@ -35,16 +35,16 @@
 					//	//minlength: "Your message must consist of at least 20 characters"
 					//},
 					Mobile: {
-						required: ($("#Lang").val() == "Ar" ? "الرجاء إدخال هاتفك المحمول" : "Please enter your Mobile #"),
-						minlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits"),
-						maxlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits")
+						required: ($("#Lang").val() != "Ar" ? "الرجاء إدخال هاتفك المحمول" : "Please enter your Mobile #"),
+						minlength: ($("#Lang").val() != "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits"),
+						maxlength: ($("#Lang").val() != "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits")
 					}
 				},
 				submitHandler: function submitHandler(form) {
 					var selectedChk = GetSelectedServicesCheckboxe();
 					//debugger
 					if (selectedChk.length == 0) {
-						$('.errorform').text(($("#Lang").val() == "Ar" ? "الرجاء تحديد الخدمات التي تهتم بها" : "Please select the services you are interested in"));
+						$('.errorform').text(($("#Lang").val() != "Ar" ? "الرجاء تحديد الخدمات التي تهتم بها" : "Please select the services you are interested in"));
 						$('.errorform').css("display","inline")
 						return false;
 					}

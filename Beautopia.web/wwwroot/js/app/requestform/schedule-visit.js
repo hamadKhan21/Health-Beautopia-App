@@ -24,9 +24,9 @@
 				messages: {
 					
 					Mobile: {
-						required: ($("#Lang").val() == "Ar" ? "الرجاء إدخال هاتفك المحمول" : "Please enter your Mobile #"),
-						minlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits"),
-						maxlength: ($("#Lang").val() == "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits")
+						required: ($("#Lang").val()!= "Ar" ? "الرجاء إدخال هاتفك المحمول" : "Please enter your Mobile #"),
+						minlength: ($("#Lang").val() != "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits"),
+						maxlength: ($("#Lang").val() != "Ar" ? "يجب أن يتكون الهاتف المحمول من ۱۰ أرقام" : "mobile must be 10 digits")
 					}
 				},
 				submitHandler: function submitHandler(form) {
