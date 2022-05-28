@@ -231,6 +231,32 @@ namespace Beautopia.web.Controllers
 
 			return Json(contactForm);
 		}
+
+
+		[Route("ScheduleVisit")]
+		public IActionResult ScheduleVisit(string RequestType,string NameOfRequest)
+
+
+		{
+			ViewBag.RequestType = RequestType;
+			ViewBag.NameOfRequest = NameOfRequest;
+
+
+
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public JsonResult SaveScheduleVisit([Bind("NameOfRequest,RequestType,Name,Mobile,Email,Comments")] ScheduleVisitModel requestService)
+		{
+			int returnServoceID = _serviceRequest.InsertScheduleVisit(requestService);
+
+			
+
+			return Json("");
+		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
@@ -245,5 +271,6 @@ namespace Beautopia.web.Controllers
 
 			return Json(Lang);
 		}
+
 	}
 }

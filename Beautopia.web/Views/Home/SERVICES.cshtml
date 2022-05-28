@@ -78,7 +78,7 @@
 					<div class="gallery-item Category_@item.CategoryID">
 						<div class="doctor-box text-center" style=" padding-bottom: 1px;">
 							<div class="doctor-box-photo">
-								<a href="#"><img src="~/admin-custom/Images/SubServices/@item.SubServiceImageName" class="img-fluid" alt=""></a>
+								<a href="#"><img src="~/admin-custom/Images/SubServices/@(SessionLang=="Ar"? item.SubServiceImageNameAr: item.SubServiceImageName)" class="img-fluid" alt=""></a>
 							</div>
 							<h5 class="doctor-box-name">
 								<a href="#">

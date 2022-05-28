@@ -335,14 +335,16 @@
 				<div class="col-sm-6 col-md-4 category1">
 					<div class="doctor-box doctor-box-style3 text-center">
 						<div class="doctor-box-photo">
-							<a asp-controller="Home" asp-action="SERVICES"><img src="~/admin-custom/Images/SubServices/@(SessionLang=="Ar"? item.SubCategoryNameAr: item.SubServiceImageName)" class="img-fluid" alt=""></a>
+							<a asp-controller="Home" asp-action="SERVICES"><img src="~/admin-custom/Images/SubServices/@(SessionLang=="Ar"? (item.SubServiceImageNameAr=="" ||item.SubServiceImageNameAr==null?item.SubServiceImageName:item.SubServiceImageNameAr): item.SubServiceImageName)" class="img-fluid" alt=""></a>
 							@*<div class="doctor-box-links">
-									<a href="#"><i class="icon-facebook-logo"></i></a>
-									<a href="#"><i class="icon-google-logo"></i></a>
-									<a href="#"><i class="icon-instagram"></i></a>
-								</div>*@
+				<a href="#"><i class="icon-facebook-logo"></i></a>
+				<a href="#"><i class="icon-google-logo"></i></a>
+				<a href="#"><i class="icon-instagram"></i></a>
+			</div>*@
 						</div>
-
+						<div class="doctor-box-top">
+							<a href="/ScheduleVisit?RequestType=Services&NameOfRequest=@(SessionLang=="Ar"? item.SubCategoryNameAr: item.SubCategoryNameEn)" class="btn mt-3"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "جدولة الزيارة" : "Schedule Visit")</span><i class="icon-right-arrow"></i></a>
+						</div>
 					</div>
 				</div>
 			}
@@ -378,7 +380,7 @@
 				<div class="col-sm-6 col-md-4 category1">
 					<div class="doctor-box doctor-box-style3 text-center">
 						<div class="doctor-box-photo">
-							<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@(SessionLang=="Ar"? item.DoctorImageAr: item.DoctorImage)" class="img-fluid" alt=""></a>
+							<a href="/OURSPECIALISTS"><img src="~/medlab/images/content/doctors/@(SessionLang=="Ar"? (item.DoctorImageAr=="" ||item.DoctorImageAr==null?item.DoctorImage:item.DoctorImageAr): item.DoctorImage)" class="img-fluid" alt=""></a>
 							<div class="doctor-box-links">
 								<a asp-controller="Home" asp-action="GALLERY" title="Gallary"><i class="icon-card"></i></a>
 								<a href="@item.InstagramLink" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
@@ -387,6 +389,7 @@
 						<div class="doctor-box-top">
 							<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
 							<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
+							<a href="/ScheduleVisit?RequestType=Doctors&NameOfRequest=@(SessionLang=="Ar"? item.DoctorNameAr: item.DoctorName)" class="btn mt-3"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "موعد الكتاب" : "Book Appointment")</span><i class="icon-right-arrow"></i></a>
 						</div>
 					</div>
 				</div>
@@ -458,7 +461,7 @@
 								<div class="pt-xl-1">
 									<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
 									<p> @(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
-									<a style="display:none" href="#" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+									<a href="/ScheduleVisit?RequestType=Devices&NameOfRequest=@(SessionLang=="Ar"? asd.TitleAr: asd.Title)" class="btn mt-3"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "جدولة الزيارة" : "Schedule Visit")</span><i class="icon-right-arrow"></i></a>
 								</div>
 							</div>
 						</div>
@@ -479,7 +482,7 @@
 								<div class="pt-xl-1">
 									<h3 style="float:@(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? asd.TitleAr : asd.Title)</h3><br />
 									<p>@(SessionLang=="Ar"? Html.Raw(asd.DescriptionAr) : Html.Raw(asd.Description))</p>
-									<a href="#" style="display:none" class="btn mt-3" data-toggle="modal" data-target="#modalBookingForm"><i class="icon-right-arrow"></i><span>order test</span><i class="icon-right-arrow"></i></a>
+									<a href="/ScheduleVisit?RequestType=Devices&NameOfRequest=@(SessionLang=="Ar"? asd.TitleAr: asd.Title)" class="btn mt-3"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "جدولة الزيارة" : "Schedule Visit")</span><i class="icon-right-arrow"></i></a>
 								</div>
 							</div>
 						</div>
@@ -614,12 +617,14 @@
 						<div class="doctor-box-photo">
 							<a href="#"><img src="~/medlab/images/content/Offers/@(SessionLang=="Ar"? item.OfferImageAr: item.OfferImage)" class="img-fluid" alt=""></a>
 							@*<div class="doctor-box-links">
-									<a href="#"><i class="icon-facebook-logo"></i></a>
-									<a href="#"><i class="icon-google-logo"></i></a>
-									<a href="#"><i class="icon-instagram"></i></a>
-								</div>*@
+				<a href="#"><i class="icon-facebook-logo"></i></a>
+				<a href="#"><i class="icon-google-logo"></i></a>
+				<a href="#"><i class="icon-instagram"></i></a>
+			</div>*@
 						</div>
-
+						<div class="doctor-box-top">
+							<a href="/ScheduleVisit?RequestType=Offers&NameOfRequest=@(SessionLang=="Ar"? item.TitleAr: item.Title)" class="btn mt-3"><i class="icon-right-arrow"></i><span>@(SessionLang=="Ar"? "جدولة الزيارة" : "Schedule Visit")</span><i class="icon-right-arrow"></i></a>
+						</div>
 					</div>
 				</div>
 			}

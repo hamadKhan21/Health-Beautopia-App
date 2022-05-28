@@ -65,6 +65,59 @@ namespace Beautopia.Services.DataAppService
             return ReturnID;
             //
         }
+
+
+        public int InsertScheduleVisit(ScheduleVisitModel param)
+        {
+            int ReturnID = -1;
+            //IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            dbConnection.Open();
+            SqlTransaction trn = dbConnection.BeginTransaction();
+            try
+            {
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                dbCommand.Transaction = trn;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_InsertScheduleVisit";
+                dbCommand.Parameters.Add("@Name ", SqlDbType.NVarChar, 250).Value = param.Name;
+                dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = param.Mobile;
+                dbCommand.Parameters.Add("@Email", SqlDbType.NVarChar, 4000).Value = param.Email;
+                dbCommand.Parameters.Add("@RequestType", SqlDbType.NVarChar, 1000).Value = param.RequestType;
+                dbCommand.Parameters.Add("@Comments", SqlDbType.NVarChar, 1000).Value = param.Comments;
+                dbCommand.Parameters.Add("@NameOfRequest", SqlDbType.NVarChar, 250).Value = param.NameOfRequest;
+             
+                dbCommand.Parameters.Add("@ReturnID", SqlDbType.VarChar, 500).Direction = ParameterDirection.ReturnValue;
+                // dbCommand.Parameters.Add("@CreatedBy", SqlDbType.VarChar, 250).Value = Obj.CreatedBy;
+
+                //dbCommand.ExecuteNonQuery();
+
+
+
+                dbCommand.ExecuteNonQuery();
+                ReturnID = (int)dbCommand.Parameters["@ReturnID"].Value;
+                //ReturnEmpID = (int)dbCommand.ExecuteScalar();
+                trn.Commit();
+
+                //ReturnEmpID = (int)dbCommand.Parameters["@Result"].Value;
+            }
+            catch (SqlException exception)
+            {
+                // _trace.App_Trace(exception.Message, "Error", "Sp_InsertOrUpdateXXDAAREmployeesFromOracle()");
+                trn.Rollback();
+                // return ReturnEmpID;
+            }
+            finally
+            {
+
+                dbConnection.Close();
+
+            }
+            return ReturnID;
+            //
+        }
         public List<RequestService> GetRequestServiceIfActivity(string CreatedBy, string RoleID)
         {
             List<RequestService> Lisobj = new List<RequestService>();
@@ -200,7 +253,66 @@ namespace Beautopia.Services.DataAppService
             return Lisobj;
         }
 
-        
+        public List<ScheduleVisitModel> GetScheduleVisit()
+        {
+            List<ScheduleVisitModel> Lisobj = new List<ScheduleVisitModel>();
+
+            string ReturnEmpID = "";
+            IDataReader reader = null;
+            SqlConnection dbConnection = null;
+            dbConnection = new SqlConnection(SQLconnectionString);
+            //SqlTransaction trn = dbConnection.BeginTransaction();
+            dbConnection.Open();
+            try
+            {
+
+
+                SqlCommand dbCommand = new SqlCommand();
+                dbCommand.Connection = dbConnection;
+                //dbCommand.Transaction = trn;
+                //dbCommand.CommandType = CommandType.;
+                dbCommand.CommandType = CommandType.StoredProcedure;
+                dbCommand.CommandText = "Sp_GetScheduleVisits ";
+               // dbCommand.Parameters.Add("@Mobile", SqlDbType.NVarChar, 250).Value = Mobile;
+
+
+
+
+                reader = dbCommand.ExecuteReader();
+                //
+                while (reader.Read())
+                {
+                    ScheduleVisitModel obj = new ScheduleVisitModel();
+
+                    //
+                   // obj.ID = Convert.ToInt32(reader["ID"]);
+                    obj.RequestType = Convert.ToString(reader["RequestType"]);
+                    obj.Name = Convert.ToString(reader["Name"]);
+                    obj.Mobile = Convert.ToString(reader["Mobile"]);
+                  
+                    obj.Email = Convert.ToString(reader["Email"]);
+                    obj.NameOfRequest = Convert.ToString(reader["NameOfRequest"]);
+                    obj.Comments = Convert.ToString(reader["Comments"]);
+                    obj.CreatedOn = Convert.ToString(reader["CreatedOn"]);
+
+                    //  obj.SubCategoryByServiceID = services;
+                    Lisobj.Add(obj);
+                }
+            }
+            catch (Exception exception)
+            {
+
+                return Lisobj;
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+
+            return Lisobj;
+        }
+
+
         public List<SubCategoryByServiceID> GetSubCategoryByServiceID(int RequestServiceID)
         {
             List<SubCategoryByServiceID> Lisobj = new List<SubCategoryByServiceID>();

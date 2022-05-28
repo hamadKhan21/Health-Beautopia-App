@@ -10,6 +10,8 @@ namespace Beautopia.Services.IDataService
 	{
 
 		int InsertServiceRequest(RequestService param);
+		int InsertScheduleVisit(ScheduleVisitModel param);
+		List<ScheduleVisitModel> GetScheduleVisit();
 		List<RequestService> GetRequestServiceIfActivity(string CreatedBy, string RoleID);
 		List<RequestService> GetRequestService(string Mobile);
 		

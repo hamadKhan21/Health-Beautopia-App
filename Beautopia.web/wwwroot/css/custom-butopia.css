@@ -15,10 +15,23 @@ direction:rtl;
 	
 }
 .nav-link-custom {
-	font-size:17px !important 
+	font-size:15px !important 
 }
 
 .navbar-nav-custom {
 	margin-right: -51px !important;
 }
 
+@font-face {
+	font-family: ArabicFont;
+	src: url('../Fonts/Graphik Arabic.otf');
+}
+
+/*.font-familyChange {
+	font-family: ArabicFont !important;
+}*/
+
+html * {
+	
+	font-family: ArabicFont !important;
+}

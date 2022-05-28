@@ -48,7 +48,7 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="text-center mb-3 mb-md-4 max-900">
+			<div class="text-center mb-3 mb-md-4 max-900" style="display:none">
 				<p>
 					@(SessionLang=="Ar"? "نحن نحب أن نرى مرضانا يبتسمون! إليكم بعضًا من أفضل الصور قبل وبعد ، كل ذلك في معرض ابتسامة واحد رائع": "We love to see our patients smile! Here are some of our best before-and-after pictures,all in one fantastic Smile Gallery")
 
@@ -79,7 +79,7 @@
 						<div class="doctor-box text-center" style=" padding-bottom: 1px;">
 							<div class="doctor-box-photo">
 								<a href="#">
-									<img src="/medlab/images/content/gallery/@item.SmileImage" alt="" />
+									<img src="/medlab/images/content/gallery/@(SessionLang=="Ar"? item.SmileImageAr : item.SmileImage)" alt="" />
 								</a>
 							</div>
 							<h5 class="doctor-box-name">

@@ -76,7 +76,7 @@
 					<div class="gallery-item Category_@item.DoctorsCategoryID">
 						<div class="doctor-box text-center">
 							<div class="doctor-box-photo">
-								<a href="#"><img src="/medlab/images/content/doctors/@item.DoctorImage" class="img-fluid" alt=""></a>
+								<a href="#"><img src="/medlab/images/content/doctors/@(SessionLang=="Ar"? item.DoctorImageAr : item.DoctorImage)" class="img-fluid" alt=""></a>
 							</div>
 							<h5 class="doctor-box-name"><a href="#">@(SessionLang=="Ar"? item.DoctorNameAr : item.DoctorName)</a></h5>
 							<div class="doctor-box-position">@(SessionLang=="Ar"? item.DesignationAr : item.Designation)</div>
@@ -86,8 +86,8 @@
 							<div class="doctor-box-bottom">
 								<div class="doctor-box-phone"><i class="icon-telephone"></i><a href="tel:@siteInfo.Contact">@(SessionLang=="Ar"? siteInfo.ContactAr : siteInfo.Contact)</a></div>
 								<div class="doctor-box-social">
-									<a href="https://www.facebook.com/" target="blank" class="hovicon"><i class="icon-facebook-logo"></i></a>
-									<a href="mailto:info@butopia-clinic.com" class="hovicon"><i class="icon-black-envelope"></i></a>
+									<a href="@item.InstagramLink" target="blank" class="hovicon"><i class="icon-instagram"></i></a>
+									<a asp-controller="Home" asp-action="GALLERY" title="Gallary"><i class="icon-card"></i></a>
 								</div>
 							</div>
 						</div>

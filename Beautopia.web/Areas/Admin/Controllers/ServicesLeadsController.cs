@@ -34,6 +34,22 @@ namespace Beautopia.web.Areas.Admin.Controllers
 		{
 			return View();
 		}
+
+		[Route("Admin/OtherLeads")]
+		public IActionResult OtherLeads()
+		{
+			return View();
+		}
+
+		public JsonResult GetOtherLeads()
+		{
+		//	var login = HttpContext.Session.GetObjectFromJson<UserLogin>("Login");
+
+			var data = _serviceRequest.GetScheduleVisit();
+
+
+			return Json(data);
+		}
 		[SessionTimeout]
 		[Route("Admin/LeadsManagement")]
 		public IActionResult LeadsManagement()

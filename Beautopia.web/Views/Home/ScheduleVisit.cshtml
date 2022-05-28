@@ -1,0 +1,99 @@
+﻿
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@using Beautopia.Services.IDataService
+@using Beautopia.Services.DataAppService
+@using Beautopia.Model.Area
+@using Beautopia.web.Areas.Admin.Extensions;
+
+@{
+	var SessionLang = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("Lang");
+
+
+	//UsersAppService usersService = new UsersAppService();
+	//IUsers _users;
+	//_users = usersService;
+	//SiteInfo siteInfo = _users.GetSiteInfo();
+
+
+
+
+}
+
+<div class="modal-body" dir="@(SessionLang=="Ar"? "rtl": "ltr")">
+
+	<div class="modal-form">
+		<div class="row row-xs-space mt-1">
+			<h3 style="margin-top: 6px; float: @(SessionLang=="Ar"? "right": "left")">@(SessionLang=="Ar"? "أرسل طلبك": "Submit Your Request")</h3>
+		</div>
+			<form id="ServiceRequest" method="post" novalidate>
+
+				<div class="successform">
+					<p>@(SessionLang=="Ar"? "تم إرسال طلبك بنجاح ، وسيتصل بك أحد وكلائنا قريبًا" : "Your request is successfully submited, one of our agent will contact you shortly!")</p>
+				</div>
+				<div class="errorform">
+					<p>@(SessionLang=="Ar"? "حدث خطأ ما ، حاول تحديث النموذج وإرساله مرة أخرى": "Something went wrong, try refreshing and submitting the form again")</p>
+				</div>
+
+
+				<div class="row row-xs-space mt-1">
+
+					<div class="col-sm-4">
+						<div class="input-group">
+							@*<span>
+								<i class="icon-user"></i>
+							</span>*@
+							<input type="text" name="NameOfRequest" id="NameOfRequest" value="@ViewBag.NameOfRequest" class="form-control" readonly />
+							<input type="hidden" name="RequestType" id="RequestType" value="@ViewBag.RequestType" />
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="input-group">
+							<span>
+								<i class="icon-user"></i>
+							</span>
+							<input type="text" name="Name" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "اسمك" : "Your Name")" />
+
+						</div>
+					</div>
+					<div class="col-sm-4 mt-1 mt-sm-0">
+						<div class="input-group">
+							<span>
+								<i class="icon-smartphone"></i>
+							</span>
+
+							<input type="text" name="Mobile" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "رقم جوالك" : "Your Mobile")" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row row-xs-space mt-1">
+					<div class="col-sm-4">
+						<div class="input-group">
+							<span>
+								<i class="icon-email2"></i>
+							</span>
+							<input type="text" name="Email" class="form-control" autocomplete="off" placeholder="@(SessionLang=="Ar"? "بريدك الالكتروني" : "Your Email")" />
+						</div>
+					</div>
+					<div class="col-sm-8 mt-1 mt-sm-0">
+						<textarea name="Comments" class="form-control" placeholder="@(SessionLang=="Ar"? "تعليقك" : "Your comment")"></textarea>
+					</div>
+				</div>
+
+				<div class="@(SessionLang=="Ar"? "text-left": "text-right") mt-2">
+					<button type="submit" class="btn btn-sm btn-hover-fill">@(SessionLang=="Ar"? "أرسل الآن": "Submit now")</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+@section scripts {
+	<script src="~/js/app/requestform/schedule-visit.js"></script>
+}
+
+@*@section Scripts {
+		@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	}*@
+
